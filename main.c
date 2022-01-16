@@ -1,25 +1,14 @@
-#include <mlx.h>
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+#include "so_long.h"
 
 int main()
 {
-	void *mlx;
-	void *mlx_win;
-	t_data	img;
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 320, 240, "Lukas");
-	img.img = mlx_new_image(mlx, 320, 240);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
-	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
-	
+	t_root game;
+
+	map_to_string(&game);
+	game.mlx = mlx_init();
+	start(&game);
+	game.mlxw = mlx_new_window(game.mlx, game.pixelsize.x, game.pixelsize.y, "Approach");
+	mlx_key_hook(game.mlxw, &action, &game);
+	mlx_loop_hook(game.mlx, &map, &game);
+	mlx_loop(game.mlx);
 }
