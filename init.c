@@ -33,12 +33,31 @@ void count_map(t_root *game)
 	printf("x = %d;\ny = %d;\n", game->pixelsize.x, game->pixelsize.y); 
 }
 
+void playerlocation(t_root *game)
+{
+	int xy;
+
+	xy  = ft_strchr(game->map, 'P') - game->map;
+	game->ash.symbol_location.y = xy / (game->symbolsize.x + 1);
+	game->ash.symbol_location.x = xy % (game->symbolsize.x + 1);
+	game->ash.pixel_location.y = game->ash.symbol_location.y * game->grass.size.y;
+	game->ash.pixel_location.x = game->ash.symbol_location.x * game->grass.size.x;
+	//printf("xy = %d\nXash = %d\nYash = %d\n",xy, game->ash.symbol_location.x, game->ash.symbol_location.y);
+}
+
 void sprites_init(t_root *game)
 {
 	game->grass.path = "./images/grass.xpm";
 	game->grass.reference = mlx_xpm_file_to_image(game->mlx, game->grass.path, &(game->grass.size.x), &(game->grass.size.y));
 	game->wall.path = "./images/wall.xpm";
 	game->wall.reference = mlx_xpm_file_to_image(game->mlx, game->wall.path, &(game->wall.size.x), &(game->wall.size.y));
+	game->ball.path = "./images/pokeball.xpm";
+	game->ball.reference = mlx_xpm_file_to_image(game->mlx, game->ball.path, &(game->ball.size.x), &(game->ball.size.y));
+	game->pika.path = "./images/pikachu.xpm";
+	game->pika.reference = mlx_xpm_file_to_image(game->mlx, game->pika.path, &(game->pika.size.x), &(game->pika.size.y));
+	game->ash.path = "./images/ash.xpm";
+	game->ash.reference = mlx_xpm_file_to_image(game->mlx, game->ash.path, &(game->ash.size.x), &(game->ash.size.y));
+	playerlocation(game);
 }
 
 void start(t_root *game)

@@ -1,5 +1,17 @@
 #include "so_long.h"
 
+char	*ft_strchr(const char *s, int c)
+{
+	char	k;
+
+	k = (char)c;
+	while (*s != k && *s != 0)
+		s++;
+	if ((k == 0 && *s == 0) || *s != 0)
+		return ((char *)s);
+	return (0);
+}
+
 void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;

@@ -11,6 +11,10 @@
 #define A_key 0
 #define S_key 1
 #define D_key 2
+#define Up_arrow 126
+#define Left_arrow 123
+#define Down_arrow 125
+#define Right_arrow 124
 
 typedef struct	s_vector 
 {
@@ -22,7 +26,8 @@ typedef struct s_image {
 	void	*reference;
 	char	*pixels;
 	t_vector	size;
-	t_vector	location;
+	t_vector	pixel_location;
+	t_vector	symbol_location;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -36,6 +41,9 @@ typedef struct	s_root {
 	t_vector pixelsize;
 	t_image grass;
 	t_image wall;
+	t_image pika;
+	t_image ball;
+	t_image ash;
 	char	*map;
 
 }				t_root;
@@ -55,5 +63,8 @@ void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen_n(const char *s);
 void map_to_string(t_root *game);
 int action(int keypress, t_root *game);
+void playerlocation(t_root *game);
+char	*ft_strchr(const char *s, int c);
+
 
 #endif
