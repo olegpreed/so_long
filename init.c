@@ -1,4 +1,73 @@
 #include "so_long.h"
+int check_item_count(char *map)
+{
+	int P_count = 0;
+	int E_count = 0;
+	int C_count = 0;
+	int Other_count = 0;
+	int i = 0;
+
+	while (map[i] != '\0')
+	{
+		if (map[i] == 'P')
+			P_count++;
+		else if (map[i] == 'E')
+			E_count++;
+		else if (map[i] == 'C')
+			C_count++;
+		else if (map[i] != '1' && map[i] != '\n' && map[i] != '0')
+			Other_count++;
+		i++; 
+	}
+	if (P_count != 1 || E_count == 0 || C_count == 0 || Other_count != 0)
+		return 1;
+	return 0;
+}
+
+int check_map_square(t_root *game)
+{
+	int i = 0;
+	int line_length;
+	char *mapcopy = game->map;
+	while(i < (game->symbolsize.y - 1))
+	{
+		line_length = ft_strlen_n(mapcopy);
+		mapcopy += line_length + 1;
+		if (line_length != ft_strlen_n(mapcopy))
+			return 1;
+		i++;
+	}
+	return 0;
+}
+
+int check_walls(char *map)
+{
+	int i = 0;
+
+	while(map[i] != '\n')
+		if (map[i++] != '1')
+			return 1;
+	while(map[i] != '\0')
+	{
+		if (map[i] == '\n' && (map[i - 1] != '1' || map[i + 1] != '1'))
+			return 1;
+		i++;
+	}
+	while(map[--i] != '\n')
+		if (map[i] != '1')
+			return 1;
+	return 0;
+}
+
+int check_valid_map(t_root *game)
+{
+	if ((game->symbolsize.y <= 2) || check_item_count(game->map) || check_map_square(game))
+		return 1;
+	if (check_walls(game->map))
+		return 1;
+	return 0;
+}
+
 void map_to_string(t_root *game)
 {
 	game->symbolsize.x = 0;

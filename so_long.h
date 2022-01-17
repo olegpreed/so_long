@@ -65,6 +65,9 @@ void map_to_string(t_root *game);
 int action(int keypress, t_root *game);
 void playerlocation(t_root *game);
 char	*ft_strchr(const char *s, int c);
+int check_valid_map(t_root *game);
+int check_item_count(char *map);
+int check_walls(char *map);
 
 
 #endif
