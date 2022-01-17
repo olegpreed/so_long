@@ -7,14 +7,11 @@
 #include <fcntl.h>
 #include <stddef.h>
 
-#define W_key 13
-#define A_key 0
-#define S_key 1
-#define D_key 2
-#define Up_arrow 126
-#define Left_arrow 123
-#define Down_arrow 125
-#define Right_arrow 124
+#define W 13
+#define A 0
+#define S 1
+#define D 2
+#define Esc_key 53
 
 typedef struct	s_vector 
 {
@@ -26,8 +23,8 @@ typedef struct s_image {
 	void	*reference;
 	char	*pixels;
 	t_vector	size;
-	t_vector	pixel_location;
-	t_vector	symbol_location;
+	t_vector	pixel_loc;
+	t_vector	symbol_loc;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -37,6 +34,8 @@ typedef struct s_image {
 typedef struct	s_root {
 	void	*mlx;
 	void	*mlxw;
+	int		close;
+	char 	*map_path;
 	t_vector symbolsize;
 	t_vector pixelsize;
 	t_image grass;
@@ -68,6 +67,9 @@ char	*ft_strchr(const char *s, int c);
 int check_valid_map(t_root *game);
 int check_item_count(char *map);
 int check_walls(char *map);
+int preparation(t_root *game, int argc, char **argv);
+void	symbol_to_image(t_root *game, int x, int y, int i);
+void	print_image(t_root *game, t_image *image, int x, int y);
 
 
 #endif
