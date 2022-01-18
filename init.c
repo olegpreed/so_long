@@ -6,11 +6,16 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/01/17 22:28:02 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 16:45:23 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	pxl_to_symbol_loc(int x, int y, int line)
+{
+	return (x / 100 + (y / 100) * (line + 1));
+}
 
 void	playerlocation(t_root *game)
 {

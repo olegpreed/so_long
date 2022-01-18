@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/01/17 22:30:23 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 16:14:04 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	print_image(t_root *game, t_image *image, int x, int y)
 {
+	if (image == &(game->ash) && game->map[game->ash.symbol_index] == 'C')
+		game->map[game->ash.symbol_index] = '0';
 	mlx_put_image_to_window(game->mlx, game->mlxw, image->reference, x, y);
 }
 

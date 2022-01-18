@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 14:30:29 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 16:50:25 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define S 1
 # define D 2
 # define ESC 53
+# define CLOSE 17
 
 typedef struct s_vector
 {
@@ -41,6 +42,7 @@ typedef struct s_image {
 	int			line_length;
 	int			endian;
 	char		*path;
+	int			symbol_index;
 }				t_image;
 
 typedef struct s_root {
@@ -82,5 +84,6 @@ int		check_walls(char *map);
 int		preparation(t_root *game, int argc, char **argv);
 void	symbol_to_image(t_root *game, int x, int y, int i);
 void	print_image(t_root *game, t_image *image, int x, int y);
+int		pxl_to_symbol_loc(int x, int y, int line);
 
 #endif

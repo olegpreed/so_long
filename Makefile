@@ -6,7 +6,7 @@
 #    By: preed <preed@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 14:36:11 by preed             #+#    #+#              #
-#    Updated: 2022/01/18 14:49:46 by preed            ###   ########.fr        #
+#    Updated: 2022/01/18 14:52:23 by preed            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,6 @@ ${NAME}: $(SRC) ./maps/* so_long.h
 	${CC} ${FLAGS} $(SRC) -o ${NAME}
 
 clean: 
-	rm so_long
+	rm $(NAME)
 
 ## gcc  -g -lmlx -framework OpenGL -framework AppKit *.c -o so_long
