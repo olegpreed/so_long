@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 17:27:58 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 20:04:48 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ typedef struct s_root {
 	char		*map_path;
 	t_vector	symbolsize;
 	t_vector	pixelsize;
-	t_image		grass;
+	t_image		floor;
 	t_image		wall;
-	t_image		pika;
+	t_image		lady;
 	t_image		ball;
-	t_image		ash;
+	t_image		max;
 	char		*map;
 
 }				t_root;
@@ -83,7 +83,7 @@ int		check_walls(char *map);
 int		preparation(t_root *game, int argc, char **argv);
 void	symbol_to_image(t_root *game, int x, int y, int i);
 void	print_image(t_root *game, t_image *image, int x, int y);
-int		pxl_to_symbol_loc(int x, int y, int line);
+int		pxl_to_symbol_loc(t_root *game, int line);
 int		exit_game(void);
 
 #endif

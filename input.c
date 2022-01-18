@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 19:07:58 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 20:08:50 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ void	move_sd(t_root *game, char key, int *count)
 	int	line;
 
 	line = game->symbolsize.x;
-	i = &(game->ash.symbol_index);
+	i = &(game->max.symbol_index);
 	if (key == 's')
 	{
-		game->ash.symbol_loc.y += 1;
-		game->ash.pixel_loc.y += game->grass.size.y;
+		game->max.symbol_loc.y += 1;
+		game->max.pixel_loc.y += game->floor.size.y;
 	}
 	else if (key == 'd')
 	{
-		game->ash.pixel_loc.x += game->grass.size.x;
-		game->ash.symbol_loc.x += 1;
+		game->max.pixel_loc.x += game->floor.size.x;
+		game->max.symbol_loc.x += 1;
 	}
-	*i = pxl_to_symbol_loc(game->ash.pixel_loc.x, game->ash.pixel_loc.y, line);
+	*i = pxl_to_symbol_loc(game, line);
 	(*count)++;
 	printf("Move count: %d\n", *count);
 }
@@ -40,20 +40,20 @@ void	move_wa(t_root *game, char key, int *count)
 	int	line;
 
 	line = game->symbolsize.x;
-	i = &(game->ash.symbol_index);
+	i = &(game->max.symbol_index);
 	if (key == 'w')
 	{
-		game->ash.symbol_loc.y -= 1;
-		game->ash.pixel_loc.y -= game->grass.size.y;
+		game->max.symbol_loc.y -= 1;
+		game->max.pixel_loc.y -= game->floor.size.y;
 	}
 	else if (key == 'a')
 	{
-		game->ash.pixel_loc.x -= game->grass.size.x;
-		game->ash.symbol_loc.x -= 1;
+		game->max.pixel_loc.x -= game->floor.size.x;
+		game->max.symbol_loc.x -= 1;
 	}
-	*i = pxl_to_symbol_loc(game->ash.pixel_loc.x, game->ash.pixel_loc.y, line);
+	*i = pxl_to_symbol_loc(game, line);
 	(*count)++;
-	printf("Move count!: %d\n", *count);
+	printf("Move count: %d\n", *count);
 }
 
 int	exit_game(void)
@@ -69,8 +69,8 @@ int	action(int keypress, t_root *game)
 	static int	count;
 	int			line;
 
-	xx = game->ash.symbol_loc.x;
-	yy = game->ash.symbol_loc.y;
+	xx = game->max.symbol_loc.x;
+	yy = game->max.symbol_loc.y;
 	line = game->symbolsize.x;
 	if (keypress == ESC)
 	{
