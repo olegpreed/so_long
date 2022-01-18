@@ -6,9 +6,14 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:31:28 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 14:33:35 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 16:56:18 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int	pxl_to_symbol_loc(int x, int y, int line)
+{
+	return (x / 100 + (y / 100) * (line + 1));
+}
 
 int	create_trgb(int t, int r, int g, int b)
 {

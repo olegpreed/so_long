@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 16:46:13 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 19:07:58 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	move_sd(t_root *game, char key, int *count)
 	}
 	*i = pxl_to_symbol_loc(game->ash.pixel_loc.x, game->ash.pixel_loc.y, line);
 	(*count)++;
-	printf("Move count!: %d\n", *count);
+	printf("Move count: %d\n", *count);
 }
 
 void	move_wa(t_root *game, char key, int *count)
@@ -56,6 +56,12 @@ void	move_wa(t_root *game, char key, int *count)
 	printf("Move count!: %d\n", *count);
 }
 
+int	exit_game(void)
+{
+	exit(0);
+	return (1);
+}
+
 int	action(int keypress, t_root *game)
 {
 	static int	xx;
@@ -69,8 +75,7 @@ int	action(int keypress, t_root *game)
 	if (keypress == ESC)
 	{
 		mlx_destroy_window(game->mlx, game->mlxw);
-		game->close = 1;
-		return (1);
+		exit(0);
 	}
 	else if (keypress == W && game->map[xx + (line + 1) * (yy - 1)] != '1')
 		move_wa(game, 'w', &count);

@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 16:50:25 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 17:27:58 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_image {
 typedef struct s_root {
 	void		*mlx;
 	void		*mlxw;
-	int			close;
 	char		*map_path;
 	t_vector	symbolsize;
 	t_vector	pixelsize;
@@ -85,5 +84,6 @@ int		preparation(t_root *game, int argc, char **argv);
 void	symbol_to_image(t_root *game, int x, int y, int i);
 void	print_image(t_root *game, t_image *image, int x, int y);
 int		pxl_to_symbol_loc(int x, int y, int line);
+int		exit_game(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:59:23 by preed             #+#    #+#             */
-/*   Updated: 2022/01/17 21:19:28 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 17:17:40 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	preparation(t_root *game, int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	game->map_path = argv[1];
-	game->close = 0;
 	map_to_string(game);
 	if (check_valid_map(game))
 	{

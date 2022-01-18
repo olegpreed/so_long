@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:51:23 by preed             #+#    #+#             */
-/*   Updated: 2022/01/17 20:59:11 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 17:26:22 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	main(int argc, char **argv)
 	game.mlx = mlx_init();
 	start(&game);
 	mlx_hook(game.mlxw, 2, 0, &action, &game);
-	if (game.close == 1)
-		return (1);
+	mlx_hook(game.mlxw, 17, 0, &exit_game, (void *)0);
 	mlx_loop_hook(game.mlx, &map, &game);
 	mlx_loop(game.mlx);
 	return (0);
