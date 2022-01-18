@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:31:02 by preed             #+#    #+#             */
-/*   Updated: 2022/01/14 20:11:12 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/18 14:30:56 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*count(char *line, int *k)
 	}
 }
 
-
 size_t	ft_strlcpylen(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -71,5 +70,3 @@ size_t	ft_strlcpylen(char *dst, const char *src, size_t dstsize)
 	dst[i] = 0;
 	return (1);
 }
-
-
