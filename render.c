@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/01/19 20:17:14 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/19 20:49:05 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	crowd(t_root *game, t_vector xy, int i)
 		darken(game, game->i.goth, xy);
 	else if ((game->random)[i] == 4)
 		darken(game, game->i.rapper, xy);
+	else if ((game->random)[i] == 5)
+		darken(game, game->i.tired, xy);
 }	
 
 void	print_image(t_root *game, t_image *image, t_vector xy, int j)

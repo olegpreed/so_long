@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/01/19 20:06:08 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/19 20:48:16 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_images {
 	t_image		goth;
 	t_image		rapper;
 	t_image		naked;
+	t_image		tired;
 	t_image		hair;
 	t_image		redbull;
 	t_image		condom;

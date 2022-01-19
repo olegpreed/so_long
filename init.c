@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/01/19 20:05:52 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/19 20:48:45 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	sprites_init(t_root *game)
 	game->i.hair.reference = image_ref(game, &(game->i.hair));
 	game->i.naked.path = "./images/naked.xpm";
 	game->i.naked.reference = image_ref(game, &(game->i.naked));
+	game->i.tired.path = "./images/tired.xpm";
+	game->i.tired.reference = image_ref(game, &(game->i.tired));
 	game->i.rapper.path = "./images/rapper.xpm";
 	game->i.rapper.reference = image_ref(game, &(game->i.rapper));
 	game->i.wall.path = "./images/wall.xpm";

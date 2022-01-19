@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:59:23 by preed             #+#    #+#             */
-/*   Updated: 2022/01/19 19:54:51 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/19 20:54:24 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@ void	random_table(t_root *game)
 	int	y;
 	int	i;
 
-	i = 0;
+	i = 1;
 	x = game->symbolsize.x;
 	y = game->symbolsize.y;
 	game->random = ft_calloc((((x + 1) * y) + 1), sizeof(int));
+	game->random[0] = rand() % 6;
 	while (i < (x + 1) * y)
-		game->random[i++] = rand() % 5;
+	{
+		game->random[i] = rand() % 6;
+		while (game->random[i] == game->random[i - 1])
+			game->random[i] = rand() % 6;
+		i++;
+	}
 }
 
 int	map_to_string(t_root *game)
