@@ -6,7 +6,7 @@
 #    By: preed <preed@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 14:36:11 by preed             #+#    #+#              #
-#    Updated: 2022/01/18 14:52:23 by preed            ###   ########.fr        #
+#    Updated: 2022/01/19 18:16:33 by preed            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,11 @@ SRC_GAME = main.c preparation.c render.c init.c utils.c map_check.c input.c
 
 CC = gcc
 
-FLAGS =   -lmlx -framework OpenGL -framework AppKit -Wall -Wextra -Werror
+FLAGS = -lmlx -framework OpenGL -framework AppKit -Wall -Wextra -Werror
 
 all: ${NAME}
 
-${NAME}: $(SRC) ./maps/* so_long.h 
+${NAME}: $(SRC) ./maps/* so_long.h
 	${CC} ${FLAGS} $(SRC) -o ${NAME}
 
 clean: 

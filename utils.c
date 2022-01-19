@@ -6,20 +6,20 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:31:28 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 20:07:37 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/19 19:54:30 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	pxl_to_symbol_loc(t_root *game, int line)
+int	symbol_loc(t_root *game, int line)
 {
 	int	x;
 	int	y;
 
-	x = game->max.pixel_loc.x;
-	y = game->max.pixel_loc.y;
-	return (x / 64 + (y / 64) * (line + 1));
+	x = game->i.max.symbol_loc.x;
+	y = game->i.max.symbol_loc.y;
+	return (x + y * (line + 1));
 }
 
 int	create_trgb(int t, int r, int g, int b)

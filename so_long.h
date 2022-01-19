@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 20:04:48 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/19 20:06:08 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,32 @@ typedef struct s_image {
 	int			symbol_index;
 }				t_image;
 
+typedef struct s_images {
+	t_image		floor;
+	t_image		wall;
+	t_image		lady;
+	t_image		max;
+	t_image		speak;
+	t_image		coke;
+	t_image		goth;
+	t_image		rapper;
+	t_image		naked;
+	t_image		hair;
+	t_image		redbull;
+	t_image		condom;
+	t_image		dj;
+	t_image		door;
+}				t_images;
+
 typedef struct s_root {
 	void		*mlx;
 	void		*mlxw;
 	char		*map_path;
 	t_vector	symbolsize;
 	t_vector	pixelsize;
-	t_image		floor;
-	t_image		wall;
-	t_image		lady;
-	t_image		ball;
-	t_image		max;
+	t_images	i;
 	char		*map;
+	int			*random;
 
 }				t_root;
 
@@ -73,7 +87,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen_n(const char *s);
-void	map_to_string(t_root *game);
+int		map_to_string(t_root *game);
 int		action(int keypress, t_root *game);
 void	playerlocation(t_root *game);
 char	*ft_strchr(const char *s, int c);
@@ -81,9 +95,9 @@ int		check_valid_map(t_root *game);
 int		check_item_count(char *map);
 int		check_walls(char *map);
 int		preparation(t_root *game, int argc, char **argv);
-void	symbol_to_image(t_root *game, int x, int y, int i);
-void	print_image(t_root *game, t_image *image, int x, int y);
-int		pxl_to_symbol_loc(t_root *game, int line);
+void	symbol_to_image(t_root *game, t_vector xy, int i);
+void	print_image(t_root *game, t_image *image, t_vector xy, int i);
+int		symbol_loc(t_root *game, int line);
 int		exit_game(void);
 
 #endif

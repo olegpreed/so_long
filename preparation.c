@@ -6,13 +6,27 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:59:23 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 17:17:40 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/19 19:54:51 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	map_to_string(t_root *game)
+void	random_table(t_root *game)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	i = 0;
+	x = game->symbolsize.x;
+	y = game->symbolsize.y;
+	game->random = ft_calloc((((x + 1) * y) + 1), sizeof(int));
+	while (i < (x + 1) * y)
+		game->random[i++] = rand() % 5;
+}
+
+int	map_to_string(t_root *game)
 {
 	int		k;
 	int		fd;
@@ -23,6 +37,8 @@ void	map_to_string(t_root *game)
 	fd = 0;
 	game->symbolsize.y = 0;
 	fd = open(game->map_path, O_RDONLY);
+	if (fd == -1)
+		return (1);
 	game->map = get_next_line(fd);
 	while (k)
 	{
@@ -39,6 +55,7 @@ void	map_to_string(t_root *game)
 		game->symbolsize.y++;
 	}
 	game->symbolsize.x = ft_strlen_n(game->map);
+	return (0);
 }
 
 int	preparation(t_root *game, int argc, char **argv)
@@ -46,11 +63,16 @@ int	preparation(t_root *game, int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	game->map_path = argv[1];
-	map_to_string(game);
+	if (map_to_string(game))
+	{
+		printf("Error\nCould not read the file\n");
+		return (1);
+	}
 	if (check_valid_map(game))
 	{
 		printf("Error\nInvalid map\n");
 		return (1);
 	}
+	random_table(game);
 	return (0);
 }
