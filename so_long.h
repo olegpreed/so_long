@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/01/21 19:14:24 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/21 19:19:39 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ int		symbol_loc(t_root *game, int line);
 int		exit_game(void);
 void	my_mlx_pixel_put(t_image *bg, int x, int y, int color);
 void	*image_ref(t_root *game, t_image *image);
+int		create_trgb(int t, int r, int g, int b);
 
 #endif

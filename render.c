@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/01/21 17:23:05 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/21 19:52:46 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,43 @@ void	paint_bg(t_image *bg, t_root *game)
 {
 	int	x;
 	int y;
-	int	i;
+	static int k;
+	int g;
+	static int b = 0xFF;
+	static int t;
+	static int r = 0xFF;
+	
 	
 	x = 0;
 	y = 0;
-	i = 0x00C3ACC9;
+	t = 0;
+	g = 0x0;
+	
 	while (y < game->pixelsize.y)
 	{
 		while (x < game->pixelsize.x)
 		{	
-			my_mlx_pixel_put(bg, x, y, i);
+			my_mlx_pixel_put(bg, x, y, create_trgb(t, r, g, b));
 			x++;
 		}
 		x = 0;
 		y++;	
 	}
+	if (r == 0xFF)
+		k = 1;
+	if (r == 0x00)
+		k = 0;
+	if (!k) 
+	{
+		r += 3;
+		b++;
+	}
+	else
+	{
+		r -= 3;
+		b--;
+	}
+	
 }
 
 void	background(t_root *game)
