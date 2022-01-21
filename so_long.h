@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/01/19 20:48:16 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/21 19:14:24 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_vector
 	int		y;
 }				t_vector;
 
+
 typedef struct s_image {
 	void		*reference;
 	char		*pixels;
@@ -50,6 +51,9 @@ typedef struct s_images {
 	t_image		wall;
 	t_image		lady;
 	t_image		max;
+	t_image		max_b;
+	t_image		max_r;
+	t_image		max_l;
 	t_image		speak;
 	t_image		coke;
 	t_image		goth;
@@ -100,5 +104,7 @@ void	symbol_to_image(t_root *game, t_vector xy, int i);
 void	print_image(t_root *game, t_image *image, t_vector xy, int i);
 int		symbol_loc(t_root *game, int line);
 int		exit_game(void);
+void	my_mlx_pixel_put(t_image *bg, int x, int y, int color);
+void	*image_ref(t_root *game, t_image *image);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/01/19 20:49:05 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/21 17:23:05 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 		game->map[game->i.max.symbol_index] = '0';
 	if (image == max && game->map[*i] == 'E' && !ft_strchr(game->map, 'C'))
 		exit_game();
-	mlx_put_image_to_window(game->mlx, game->mlxw, image->reference, xy.x, xy.y);
+	if (image != &(game->i.coke))
+		mlx_put_image_to_window(game->mlx, game->mlxw, image->reference, xy.x, xy.y);
 	if (image == &(game->i.coke))
 		crowd(game, xy, j);
 	if (image == &(game->i.wall) && xy.x == (game->pixelsize.x - 3 * game->i.floor.size.x))
@@ -88,6 +89,36 @@ void	symbol_to_image(t_root *game, t_vector xy, int i)
 	}
 }
 
+void	paint_bg(t_image *bg, t_root *game)
+{
+	int	x;
+	int y;
+	int	i;
+	
+	x = 0;
+	y = 0;
+	i = 0x00C3ACC9;
+	while (y < game->pixelsize.y)
+	{
+		while (x < game->pixelsize.x)
+		{	
+			my_mlx_pixel_put(bg, x, y, i);
+			x++;
+		}
+		x = 0;
+		y++;	
+	}
+}
+
+void	background(t_root *game)
+{
+	t_image bg;
+	bg.reference = mlx_new_image(game->mlx, game->pixelsize.x, game->pixelsize.y);
+	bg.pixels =mlx_get_data_addr(bg.reference, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
+	paint_bg(&bg, game);
+	mlx_put_image_to_window(game->mlx, game->mlxw, bg.reference, 0, 0);
+}
+
 int	map(t_root *game)
 {	
 	t_vector	xy;
@@ -98,6 +129,7 @@ int	map(t_root *game)
 	xy.x = 0;
 	xy.y = 0;
 	i = 0;
+	background(game);
 	while ((game->map)[i])
 	{
 		if ((game->map)[i] == '\n')

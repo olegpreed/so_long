@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/01/19 20:48:45 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/21 18:29:32 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	playerlocation(t_root *game)
 	game->i.max.symbol_loc.x = xy % (game->symbolsize.x + 1);
 	game->i.max.pixel_loc.y = game->i.max.symbol_loc.y * h - 10;
 	game->i.max.pixel_loc.x = game->i.max.symbol_loc.x * w;
+	//printf("x = %d;\ny = %d\n", game->i.max.pixel_loc.x / 64, game->i.max.pixel_loc.y / 64);
 }
 // w : sprite width
 // h : sprite height
@@ -55,6 +56,12 @@ void	sprites_init(t_root *game)
 	game->i.lady.reference = image_ref(game, &(game->i.lady));
 	game->i.max.path = "./images/max.xpm";
 	game->i.max.reference = image_ref(game, &(game->i.max));
+	game->i.max_l.path = "./images/max_l.xpm";
+	game->i.max_l.reference = image_ref(game, &(game->i.max_l));
+	game->i.max_r.path = "./images/max_r.xpm";
+	game->i.max_r.reference = image_ref(game, &(game->i.max_r));
+	game->i.max_b.path = "./images/max_b.xpm";
+	game->i.max_b.reference = image_ref(game, &(game->i.max_b));
 	game->i.speak.path = "./images/speaker.xpm";
 	game->i.speak.reference = image_ref(game, &(game->i.speak));
 	game->i.coke.path = "./images/coke.xpm";

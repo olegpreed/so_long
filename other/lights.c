@@ -20,7 +20,7 @@ int	create_trgb(int t, int r, int g, int b)
 int changecolor(t_data *a)
 {
 	static unsigned char t = 0, r = 0, g = 0, b = 0, k = 0;
-	//printf("%d %d %d\n", r, g ,b );
+	//printf("%d %d %d\n", r, g ,b )
 	int x = 0, y = 0;
 	while (x < 320)
 	{
@@ -57,9 +57,6 @@ int main()
 	t_data img;
 	img.mlx = mlx_init();
 	img.mlxwp = mlx_new_window(img.mlx, 320, 240, "Approach");
-	//mlx_hook(img.mlxwp, 4, 0, &changecolor, &img);
-	//mlx_key_hook(img.mlxwp, &changecolor, &img);
-	// mlx_mouse_hook(img.mlxwp, &changecolor, &img);
 	mlx_loop_hook(img.mlx, &changecolor, &img);
 	mlx_loop(img.mlx);
 }

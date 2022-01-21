@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/01/19 16:02:04 by preed            ###   ########.fr       */
+/*   Updated: 2022/01/21 19:15:02 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ void	move_sd(t_root *game, char key, int *count)
 	{
 		game->i.max.symbol_loc.y += 1;
 		game->i.max.pixel_loc.y += game->i.floor.size.y;
+		game->i.max.reference = image_ref(game, &(game->i.max));
 	}
 	else if (key == 'd')
 	{
 		game->i.max.pixel_loc.x += game->i.floor.size.x;
 		game->i.max.symbol_loc.x += 1;
+		game->i.max.reference = image_ref(game, &(game->i.max_r));
 	}
 	*i = symbol_loc(game, line);
 	(*count)++;
@@ -45,11 +47,13 @@ void	move_wa(t_root *game, char key, int *count)
 	{
 		game->i.max.symbol_loc.y -= 1;
 		game->i.max.pixel_loc.y -= game->i.floor.size.y;
+		game->i.max.reference = image_ref(game, &(game->i.max_b));
 	}
 	else if (key == 'a')
 	{
 		game->i.max.pixel_loc.x -= game->i.floor.size.x;
 		game->i.max.symbol_loc.x -= 1;
+		game->i.max.reference = image_ref(game, &(game->i.max_l));
 	}
 	*i = symbol_loc(game, line);
 	(*count)++;
