@@ -13,7 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <mlx.h>
+# include "minilibx/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -64,7 +64,11 @@ typedef struct s_images {
 	t_image		redbull;
 	t_image		condom;
 	t_image		dj;
+	t_image		dj2;
+	t_image		dj3;
 	t_image		door;
+	t_image		shadow_b;
+	t_image		beer;
 }				t_images;
 
 typedef struct s_root {

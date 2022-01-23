@@ -50,6 +50,10 @@ void	sprites_init(t_root *game)
 	game->i.condom.reference = image_ref(game, &(game->i.condom));
 	game->i.dj.path = "./images/dj.xpm";
 	game->i.dj.reference = image_ref(game, &(game->i.dj));
+	game->i.dj2.path = "./images/dj2.xpm";
+	game->i.dj2.reference = image_ref(game, &(game->i.dj2));
+	game->i.dj3.path = "./images/dj3.xpm";
+	game->i.dj3.reference = image_ref(game, &(game->i.dj3));
 	game->i.redbull.path = "./images/redbull.xpm";
 	game->i.redbull.reference = image_ref(game, &(game->i.redbull));
 	game->i.lady.path = "./images/lady.xpm";
@@ -80,6 +84,10 @@ void	sprites_init(t_root *game)
 	game->i.wall.reference = image_ref(game, &(game->i.wall));
 	game->i.door.path = "./images/door.xpm";
 	game->i.door.reference = image_ref(game, &(game->i.door));
+	game->i.beer.path = "./images/beer.xpm";
+	game->i.beer.reference = image_ref(game, &(game->i.beer));
+	game->i.shadow_b.path = "./images/shadow_b.xpm";
+	game->i.shadow_b.reference = image_ref(game, &(game->i.shadow_b));
 	playerlocation(game);
 }
 

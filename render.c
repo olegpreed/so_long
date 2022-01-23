@@ -34,6 +34,33 @@ void	crowd(t_root *game, t_vector xy, int i)
 		darken(game, game->i.tired, xy);
 }	
 
+void dj(t_root *game, t_vector xy)
+{
+	static int i;
+	static int k;
+	
+	if (game->symbolsize.x % 2 == 0)
+			xy.x = game->pixelsize.x / 2 - game->i.floor.size.x;
+		else
+			xy.x = (game->pixelsize.x - game->i.floor.size.x) / 2;
+	if (!k)
+	{
+		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.dj.reference, xy.x, 0);
+		i++;
+	}
+	if (k)
+	{
+		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.dj2.reference, xy.x, 0);
+		i--;
+	}
+	if (i == 30)
+		k = 1;
+	if (i > 10 && i <= 20)
+		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.dj3.reference, xy.x, 0);
+	if (i == 0)
+		k = 0;
+}
+
 void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 {
 	int		*i;
@@ -51,14 +78,6 @@ void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 		crowd(game, xy, j);
 	if (image == &(game->i.wall) && xy.x == (game->pixelsize.x - 3 * game->i.floor.size.x))
 		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.door.reference, xy.x, xy.y);
-	if (image == &(game->i.speak))
-	{
-		if (game->symbolsize.x % 2 == 0)
-			xy.x = game->pixelsize.x / 2 - game->i.floor.size.x;
-		else
-			xy.x = (game->pixelsize.x - game->i.floor.size.x) / 2;
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.dj.reference, xy.x, xy.y);
-	}
 }
 
 void	symbol_to_image(t_root *game, t_vector xy, int i)
@@ -79,13 +98,18 @@ void	symbol_to_image(t_root *game, t_vector xy, int i)
 	else if ((game->map)[i] == 'C')
 	{
 		print_image(game, &(game->i.floor), xy, i);
-		print_image(game, &(game->i.redbull), xy, i);
+		xy.y -= 20;
+		print_image(game, &(game->i.shadow_b), xy, i);
+		xy.y -= 20;
+		print_image(game, &(game->i.beer), xy, i);
 	}
 	else if ((game->map)[i] == 'E')
 	{
 		print_image(game, &(game->i.floor), xy, i);
+		dj(game, xy);  
 		xy.y -= 10;
 		print_image(game, &(game->i.lady), xy, i);
+		
 	}
 }
 
@@ -151,7 +175,7 @@ int	map(t_root *game)
 	xy.x = 0;
 	xy.y = 0;
 	i = 0;
-	background(game);
+	//background(game);  
 	while ((game->map)[i])
 	{
 		if ((game->map)[i] == '\n')
@@ -167,5 +191,6 @@ int	map(t_root *game)
 		i++;
 	}
 	print_image(game, player, game->i.max.pixel_loc, i);
+	 // remake initial string -> then insert dj, bodyguards, and all the rest
 	return (1);
 }

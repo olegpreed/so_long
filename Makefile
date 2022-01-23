@@ -20,13 +20,18 @@ SRC_LIBFT = libft_1.c libft_2.c
 
 SRC_GAME = main.c preparation.c render.c init.c utils.c map_check.c input.c
 
+OBJS			= ${SRCS:.c=.o}
+
 CC = gcc
 
-FLAGS = -lmlx -framework OpenGL -framework AppKit -Wall -Wextra -Werror
+%.o: %.c		${HEADER}
+				${CC}  -c $< -o ${<:.c=.o}
+
+FLAGS = -lmlx -framework OpenGL -Lminilibx -framework AppKit -Wall -Wextra -Werror
 
 all: ${NAME}
 
-${NAME}: $(SRC) ./maps/* so_long.h
+${NAME}: $(SRC) $(OBJS) ./maps/* so_long.h
 	${CC} ${FLAGS} $(SRC) -o ${NAME}
 
 clean: 
