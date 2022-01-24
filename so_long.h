@@ -55,12 +55,14 @@ typedef struct s_images {
 	t_image		max_r;
 	t_image		max_l;
 	t_image		speak;
+	t_image		speak2;
 	t_image		coke;
 	t_image		goth;
 	t_image		rapper;
 	t_image		naked;
 	t_image		tired;
 	t_image		hair;
+	t_image		hair2;
 	t_image		redbull;
 	t_image		condom;
 	t_image		dj;
@@ -80,6 +82,7 @@ typedef struct s_root {
 	t_images	i;
 	char		*map;
 	int			*random;
+	int			k;
 
 }				t_root;
 
@@ -104,7 +107,7 @@ int		check_valid_map(t_root *game);
 int		check_item_count(char *map);
 int		check_walls(char *map);
 int		preparation(t_root *game, int argc, char **argv);
-void	symbol_to_image(t_root *game, t_vector xy, int i);
+void	symbol_to_image(t_root *game, t_vector xy, int i, int k);
 void	print_image(t_root *game, t_image *image, t_vector xy, int i);
 int		symbol_loc(t_root *game, int line);
 int		exit_game(void);

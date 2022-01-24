@@ -39,10 +39,10 @@ void dj(t_root *game, t_vector xy)
 	static int i;
 	static int k;
 	
-	if (game->symbolsize.x % 2 == 0)
-			xy.x = game->pixelsize.x / 2 - game->i.floor.size.x;
-		else
-			xy.x = (game->pixelsize.x - game->i.floor.size.x) / 2;
+	// if (game->symbolsize.x % 2 == 0)
+	// 		xy.x = game->pixelsize.x / 2 - game->i.floor.size.x;
+	// 	else
+	// 		xy.x = (game->pixelsize.x - game->i.floor.size.x) / 2;
 	if (!k)
 	{
 		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.dj.reference, xy.x, 0);
@@ -80,36 +80,69 @@ void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.door.reference, xy.x, xy.y);
 }
 
-void	symbol_to_image(t_root *game, t_vector xy, int i)
+int	sprite_float(void)
+{
+	static int i;
+	static int k;
+	static int count;
+
+	if (count % 5 == 0)
+	{
+		if (i == 0)
+		k = 0;
+		if (i == 5)
+			k = 1;
+		if (!k)
+		{
+			i++;
+		}
+		if (k)
+		{
+			i--;
+		}
+	}
+	count++;
+	return (i);
+}
+
+void	symbol_to_image(t_root *game, t_vector xy, int i, int k)
 {
 	int	x;
 	int y;
+	static int j;
 	
 	x = game->symbolsize.x;
 	y = game->symbolsize.y;
-	if ((game->map)[i] == '1' && (i - game->symbolsize.x) <= 0)
+	if ((game->map)[i] == '1' && (i - game->symbolsize.x) <= 0 && (game->map)[i - 1] != 'D' && !k)
 		print_image(game, &(game->i.speak), xy, i);
+	else if ((game->map)[i] == '1' && (i - game->symbolsize.x) <= 0 && (game->map)[i - 1] != 'D' && k)
+		print_image(game, &(game->i.speak2), xy, i);
+	else if ((game->map)[i] == 'D')
+		dj(game, xy);  
 	else if ((game->map)[i] == '1' && (i - game->symbolsize.x) > 0 && ((x + 1) * y) - i > (x + 1))
 		print_image(game, &(game->i.coke), xy, i);
 	else if ((game->map)[i] == '1' && (i - game->symbolsize.x) > 0 && ((x + 1) * y) - i <= (x + 1))
 		print_image(game, &(game->i.wall), xy, i);
-	else if ((game->map)[i] == '0' || (game->map)[i] == 'P')
+	else if ((game->map)[i] == '0')
 		print_image(game, &(game->i.floor), xy, i);
+	else if ((game->map)[i] == 'P')
+	{
+		print_image(game, &(game->i.floor), xy, i);
+		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.max.reference, xy.x, xy.y - 10);
+	}
 	else if ((game->map)[i] == 'C')
 	{
 		print_image(game, &(game->i.floor), xy, i);
-		xy.y -= 20;
+		xy.y -= 25;
 		print_image(game, &(game->i.shadow_b), xy, i);
-		xy.y -= 20;
-		print_image(game, &(game->i.beer), xy, i);
+		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.beer.reference, xy.x, xy.y - j);
 	}
 	else if ((game->map)[i] == 'E')
 	{
 		print_image(game, &(game->i.floor), xy, i);
-		dj(game, xy);  
+		j = sprite_float();
 		xy.y -= 10;
 		print_image(game, &(game->i.lady), xy, i);
-		
 	}
 }
 
@@ -170,12 +203,16 @@ int	map(t_root *game)
 	t_vector	xy;
 	int			i;
 	t_image		*player;
+	static int	k;
+	static int count;
 
+	game->k = k;
 	player = &(game->i.max);
 	xy.x = 0;
 	xy.y = 0;
 	i = 0;
 	//background(game);  
+	game->map[game->symbolsize.x / 2 - 1] = 'D';
 	while ((game->map)[i])
 	{
 		if ((game->map)[i] == '\n')
@@ -185,12 +222,20 @@ int	map(t_root *game)
 		}
 		else
 		{
-			symbol_to_image(game, xy, i);
+			symbol_to_image(game, xy, i, k);
 			xy.x += game->i.floor.size.x;
 		}
 		i++;
 	}
-	print_image(game, player, game->i.max.pixel_loc, i);
+	if (count == 15)
+		k = 1;
+	if (count == 0)
+		k = 0;
+	if (!k)
+		count++;
+	else 
+		count--;
+	//print_image(game, player, game->i.max.pixel_loc, i);
 	 // remake initial string -> then insert dj, bodyguards, and all the rest
 	return (1);
 }

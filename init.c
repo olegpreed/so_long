@@ -68,12 +68,16 @@ void	sprites_init(t_root *game)
 	game->i.max_b.reference = image_ref(game, &(game->i.max_b));
 	game->i.speak.path = "./images/speaker.xpm";
 	game->i.speak.reference = image_ref(game, &(game->i.speak));
+	game->i.speak2.path = "./images/speaker2.xpm";
+	game->i.speak2.reference = image_ref(game, &(game->i.speak2));
 	game->i.coke.path = "./images/coke.xpm";
 	game->i.coke.reference = image_ref(game, &(game->i.coke));
 	game->i.goth.path = "./images/goth.xpm";
 	game->i.goth.reference = image_ref(game, &(game->i.goth));
 	game->i.hair.path = "./images/hair.xpm";
 	game->i.hair.reference = image_ref(game, &(game->i.hair));
+	game->i.hair2.path = "./images/hair2.xpm";
+	game->i.hair2.reference = image_ref(game, &(game->i.hair2));
 	game->i.naked.path = "./images/naked.xpm";
 	game->i.naked.reference = image_ref(game, &(game->i.naked));
 	game->i.tired.path = "./images/tired.xpm";
