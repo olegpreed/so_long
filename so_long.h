@@ -46,6 +46,15 @@ typedef struct s_image {
 	int			symbol_index;
 }				t_image;
 
+typedef struct s_crowd {
+	t_image		coke[2];
+	t_image		goth[2];
+	t_image		rapper[2];
+	t_image		naked[2];
+	t_image		tired[2];
+	t_image		hair[2];
+}				t_crowd;
+
 typedef struct s_images {
 	t_image		floor;
 	t_image		wall;
@@ -56,15 +65,8 @@ typedef struct s_images {
 	t_image		max_l;
 	t_image		speak;
 	t_image		speak2;
-	t_image		coke;
-	t_image		goth;
-	t_image		rapper;
-	t_image		naked;
-	t_image		tired;
-	t_image		hair;
-	t_image		hair2;
+	t_crowd		c;
 	t_image		redbull;
-	t_image		condom;
 	t_image		dj;
 	t_image		dj2;
 	t_image		dj3;

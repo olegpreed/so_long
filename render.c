@@ -20,18 +20,41 @@ void	darken(t_root *game, t_image img, t_vector xy)
 void	crowd(t_root *game, t_vector xy, int i)
 {
 	mlx_put_image_to_window(game->mlx, game->mlxw, game->i.floor.reference, xy.x, xy.y);
-	if ((game->random)[i] == 0)
-		darken(game, game->i.coke, xy);
-	else if ((game->random)[i] == 1)
-		darken(game, game->i.naked, xy);
-	else if ((game->random)[i] == 2)
-		darken(game, game->i.hair, xy);
-	else if ((game->random)[i] == 3)
-		darken(game, game->i.goth, xy);
-	else if ((game->random)[i] == 4)
-		darken(game, game->i.rapper, xy);
-	else if ((game->random)[i] == 5)
-		darken(game, game->i.tired, xy);
+	if (!game->k)
+	{
+		if ((game->random)[i] == 0)
+		{
+			xy.y += 2;
+			darken(game, game->i.c.coke[0], xy);
+		}
+		else if ((game->random)[i] == 1)
+			darken(game, game->i.c.naked[1], xy);
+		else if ((game->random)[i] == 2)
+			darken(game, game->i.c.hair[0], xy);
+		else if ((game->random)[i] == 3)
+			darken(game, game->i.c.goth[1], xy);
+		else if ((game->random)[i] == 4)
+			darken(game, game->i.c.rapper[0], xy);
+		else if ((game->random)[i] == 5)
+			darken(game, game->i.c.tired[1], xy);
+	}
+	else 
+	{
+		xy.y -= 1;
+		//xy.x += 1;
+		if ((game->random)[i] == 0)
+			darken(game, game->i.c.coke[0], xy);
+		else if ((game->random)[i] == 1)
+			darken(game, game->i.c.naked[0], xy);
+		else if ((game->random)[i] == 2)
+			darken(game, game->i.c.hair[1], xy);
+		else if ((game->random)[i] == 3)
+			darken(game, game->i.c.goth[0], xy);
+		else if ((game->random)[i] == 4)
+			darken(game, game->i.c.rapper[1], xy);
+		else if ((game->random)[i] == 5)
+			darken(game, game->i.c.tired[0], xy);
+	}
 }	
 
 void dj(t_root *game, t_vector xy)
@@ -72,9 +95,9 @@ void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 		game->map[game->i.max.symbol_index] = '0';
 	if (image == max && game->map[*i] == 'E' && !ft_strchr(game->map, 'C'))
 		exit_game();
-	if (image != &(game->i.coke))
+	if (image != &(game->i.c.coke[0]))
 		mlx_put_image_to_window(game->mlx, game->mlxw, image->reference, xy.x, xy.y);
-	if (image == &(game->i.coke))
+	if (image == &(game->i.c.coke[0]))
 		crowd(game, xy, j);
 	if (image == &(game->i.wall) && xy.x == (game->pixelsize.x - 3 * game->i.floor.size.x))
 		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.door.reference, xy.x, xy.y);
@@ -120,7 +143,7 @@ void	symbol_to_image(t_root *game, t_vector xy, int i, int k)
 	else if ((game->map)[i] == 'D')
 		dj(game, xy);  
 	else if ((game->map)[i] == '1' && (i - game->symbolsize.x) > 0 && ((x + 1) * y) - i > (x + 1))
-		print_image(game, &(game->i.coke), xy, i);
+		print_image(game, &(game->i.c.coke[0]), xy, i);
 	else if ((game->map)[i] == '1' && (i - game->symbolsize.x) > 0 && ((x + 1) * y) - i <= (x + 1))
 		print_image(game, &(game->i.wall), xy, i);
 	else if ((game->map)[i] == '0')
