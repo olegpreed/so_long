@@ -18,7 +18,7 @@ SRC_GNL = get_next_line.c get_next_line_utils.c
 
 SRC_LIBFT = libft_1.c libft_2.c
 
-SRC_GAME = main.c preparation.c render.c init.c utils.c map_check.c input.c
+SRC_GAME = main.c preparation.c render.c init.c utils.c map_check.c input.c patrol.c
 
 OBJS			= ${SRCS:.c=.o}
 

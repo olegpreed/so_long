@@ -156,6 +156,7 @@ void	symbol_to_image(t_root *game, t_vector xy, int i, int k)
 	else if ((game->map)[i] == 'C')
 	{
 		print_image(game, &(game->i.floor), xy, i);
+		print_image(game, &(game->i.floor_c), xy, i);
 		xy.y -= 25;
 		print_image(game, &(game->i.shadow_b), xy, i);
 		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.beer.reference, xy.x, xy.y - j);
@@ -166,6 +167,12 @@ void	symbol_to_image(t_root *game, t_vector xy, int i, int k)
 		j = sprite_float();
 		xy.y -= 10;
 		print_image(game, &(game->i.lady), xy, i);
+	}
+	else if ((game->map)[i] == 'T')
+	{
+		print_image(game, &(game->i.floor), xy, i);
+		xy.y -= 10;
+		print_image(game, &(game->thug[0]), xy, i);
 	}
 }
 

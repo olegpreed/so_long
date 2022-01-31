@@ -12,7 +12,15 @@
 
 #include "so_long.h"
 
-int	check_item_count(char *map)
+void enemy_init(t_root *game)
+{
+	int i = 0;
+
+	i = game->t_count;
+	game->thug = (t_image *)malloc(i * sizeof(t_image));
+}
+
+int	check_item_count(char *map, t_root *game)
 {
 	int	p_count;
 	int	e_count;
@@ -31,6 +39,8 @@ int	check_item_count(char *map)
 			e_count++;
 		else if (*map == 'C')
 			c_count++;
+		else if (*map == 'T')
+			game->t_count++;
 		else if (*map != '1' && *map != '\n' && *map != '0')
 			other_count++;
 		map++;
@@ -83,9 +93,10 @@ int	check_valid_map(t_root *game)
 {
 	if (game->symbolsize.y <= 2)
 		return (1);
-	if (check_item_count(game->map) || check_map_square(game))
+	if (check_item_count(game->map, game) || check_map_square(game))
 		return (1);
 	if (check_walls(game->map))
 		return (1);
+	enemy_init(game);
 	return (0);
 }

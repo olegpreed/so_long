@@ -53,10 +53,12 @@ typedef struct s_crowd {
 	t_image		naked[2];
 	t_image		tired[2];
 	t_image		hair[2];
+	//t_image		thug[2];
 }				t_crowd;
 
 typedef struct s_images {
 	t_image		floor;
+	t_image		floor_c;
 	t_image		wall;
 	t_image		lady;
 	t_image		max;
@@ -79,6 +81,8 @@ typedef struct s_root {
 	void		*mlx;
 	void		*mlxw;
 	char		*map_path;
+	t_image		*thug;
+	int			t_count;
 	t_vector	symbolsize;
 	t_vector	pixelsize;
 	t_images	i;
@@ -106,7 +110,7 @@ int		action(int keypress, t_root *game);
 void	playerlocation(t_root *game);
 char	*ft_strchr(const char *s, int c);
 int		check_valid_map(t_root *game);
-int		check_item_count(char *map);
+int	check_item_count(char *map, t_root *game);
 int		check_walls(char *map);
 int		preparation(t_root *game, int argc, char **argv);
 void	symbol_to_image(t_root *game, t_vector xy, int i, int k);
@@ -116,5 +120,6 @@ int		exit_game(void);
 void	my_mlx_pixel_put(t_image *bg, int x, int y, int color);
 void	*image_ref(t_root *game, t_image *image);
 int		create_trgb(int t, int r, int g, int b);
+int		patrol(t_root *game);
 
 #endif

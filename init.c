@@ -44,8 +44,12 @@ void	*image_ref(t_root *game, t_image *image)
 
 void	sprites_init(t_root *game)
 {
+	int i = 0;
+
 	game->i.floor.path = "./images/floor.xpm";
 	game->i.floor.reference = image_ref(game, &(game->i.floor));
+	game->i.floor_c.path = "./images/tile2.xpm";
+	game->i.floor_c.reference = image_ref(game, &(game->i.floor_c));
 	game->i.dj.path = "./images/dj.xpm";
 	game->i.dj.reference = image_ref(game, &(game->i.dj));
 	game->i.dj2.path = "./images/dj2.xpm";
@@ -68,6 +72,12 @@ void	sprites_init(t_root *game)
 	game->i.speak.reference = image_ref(game, &(game->i.speak));
 	game->i.speak2.path = "./images/speaker2.xpm";
 	game->i.speak2.reference = image_ref(game, &(game->i.speak2));
+	while (i < game->t_count)
+	{
+		game->thug[i].path = "./images/thug.xpm";
+		game->thug[i].reference = image_ref(game, &(game->thug[i]));
+		i++;
+	}
 	game->i.c.coke[0].path = "./images/coke.xpm";
 	game->i.c.coke[0].reference = image_ref(game, &(game->i.c.coke[0]));
 	game->i.c.goth[0].path = "./images/goth.xpm";
