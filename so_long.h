@@ -120,6 +120,7 @@ int		exit_game(void);
 void	my_mlx_pixel_put(t_image *bg, int x, int y, int color);
 void	*image_ref(t_root *game, t_image *image);
 int		create_trgb(int t, int r, int g, int b);
-int		patrol(t_root *game);
+int		patrol_init(t_root *game);
+int		patrol_move(t_root *game);
 
 #endif

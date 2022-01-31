@@ -20,11 +20,11 @@ int	main(int argc, char **argv)
 		return (1);
 	game.mlx = mlx_init();
 	start(&game);
-	patrol(&game);
+	patrol_init(&game);
 	mlx_hook(game.mlxw, 2, 0, &action, &game);
 	mlx_hook(game.mlxw, 17, 0, &exit_game, (void *)0);
+	//mlx_loop_hook(game.mlx, &patrol_move, &game);
 	mlx_loop_hook(game.mlx, &map, &game);
-	//mlx_loop_hook(game.mlx, &patrol, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

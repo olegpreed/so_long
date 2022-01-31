@@ -26,6 +26,7 @@ void	move_sd(t_root *game, char key, int *count, int j)
 		game->i.max.symbol_loc.y += 1;
 		game->i.max.pixel_loc.y += game->i.floor.size.y;
 		game->i.max.reference = image_ref(game, &(game->i.max));
+		game->i.max.symbol_index += (game->symbolsize.x + 1);
 	}
 	else if (key == 'd')
 	{
@@ -34,10 +35,11 @@ void	move_sd(t_root *game, char key, int *count, int j)
 		game->i.max.pixel_loc.x += game->i.floor.size.x;
 		game->i.max.symbol_loc.x += 1;
 		game->i.max.reference = image_ref(game, &(game->i.max_r));
+		game->i.max.symbol_index += 1;
 	}
 	*i = symbol_loc(game, line);
 	(*count)++;
-	printf("Move count: %d\n", *count);
+	printf("Move count: %d\n%d", *count, game->i.max.symbol_index);
 }
 
 void	move_wa(t_root *game, char key, int *count, int j)
@@ -54,6 +56,7 @@ void	move_wa(t_root *game, char key, int *count, int j)
 		game->i.max.symbol_loc.y -= 1;
 		game->i.max.pixel_loc.y -= game->i.floor.size.y;
 		game->i.max.reference = image_ref(game, &(game->i.max_b));
+		game->i.max.symbol_index -= (game->symbolsize.x + 1);
 	}
 	else if (key == 'a')
 	{
@@ -62,10 +65,11 @@ void	move_wa(t_root *game, char key, int *count, int j)
 		game->i.max.pixel_loc.x -= game->i.floor.size.x;
 		game->i.max.symbol_loc.x -= 1;
 		game->i.max.reference = image_ref(game, &(game->i.max_l));
+		game->i.max.symbol_index -= 1;
 	}
 	*i = symbol_loc(game, line);
 	(*count)++;
-	printf("Move count: %d\n", *count);
+	printf("Move count: %d\n%d", *count, game->i.max.symbol_index);
 }
 
 int	exit_game(void)

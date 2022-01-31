@@ -168,12 +168,12 @@ void	symbol_to_image(t_root *game, t_vector xy, int i, int k)
 		xy.y -= 10;
 		print_image(game, &(game->i.lady), xy, i);
 	}
-	else if ((game->map)[i] == 'T')
-	{
-		print_image(game, &(game->i.floor), xy, i);
-		xy.y -= 10;
-		print_image(game, &(game->thug[0]), xy, i);
-	}
+	// else if ((game->map)[i] == 'T')
+	// {
+	// 	print_image(game, &(game->i.floor), xy, i);
+	// 	xy.y -= 10;
+	// 	print_image(game, &(game->thug[0]), xy, i);
+	// }
 }
 
 void	paint_bg(t_image *bg, t_root *game)
@@ -228,6 +228,17 @@ void	background(t_root *game)
 	mlx_put_image_to_window(game->mlx, game->mlxw, bg.reference, 0, 0);
 }
 
+int patrol(t_root *game)
+{
+	int i = 0;
+	while (i < game->t_count)
+	{
+		mlx_put_image_to_window(game->mlx, game->mlxw, game->thug[i].reference, game->thug[i].pixel_loc.x, game->thug[i].pixel_loc.y - 10);
+		i++;
+	}
+	return (0);
+}
+
 int	map(t_root *game)
 {	
 	t_vector	xy;
@@ -236,6 +247,7 @@ int	map(t_root *game)
 	static int	k;
 	static int count;
 
+	patrol_move(game);
 	game->k = k;
 	player = &(game->i.max);
 	xy.x = 0;
@@ -257,6 +269,7 @@ int	map(t_root *game)
 		}
 		i++;
 	}
+	patrol(game);
 	if (count == 15)
 		k = 1;
 	if (count == 0)
