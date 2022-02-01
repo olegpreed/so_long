@@ -84,12 +84,15 @@ int patrol_move(t_root *game)
 {
 	int j;
 	int i = 0;
+	int k = 0;
 	static int e;
 
 	j = game->i.max.symbol_index;
 	while(i < game->t_count)
 	{
-		e = check_enemy_vision(i, j, game, game->map);
+		k = check_enemy_vision(i, j, game, game->map);
+		if(k)
+			e = k;
 		if (e == 1)
 			move('r', game, i);
 		else if (e == 2)
