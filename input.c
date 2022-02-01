@@ -95,7 +95,7 @@ int	action(int keypress, t_root *game)
 		mlx_destroy_window(game->mlx, game->mlxw);
 		exit(0);
 	}
-	else if (keypress == W && game->map[xx + (line + 1) * (yy - 1)] != '1')
+	else if (keypress == W && game->map[xx + (line + 1) * (yy - 1)] != '1' && game->map[xx + (line + 1) * (yy - 1)] != 'D')
 		move_wa(game, 'w', &count, i);
 	else if (keypress == A && game->map[(xx - 1) + (line + 1) * yy] != '1')
 		move_wa(game, 'a', &count, i);

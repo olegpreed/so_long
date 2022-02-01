@@ -2,38 +2,37 @@
 
 void move(char a, t_root *game, int i)
 {
-	static int j;
+	static int j[100];
 	int e = game->thug[i].symbol_index;
-
-	if (j == 20)
-	{
-		if (a == 'r' && game->map[e + 1] != '1')
+	//printf("index = %d, move = %c\n", i, a);
+		if (a == 'r' && game->map[e + 1] != '1' && j[i] == 20) 
 		{
 			game->thug[i].symbol_index += 1;
 			game->thug[i].symbol_loc.x += 1;
 			game->thug[i].pixel_loc.x += 64; 
 		}
-		if (a == 'l' && game->map[e - 1] != '1')
+		if (a == 'l' && game->map[e - 1] != '1' && j[i] == 20)
 		{
 			game->thug[i].symbol_index -= 1;
 			game->thug[i].symbol_loc.x -= 1;
 			game->thug[i].pixel_loc.x -= 64;
 		}
-		if (a == 'w' && game->map[e - game->symbolsize.x - 1] != '1')
+		if (a == 'w' && game->map[e - game->symbolsize.x - 1] != '1'  && j[i] == 20)
 		{
 			game->thug[i].symbol_index -= (game->symbolsize.x + 1);
 			game->thug[i].symbol_loc.y -= 1;
 			game->thug[i].pixel_loc.y -= 64;
 		}
-		if (a == 's' && game->map[e + game->symbolsize.x + 1] != '1')
+		if (a == 's' && game->map[e + game->symbolsize.x + 1] != '1' && j[i] == 20)
 		{
 			game->thug[i].symbol_index += (game->symbolsize.x + 1);
 			game->thug[i].symbol_loc.y += 1;
 			game->thug[i].pixel_loc.y += 64;
 		}
-	j = 0;
-	}
-	j++;
+	if (j[i] == 20)
+		j[i] = 0;
+	if (j[i] < 20)
+		j[i]++;
 }
 
 int check_enemy_vision(int i, int j, t_root *game, char *map)
@@ -80,27 +79,45 @@ int check_enemy_vision(int i, int j, t_root *game, char *map)
 	return 0;
 }
 
+void movement(t_root *game, int i , int e)
+{
+	if (e == 1)
+		move('r', game, i);
+	if (e == 2)
+		move('l', game, i);
+	if (e == 3)
+		move('s', game, i);
+	if (e == 4)
+		move('w', game, i);
+	if (e == 0)
+		move('n', game, i);
+	else
+		;
+}
+
 int patrol_move(t_root *game)
 {
 	int j;
 	int i = 0;
-	int k = 0;
-	static int e;
+	int k[100];
+	static int e[100];
 
 	j = game->i.max.symbol_index;
 	while(i < game->t_count)
 	{
-		k = check_enemy_vision(i, j, game, game->map);
-		if(k)
-			e = k;
-		if (e == 1)
-			move('r', game, i);
-		else if (e == 2)
-			move('l', game, i);
-		else if (e == 3)
-			move('s', game, i);
-		else if (e == 4)
-			move('w', game, i);
+		k[i] = check_enemy_vision(i, j, game, game->map);
+		if(k[i])
+		{
+			//printf("\n%d sees you!, moves to %d\n", i, k[i]);
+			e[i] = k[i];
+		}
+		i++;
+	}
+	i = 0;
+	//printf("%d, %d, %d\n", e[0], e[1], e[2]);
+	while (i < game->t_count)
+	{
+		movement(game, i, e[i]);
 		i++;
 	}
 	return (0);
