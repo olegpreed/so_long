@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   patrol.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/02 00:13:01 by oleg              #+#    #+#             */
+/*   Updated: 2022/02/02 00:19:34 by oleg             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void move(char a, t_root *game, int i)
@@ -44,42 +56,42 @@ int check_enemy_vision(int i, int j, t_root *game, char *map)
 	{
 		while (e < j)
 			if (map[e++] == '1')
-				return 0;
-		return 1;
+				return (0);
+		return (1);
 	}
 	else if (e - j < game->symbolsize.x + 1 && e - j > 0)
 	{
 		while (j < e)
 			if (map[j++] == '1')
-				return 0;
-		return 2;
+				return (0);
+		return (2);
 	}
 	else if (game->i.max.symbol_loc.x == game->thug[i].symbol_loc.x && my > ty)
 	{
 		while (ty < my)
 		{
 			if (map[j] == '1')
-				return 0;
+				return (0);
 			j -= (game->symbolsize.x + 1);
 			ty += 1;
 		}
-		return 3;
+		return (3);
 	}
 	else if (game->i.max.symbol_loc.x == game->thug[i].symbol_loc.x && ty > my)
 	{
 		while (my < ty)
 		{
 			if (map[j] == '1')
-				return 0;
+				return (0);
 			j += (game->symbolsize.x + 1);
 			my += 1;
 		}
-		return 4;
+		return (4);
 	}
-	return 0;
+	return (0);
 }
 
-void movement(t_root *game, int i , int e)
+void	movement(t_root *game, int i, int e)
 {
 	if (e == 1)
 		move('r', game, i);
@@ -91,34 +103,26 @@ void movement(t_root *game, int i , int e)
 		move('w', game, i);
 	if (e == 0)
 		move('n', game, i);
-	else
-		;
 }
 
-int patrol_move(t_root *game)
+int	patrol_move(t_root *game)
 {
-	int j;
-	int i = 0;
-	int k[100];
-	static int e[100];
+	int			j;
+	int			i;
+	int			k[100];
+	static int	e[100];
 
-	j = game->i.max.symbol_index;
-	while(i < game->t_count)
-	{
-		k[i] = check_enemy_vision(i, j, game, game->map);
-		if(k[i])
-		{
-			//printf("\n%d sees you!, moves to %d\n", i, k[i]);
-			e[i] = k[i];
-		}
-		i++;
-	}
 	i = 0;
-	//printf("%d, %d, %d\n", e[0], e[1], e[2]);
+	j = game->i.max.symbol_index;
 	while (i < game->t_count)
 	{
-		movement(game, i, e[i]);
+		k[i] = check_enemy_vision(i, j, game, game->map);
+		if (k[i])
+			e[i] = k[i];
 		i++;
 	}
+	i = -1;
+	while (++i < game->t_count)
+		movement(game, i, e[i]);
 	return (0);
 }

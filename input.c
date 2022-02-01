@@ -89,19 +89,23 @@ int	action(int keypress, t_root *game)
 	xx = game->i.max.symbol_loc.x;
 	yy = game->i.max.symbol_loc.y;
 	line = game->symbolsize.x;
+	if (!ft_strchr(game->map, 'C'))
+		*game->i.lady.pixels = 'L';
 	i = ft_strchr(game->map, 'P') - game->map;
 	if (keypress == ESC)
 	{
 		mlx_destroy_window(game->mlx, game->mlxw);
 		exit(0);
 	}
-	else if (keypress == W && game->map[xx + (line + 1) * (yy - 1)] != '1' && game->map[xx + (line + 1) * (yy - 1)] != 'D')
+	else if (keypress == W && game->map[xx + (line + 1) * (yy - 1)] != '1' && game->map[xx + (line + 1) * (yy - 1)] != 'D' && game->map[xx + (line + 1) * (yy - 1)] != 'E')
 		move_wa(game, 'w', &count, i);
-	else if (keypress == A && game->map[(xx - 1) + (line + 1) * yy] != '1')
+	else if (keypress == A && game->map[(xx - 1) + (line + 1) * yy] != '1' && game->map[(xx - 1) + (line + 1) * yy] != 'E')
 		move_wa(game, 'a', &count, i);
-	else if (keypress == S && game->map[xx + (line + 1) * (yy + 1)] != '1')
+	else if (keypress == S && game->map[xx + (line + 1) * (yy + 1)] != '1' && game->map[xx + (line + 1) * (yy + 1)]  != 'E')
 		move_sd(game, 's', &count, i);
-	else if (keypress == D && game->map[(xx + 1) + (line + 1) * yy] != '1')
+	else if (keypress == D && game->map[(xx + 1) + (line + 1) * yy] != '1' && game->map[(xx + 1) + (line + 1) * yy] != 'E')
 		move_sd(game, 'd', &count, i);
+	if (ft_strchr(game->map, 'P') == game->i.lady.pixels && !ft_strchr(game->map, 'C'))
+		exit_game();
 	return (0);
 }

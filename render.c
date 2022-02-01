@@ -12,228 +12,193 @@
 
 #include "so_long.h"
 
-void	darken(t_root *game, t_image img, t_vector xy)
+void	put_crowd(t_root *game, t_image img, t_vector xy)
 {
-	mlx_put_image_to_window(game->mlx, game->mlxw, img.reference, xy.x, xy.y - 10);
+	xy.y -= 10;
+	mlx_put_image_to_window(game->mlx, game->mlxw, img.reference, xy.x, xy.y);
 }
 
-void	crowd(t_root *game, t_vector xy, int i)
+void	crowd_2(t_root *game, t_vector xy, int i)
 {
-	mlx_put_image_to_window(game->mlx, game->mlxw, game->i.floor.reference, xy.x, xy.y);
+	xy.y -= 1;
+	if ((game->random)[i] == 0)
+		put_crowd(game, game->i.c.coke[0], xy);
+	else if ((game->random)[i] == 1)
+		put_crowd(game, game->i.c.naked[0], xy);
+	else if ((game->random)[i] == 2)
+		put_crowd(game, game->i.c.hair[1], xy);
+	else if ((game->random)[i] == 3)
+		put_crowd(game, game->i.c.goth[0], xy);
+	else if ((game->random)[i] == 4)
+		put_crowd(game, game->i.c.rapper[1], xy);
+	else if ((game->random)[i] == 5)
+		put_crowd(game, game->i.c.tired[0], xy);
+}
+
+void	crowd_1(t_root *game, t_vector xy, int i)
+{
+	print_image(game, &(game->i.floor), xy, 0);
 	if (!game->k)
 	{
 		if ((game->random)[i] == 0)
 		{
 			xy.y += 2;
-			darken(game, game->i.c.coke[0], xy);
+			put_crowd(game, game->i.c.coke[0], xy);
 		}
 		else if ((game->random)[i] == 1)
-			darken(game, game->i.c.naked[1], xy);
+			put_crowd(game, game->i.c.naked[1], xy);
 		else if ((game->random)[i] == 2)
-			darken(game, game->i.c.hair[0], xy);
+			put_crowd(game, game->i.c.hair[0], xy);
 		else if ((game->random)[i] == 3)
-			darken(game, game->i.c.goth[1], xy);
+			put_crowd(game, game->i.c.goth[1], xy);
 		else if ((game->random)[i] == 4)
-			darken(game, game->i.c.rapper[0], xy);
+			put_crowd(game, game->i.c.rapper[0], xy);
 		else if ((game->random)[i] == 5)
-			darken(game, game->i.c.tired[1], xy);
+			put_crowd(game, game->i.c.tired[1], xy);
 	}
-	else 
-	{
-		xy.y -= 1;
-		//xy.x += 1;
-		if ((game->random)[i] == 0)
-			darken(game, game->i.c.coke[0], xy);
-		else if ((game->random)[i] == 1)
-			darken(game, game->i.c.naked[0], xy);
-		else if ((game->random)[i] == 2)
-			darken(game, game->i.c.hair[1], xy);
-		else if ((game->random)[i] == 3)
-			darken(game, game->i.c.goth[0], xy);
-		else if ((game->random)[i] == 4)
-			darken(game, game->i.c.rapper[1], xy);
-		else if ((game->random)[i] == 5)
-			darken(game, game->i.c.tired[0], xy);
-	}
+	else
+		crowd_2(game, xy, i);
 }	
 
-void dj(t_root *game, t_vector xy)
+void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 {
-	static int i;
-	static int k;
-	
-	// if (game->symbolsize.x % 2 == 0)
-	// 		xy.x = game->pixelsize.x / 2 - game->i.floor.size.x;
-	// 	else
-	// 		xy.x = (game->pixelsize.x - game->i.floor.size.x) / 2;
+	int		e;
+	t_image	*max;
+	int		x;
+	int		y;
+	int		l;
+
+	l = game->i.floor.size.x;
+	x = xy.x;
+	y = xy.y;
+	max = &(game->i.max);
+	e = game->i.max.symbol_index;
+	if (image != &(game->i.c.coke[0]))
+		mlx_put_image_to_window(game->mlx, game->mlxw, image->reference, x, y);
+	if (image == &(game->i.c.coke[0]))
+		crowd_1(game, xy, j);
+	if (image == &(game->i.wall) && x == (game->pixelsize.x - 3 * l))
+		print_image(game, &(game->i.door), xy, 0);
+}
+
+void	dj(t_root *game, t_vector xy)
+{
+	static int	i;
+	static int	k;
+
+	xy.y = 0;
 	if (!k)
 	{
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.dj.reference, xy.x, 0);
+		print_image(game, &(game->i.dj), xy, 0);
 		i++;
 	}
 	if (k)
 	{
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.dj2.reference, xy.x, 0);
+		print_image(game, &(game->i.dj2), xy, 0);
 		i--;
 	}
 	if (i == 30)
 		k = 1;
 	if (i > 10 && i <= 20)
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.dj3.reference, xy.x, 0);
+		print_image(game, &(game->i.dj3), xy, 0);
 	if (i == 0)
 		k = 0;
 }
 
-void	print_image(t_root *game, t_image *image, t_vector xy, int j)
-{
-	int		*i;
-	t_image	*max;
-
-	max = &(game->i.max);
-	i = &(game->i.max.symbol_index);
-	if (image == max && game->map[game->i.max.symbol_index] == 'C')
-		game->map[game->i.max.symbol_index] = '0';
-	if (image == max && game->map[*i] == 'E' && !ft_strchr(game->map, 'C'))
-		exit_game();
-	if (image != &(game->i.c.coke[0]))
-		mlx_put_image_to_window(game->mlx, game->mlxw, image->reference, xy.x, xy.y);
-	if (image == &(game->i.c.coke[0]))
-		crowd(game, xy, j);
-	if (image == &(game->i.wall) && xy.x == (game->pixelsize.x - 3 * game->i.floor.size.x))
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.door.reference, xy.x, xy.y);
-}
-
 int	sprite_float(void)
 {
-	static int i;
-	static int k;
-	static int count;
+	static int	i;
+	static int	k;
+	static int	count;
 
 	if (count % 5 == 0)
 	{
 		if (i == 0)
-		k = 0;
+			k = 0;
 		if (i == 5)
 			k = 1;
 		if (!k)
-		{
 			i++;
-		}
 		if (k)
-		{
 			i--;
-		}
 	}
 	count++;
 	return (i);
 }
 
-void	symbol_to_image(t_root *game, t_vector xy, int i, int k)
+int	lady(t_root *game, t_vector xy, int i)
 {
-	int	x;
-	int y;
-	static int j;
-	
+	print_image(game, &(game->i.floor), xy, i);
+	xy.y -= 10;
+	print_image(game, &(game->i.lady), xy, i);
+	return (sprite_float());
+}
+
+void	collectible(t_root *game, t_vector xy, int i, int j)
+{
+	print_image(game, &(game->i.floor), xy, i);
+	print_image(game, &(game->i.floor_c), xy, i);
+	xy.y -= 25;
+	print_image(game, &(game->i.shadow_b), xy, i);
+	xy.y -= j;
+	print_image(game, &(game->i.beer), xy, 0);
+}
+
+void	player(t_root *game, t_vector xy, int i)
+{
+	print_image(game, &(game->i.floor), xy, i);
+	xy.y -= 10;
+	print_image(game, &(game->i.max), xy, 0);
+}
+
+void	walls(t_root *game, t_vector xy, int i, int k)
+{
+	int			x;
+	int			y;
+	char		*map;
+
+	map = game->map;
 	x = game->symbolsize.x;
 	y = game->symbolsize.y;
-	if ((game->map)[i] == '1' && (i - game->symbolsize.x) <= 0 && (game->map)[i - 1] != 'D' && !k)
+	if (map[i] == '1' && (i - x) <= 0 && map[i - 1] != 'D' && !k)
 		print_image(game, &(game->i.speak), xy, i);
-	else if ((game->map)[i] == '1' && (i - game->symbolsize.x) <= 0 && (game->map)[i - 1] != 'D' && k)
+	else if (map[i] == '1' && (i - x) <= 0 && map[i - 1] != 'D' && k)
 		print_image(game, &(game->i.speak2), xy, i);
-	else if ((game->map)[i] == 'D')
-		dj(game, xy);  
-	else if ((game->map)[i] == '1' && (i - game->symbolsize.x) > 0 && ((x + 1) * y) - i > (x + 1))
+	else if (map[i] == 'D')
+		dj(game, xy);
+	else if (map[i] == '1' && (i - x) > 0 && ((x + 1) * y) - i > (x + 1))
 		print_image(game, &(game->i.c.coke[0]), xy, i);
-	else if ((game->map)[i] == '1' && (i - game->symbolsize.x) > 0 && ((x + 1) * y) - i <= (x + 1))
+	else if (map[i] == '1' && (i - x) > 0 && ((x + 1) * y) - i <= (x + 1))
 		print_image(game, &(game->i.wall), xy, i);
-	else if ((game->map)[i] == '0')
-		print_image(game, &(game->i.floor), xy, i);
-	else if ((game->map)[i] == 'P')
-	{
-		print_image(game, &(game->i.floor), xy, i);
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.max.reference, xy.x, xy.y - 10);
-	}
-	else if ((game->map)[i] == 'C')
-	{
-		print_image(game, &(game->i.floor), xy, i);
-		print_image(game, &(game->i.floor_c), xy, i);
-		xy.y -= 25;
-		print_image(game, &(game->i.shadow_b), xy, i);
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.beer.reference, xy.x, xy.y - j);
-	}
-	else if ((game->map)[i] == 'E')
-	{
-		print_image(game, &(game->i.floor), xy, i);
-		j = sprite_float();
-		xy.y -= 10;
-		print_image(game, &(game->i.lady), xy, i);
-	}
-	// else if ((game->map)[i] == 'T')
-	// {
-	// 	print_image(game, &(game->i.floor), xy, i);
-	// 	xy.y -= 10;
-	// 	print_image(game, &(game->thug[0]), xy, i);
-	// }
 }
 
-void	paint_bg(t_image *bg, t_root *game)
+void	symbol_to_image(t_root *game, t_vector xy, int i, int k)
 {
-	int	x;
-	int y;
-	static int k;
-	int g;
-	static int b = 0xFF;
-	static int t;
-	static int r = 0xFF;
-	
-	
-	x = 0;
-	y = 0;
-	t = 0;
-	g = 0x0;
-	
-	while (y < game->pixelsize.y)
-	{
-		while (x < game->pixelsize.x)
-		{	
-			my_mlx_pixel_put(bg, x, y, create_trgb(t, r, g, b));
-			x++;
-		}
-		x = 0;
-		y++;	
-	}
-	if (r == 0xFF)
-		k = 1;
-	if (r == 0x00)
-		k = 0;
-	if (!k) 
-	{
-		r += 3;
-		b++;
-	}
-	else
-	{
-		r -= 3;
-		b--;
-	}
-	
+	static int	j;
+
+	if (game->map[i] == '1' || game->map[i] == 'D')
+		walls(game, xy, i, k);
+	else if (game->map[i] == '0')
+		print_image(game, &(game->i.floor), xy, i);
+	else if (game->map[i] == 'P')
+		player(game, xy, i);
+	else if (game->map[i] == 'C')
+		collectible(game, xy, i, j);
+	else if (game->map[i] == 'E' || game->map[i] == 'L')
+		j = lady(game, xy, i);
 }
 
-void	background(t_root *game)
+int	patrol(t_root *game)
 {
-	t_image bg;
-	bg.reference = mlx_new_image(game->mlx, game->pixelsize.x, game->pixelsize.y);
-	bg.pixels =mlx_get_data_addr(bg.reference, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
-	paint_bg(&bg, game);
-	mlx_put_image_to_window(game->mlx, game->mlxw, bg.reference, 0, 0);
-}
+	int			i;
+	t_vector	xy;
 
-int patrol(t_root *game)
-{
-	int i = 0;
+	i = 0;
 	while (i < game->t_count)
 	{
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->thug[i].reference, game->thug[i].pixel_loc.x, game->thug[i].pixel_loc.y - 10);
+		xy.x = game->thug[i].pixel_loc.x;
+		xy.y = game->thug[i].pixel_loc.y - 10;
+		print_image(game, &(game->thug[i]), xy, 0);
 		i++;
 	}
 	return (0);
@@ -244,18 +209,13 @@ int	map(t_root *game)
 	t_vector	xy;
 	int			i;
 	t_image		*player;
-	static int	k;
-	static int count;
 
 	patrol_move(game);
-	game->k = k;
 	player = &(game->i.max);
 	xy.x = 0;
 	xy.y = 0;
-	i = 0;
-	//background(game);  
-	game->map[game->symbolsize.x / 2 - 1] = 'D';
-	while ((game->map)[i])
+	i = -1;
+	while ((game->map)[++i])
 	{
 		if ((game->map)[i] == '\n')
 		{
@@ -264,21 +224,11 @@ int	map(t_root *game)
 		}
 		else
 		{
-			symbol_to_image(game, xy, i, k);
+			symbol_to_image(game, xy, i, game->k);
 			xy.x += game->i.floor.size.x;
 		}
-		i++;
 	}
 	patrol(game);
-	if (count == 15)
-		k = 1;
-	if (count == 0)
-		k = 0;
-	if (!k)
-		count++;
-	else 
-		count--;
-	//print_image(game, player, game->i.max.pixel_loc, i);
-	 // remake initial string -> then insert dj, bodyguards, and all the rest
+	animation_cykle(game);
 	return (1);
 }

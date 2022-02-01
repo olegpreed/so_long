@@ -122,5 +122,7 @@ void	*image_ref(t_root *game, t_image *image);
 int		create_trgb(int t, int r, int g, int b);
 int		patrol_init(t_root *game);
 int		patrol_move(t_root *game);
+void	animation_cykle(t_root *game);
+void	background(t_root *game);
 
 #endif

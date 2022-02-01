@@ -36,11 +36,9 @@ int	map_to_string(t_root *game)
 {
 	int		k;
 	int		fd;
-	char	*string1;
-	char	*string2;
+	char	*string[2];
 
 	k = 1;
-	fd = 0;
 	game->symbolsize.y = 0;
 	fd = open(game->map_path, O_RDONLY);
 	if (fd == -1)
@@ -48,19 +46,18 @@ int	map_to_string(t_root *game)
 	game->map = get_next_line(fd);
 	while (k)
 	{
-		string1 = game->map;
-		string2 = get_next_line(fd);
-		if (string2)
+		string[0] = game->map;
+		string[1] = get_next_line(fd);
+		if (string[1])
 		{
-			game->map = ft_strjoin(game->map, string2);
-			free(string1);
-			free(string2);
+			game->map = ft_strjoin(game->map, string[1]);
+			free(string[0]);
+			free(string[1]);
 		}
 		else
 			k = 0;
 		game->symbolsize.y++;
 	}
-	game->symbolsize.x = ft_strlen_n(game->map);
 	return (0);
 }
 
@@ -79,6 +76,8 @@ int	preparation(t_root *game, int argc, char **argv)
 		printf("Error\nInvalid map\n");
 		return (1);
 	}
+	game->symbolsize.x = ft_strlen_n(game->map);
+	game->map[game->symbolsize.x / 2 - 1] = 'D';
 	random_table(game);
 	return (0);
 }

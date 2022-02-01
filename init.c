@@ -25,7 +25,6 @@ void	playerlocation(t_root *game)
 	game->i.max.symbol_loc.x = xy % (game->symbolsize.x + 1);
 	game->i.max.pixel_loc.y = game->i.max.symbol_loc.y * h - 10;
 	game->i.max.pixel_loc.x = game->i.max.symbol_loc.x * w;
-	//printf("x = %d;\ny = %d\n", game->i.max.pixel_loc.x / 64, game->i.max.pixel_loc.y / 64);
 }
 // w : sprite width
 // h : sprite height
@@ -60,6 +59,7 @@ void	sprites_init(t_root *game)
 	game->i.redbull.reference = image_ref(game, &(game->i.redbull));
 	game->i.lady.path = "./images/lady.xpm";
 	game->i.lady.reference = image_ref(game, &(game->i.lady));
+	game->i.lady.pixels = ft_strchr(game->map, 'E');
 	game->i.max.path = "./images/max.xpm";
 	game->i.max.reference = image_ref(game, &(game->i.max));
 	game->i.max_l.path = "./images/max_l.xpm";
