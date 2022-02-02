@@ -3,31 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:31:28 by preed             #+#    #+#             */
-/*   Updated: 2022/01/21 16:20:26 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/02 19:10:13 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	paint_bg(t_image *bg, t_root *game)
+void	black(t_image *bg, t_root *game)
 {
 	int	x;
 	int y;
-	static int k;
-	int g;
-	static int b = 0xFF;
-	static int t;
-	static int r = 0xFF;
-	
-	
-	x = 0;
+	static int r;
+	static int g;
+	static int b;
+	static int t = 0xFF;
+
+
 	y = 0;
-	t = 0xF0;
-	g = 0x0;
-	
+	x = 0;
 	while (y < game->pixelsize.y - game->i.floor.size.y)
 	{
 		while (x < game->pixelsize.x)
@@ -36,33 +32,31 @@ void	paint_bg(t_image *bg, t_root *game)
 			x++;
 		}
 		x = 0;
-		y++;	
+		y++;
 	}
-	if (r == 0xFF)
-		k = 1;
-	if (r == 0x00)
-		k = 0;
-	if (!k) 
-	{
-		r++;
-		b++;
-	}
-	else
-	{
-		r--;
-		b--;
-	}
+	if (t)
+		t -= 3;
 }
 
-void	background(t_root *game)
+// void	background(t_root *game)
+// {
+// 	t_image	bg;
+
+// 	bg.reference = mlx_new_image(game->mlx, game->pixelsize.x, game->pixelsize.y - game->i.floor.size.y);
+// 	bg.pixels =mlx_get_data_addr(bg.reference, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
+// 	paint_bg(&bg, game);
+// 	mlx_put_image_to_window(game->mlx, game->mlxw, bg.reference, 0, 0);
+// }
+
+void	fade_to_black(t_root *game)
 {
-	t_image bg;
+	t_image	bg;
+
 	bg.reference = mlx_new_image(game->mlx, game->pixelsize.x, game->pixelsize.y - game->i.floor.size.y);
 	bg.pixels =mlx_get_data_addr(bg.reference, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
-	paint_bg(&bg, game);
+	black(&bg, game);
 	mlx_put_image_to_window(game->mlx, game->mlxw, bg.reference, 0, 0);
 }
-
 
 
 void	animation_cykle(t_root *game)
@@ -70,7 +64,7 @@ void	animation_cykle(t_root *game)
 	static int	count;
 	static int	k;
 
-	if (count == 15)
+	if (count == 10)
 		k = 1;
 	if (count == 0)
 		k = 0;

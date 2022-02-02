@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/01/21 18:29:32 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/02 23:02:50 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ void	sprites_init(t_root *game)
 	game->i.lady.pixels = ft_strchr(game->map, 'E');
 	game->i.max.path = "./images/max.xpm";
 	game->i.max.reference = image_ref(game, &(game->i.max));
+	game->i.max_o.path = "./images/max_over.xpm";
+	game->i.max_o.reference = image_ref(game, &(game->i.max_o));
+	game->i.max_o.pixel_loc.x = 0;
+	game->i.max_o.pixel_loc.y = 0;
 	game->i.max_l.path = "./images/max_l.xpm";
 	game->i.max_l.reference = image_ref(game, &(game->i.max_l));
 	game->i.max_r.path = "./images/max_r.xpm";
@@ -104,6 +108,8 @@ void	sprites_init(t_root *game)
 	game->i.wall.reference = image_ref(game, &(game->i.wall));
 	game->i.door.path = "./images/door.xpm";
 	game->i.door.reference = image_ref(game, &(game->i.door));
+	game->i.door_o.path = "./images/door_o.xpm";
+	game->i.door_o.reference = image_ref(game, &(game->i.door_o));
 	game->i.beer.path = "./images/beer.xpm";
 	game->i.beer.reference = image_ref(game, &(game->i.beer));
 	game->i.shadow_b.path = "./images/shadow_b.xpm";

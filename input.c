@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/02 14:40:21 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/02 21:48:40 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,19 @@ int	action(int keypress, t_root *game)
 		mlx_destroy_window(game->mlx, game->mlxw);
 		exit(0);
 	}
-	else if (keypress == W && game->map[xx + (line + 1) * (yy - 1)] != '1' && game->map[xx + (line + 1) * (yy - 1)] != 'D' && game->map[xx + (line + 1) * (yy - 1)] != 'E')
-		move_wa(game, 'w', &count, i);
-	else if (keypress == A && game->map[(xx - 1) + (line + 1) * yy] != '1' && game->map[(xx - 1) + (line + 1) * yy] != 'E')
-		move_wa(game, 'a', &count, i);
-	else if (keypress == S && game->map[xx + (line + 1) * (yy + 1)] != '1' && game->map[xx + (line + 1) * (yy + 1)]  != 'E')
-		move_sd(game, 's', &count, i);
-	else if (keypress == D && game->map[(xx + 1) + (line + 1) * yy] != '1' && game->map[(xx + 1) + (line + 1) * yy] != 'E')
-		move_sd(game, 'd', &count, i);
-	if (ft_strchr(game->map, 'P') == game->i.lady.pixels && !ft_strchr(game->map, 'C'))
-		exit_game();
-	printf("%s\n", game->map);
+	if (game->over == 0)
+	{
+		if (keypress == W && game->map[xx + (line + 1) * (yy - 1)] != '1' && game->map[xx + (line + 1) * (yy - 1)] != 'D' && game->map[xx + (line + 1) * (yy - 1)] != 'E')
+			move_wa(game, 'w', &count, i);
+		else if (keypress == A && game->map[(xx - 1) + (line + 1) * yy] != '1' && game->map[(xx - 1) + (line + 1) * yy] != 'E')
+			move_wa(game, 'a', &count, i);
+		else if (keypress == S && game->map[xx + (line + 1) * (yy + 1)] != '1' && game->map[xx + (line + 1) * (yy + 1)]  != 'E')
+			move_sd(game, 's', &count, i);
+		else if (keypress == D && game->map[(xx + 1) + (line + 1) * yy] != '1' && game->map[(xx + 1) + (line + 1) * yy] != 'E')
+			move_sd(game, 'd', &count, i);
+		if (ft_strchr(game->map, 'P') == game->i.lady.pixels && !ft_strchr(game->map, 'C'))
+			exit_game();
+	}
+	//printf("%s\n", game->map);
 	return (0);
 }

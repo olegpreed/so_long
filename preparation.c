@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preparation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:59:23 by preed             #+#    #+#             */
-/*   Updated: 2022/01/21 19:11:58 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/02 17:33:14 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int	preparation(t_root *game, int argc, char **argv)
 	game->symbolsize.x = ft_strlen_n(game->map);
 	game->map[game->symbolsize.x / 2 - 1] = 'D';
 	random_table(game);
+	game->over = 0;
 	return (0);
 }

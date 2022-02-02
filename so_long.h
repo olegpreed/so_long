@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/01/21 19:19:39 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/02 21:49:50 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_images {
 	t_image		lady;
 	t_image		max;
 	t_image		max_b;
+	t_image		max_o;
 	t_image		max_r;
 	t_image		max_l;
 	t_image		speak;
@@ -73,6 +74,7 @@ typedef struct s_images {
 	t_image		dj2;
 	t_image		dj3;
 	t_image		door;
+	t_image		door_o;
 	t_image		shadow_b;
 	t_image		beer;
 }				t_images;
@@ -89,6 +91,7 @@ typedef struct s_root {
 	char		*map;
 	int			*random;
 	int			k;
+	int			over;
 
 }				t_root;
 
@@ -124,5 +127,7 @@ int		patrol_init(t_root *game);
 int		patrol_move(t_root *game);
 void	animation_cykle(t_root *game);
 void	background(t_root *game);
+void	game_over(t_root *game);
+void	fade_to_black(t_root *game);
 
 #endif

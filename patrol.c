@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 00:13:01 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/02 16:24:58 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/02 19:08:09 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,18 @@ void	movement(t_root *game, int i, int e)
 		move('n', game, i);
 }
 
+void	fight(t_root *game, int i)
+{
+	int	m;
+
+	m = game->i.max.symbol_index;
+	if (game->thug[i].symbol_index == game->i.max.symbol_index)
+	{
+		game->map[m] = 'T';
+		game->over = 1;
+	}
+}
+
 int	patrol_move(t_root *game)
 {
 	int			j;
@@ -167,6 +179,7 @@ int	patrol_move(t_root *game)
 	j = game->i.max.symbol_index;
 	while (i < game->t_count)
 	{
+		fight(game, i);
 		k[i] = check_enemy_vision(i, j, game, game->map);
 		if (k[i])
 			e[i] = k[i];

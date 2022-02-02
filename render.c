@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/02 14:43:31 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/02 19:34:06 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,12 @@ void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 	if (image == &(game->i.c.coke[0]))
 		crowd_1(game, xy, j);
 	if (image == &(game->i.wall) && x == (game->pixelsize.x - 3 * l))
-		print_image(game, &(game->i.door), xy, 0);
+	{
+		if (!game->over)
+			print_image(game, &(game->i.door), xy, 0);
+		else
+			print_image(game, &(game->i.door_o), xy, 0);
+	}
 }
 
 void	dj(t_root *game, t_vector xy)
@@ -229,6 +234,8 @@ int	map(t_root *game)
 		}
 	}
 	patrol(game);
+	if (game->over == 1)
+		game_over(game);
 	animation_cykle(game);
 	return (1);
 }
