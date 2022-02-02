@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/01/21 19:15:02 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/02 14:40:21 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ int	action(int keypress, t_root *game)
 		move_sd(game, 'd', &count, i);
 	if (ft_strchr(game->map, 'P') == game->i.lady.pixels && !ft_strchr(game->map, 'C'))
 		exit_game();
+	printf("%s\n", game->map);
 	return (0);
 }

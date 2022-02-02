@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/01/21 19:52:46 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/02 14:43:31 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void	symbol_to_image(t_root *game, t_vector xy, int i, int k)
 
 	if (game->map[i] == '1' || game->map[i] == 'D')
 		walls(game, xy, i, k);
-	else if (game->map[i] == '0')
+	else if (game->map[i] == '0' || game->map[i] == 'T')
 		print_image(game, &(game->i.floor), xy, i);
 	else if (game->map[i] == 'P')
 		player(game, xy, i);
