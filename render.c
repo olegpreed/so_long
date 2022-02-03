@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/03 14:41:36 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/03 20:14:33 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ void	crowd_1(t_root *game, t_vector xy, int i)
 		crowd_2(game, xy, i);
 }	
 
+void	fence(t_root *game, t_image *f)
+{
+	t_vector xy;
+
+	xy.x = game->pixelsize.x - game->i.wall.size.x * 2;
+	xy.y = game->pixelsize.y - game->i.wall.size.y + 10;
+	while (xy.x <= game->pixelsize.x)
+	{
+		mlx_put_image_to_window(game->mlx, game->mlxw, f->reference, xy.x, xy.y);
+		xy.x += game->i.wall.size.x;
+	}
+}
+
 void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 {
 	int		e;
@@ -79,7 +92,7 @@ void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 		crowd_1(game, xy, j);
 	if (image == &(game->i.wall) && x == (game->pixelsize.x - 3 * l))
 	{
-		if (!game->over)
+		if (game->i.max_o.symbol_index != 42)
 			print_image(game, &(game->i.door), xy, 0);
 		else
 			print_image(game, &(game->i.door_o), xy, 0);
@@ -233,7 +246,9 @@ int	map(t_root *game)
 			xy.x += game->i.floor.size.x;
 		}
 	}
+	fence(game, &(game->i.fence));
 	patrol(game);
+	darken(game);
 	if (game->over == 1)
 		game_over(game);
 	animation_cykle(game);

@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/03 15:23:38 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/03 19:55:05 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_crowd {
 typedef struct s_images {
 	t_image		floor;
 	t_image		floor_c;
+	t_image		floor_w;
 	t_image		wall;
 	t_image		lady;
 	t_image		max;
@@ -74,6 +75,7 @@ typedef struct s_images {
 	t_image		dj2;
 	t_image		dj3;
 	t_image		door;
+	t_image		fence;
 	t_image		door_o;
 	t_image		shadow_b;
 	t_image		beer;
@@ -129,5 +131,7 @@ void	animation_cykle(t_root *game);
 void	background(t_root *game);
 void	game_over(t_root *game);
 void	fade_to_black(t_root *game);
+void	win(t_root *game);
+void	darken(t_root *game);
 
 #endif

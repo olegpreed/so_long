@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/02/02 23:02:50 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/03 18:49:46 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	sprites_init(t_root *game)
 
 	game->i.floor.path = "./images/floor.xpm";
 	game->i.floor.reference = image_ref(game, &(game->i.floor));
+	game->i.floor_w.path = "./images/tile_w.xpm";
+	game->i.floor_w.reference = image_ref(game, &(game->i.floor_w));
 	game->i.floor_c.path = "./images/tile2.xpm";
 	game->i.floor_c.reference = image_ref(game, &(game->i.floor_c));
 	game->i.dj.path = "./images/dj.xpm";
@@ -112,6 +114,8 @@ void	sprites_init(t_root *game)
 	game->i.door_o.reference = image_ref(game, &(game->i.door_o));
 	game->i.beer.path = "./images/beer.xpm";
 	game->i.beer.reference = image_ref(game, &(game->i.beer));
+	game->i.fence.path = "./images/fence.xpm";
+	game->i.fence.reference = image_ref(game, &(game->i.fence));
 	game->i.shadow_b.path = "./images/shadow_b.xpm";
 	game->i.shadow_b.reference = image_ref(game, &(game->i.shadow_b));
 	playerlocation(game);
@@ -133,4 +137,5 @@ void	start(t_root *game)
 	x = game->pixelsize.x;
 	y = game->pixelsize.y;
 	game->mlxw = mlx_new_window(game->mlx, x, y, "Approach");
+	game->i.max_o.symbol_index = 0;
 }

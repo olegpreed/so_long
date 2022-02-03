@@ -6,11 +6,36 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:31:28 by preed             #+#    #+#             */
-/*   Updated: 2022/02/03 15:23:46 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/03 20:51:46 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	just_black(t_image *bg, t_root *game)
+{
+	int	x;
+	int y;
+	static int r;
+	static int g;
+	static int b;
+	static int t = 0xA0;
+
+	y = 0;
+	x = 0;
+	while (y < game->i.floor.size.y)
+	{
+		while (x < game->pixelsize.x)
+		{	
+			my_mlx_pixel_put(bg, x, y, create_trgb(t, r, g, b));
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	if (game->over == 1 && t < 0xFA)
+		t += 3;
+}
 
 void	black(t_image *bg, t_root *game)
 {
@@ -20,7 +45,6 @@ void	black(t_image *bg, t_root *game)
 	static int g;
 	static int b;
 	static int t = 0xFF;
-
 
 	y = 0;
 	x = 0;
@@ -83,6 +107,16 @@ int	symbol_loc(t_root *game, int line)
 	x = game->i.max.symbol_loc.x;
 	y = game->i.max.symbol_loc.y;
 	return (x + y * (line + 1));
+}
+
+void darken(t_root *game)
+{
+	t_image	bg;
+
+	bg.reference = mlx_new_image(game->mlx, game->pixelsize.x, game->i.floor.size.y);
+	bg.pixels = mlx_get_data_addr(bg.reference, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
+	just_black(&bg, game);
+	mlx_put_image_to_window(game->mlx, game->mlxw, bg.reference, 0, game->pixelsize.y - game->i.floor.size.y);
 }
 
 int	create_trgb(int t, int r, int g, int b)
