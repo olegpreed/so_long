@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 00:13:01 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/02 19:08:09 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/04 17:15:45 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ int	patrol_move(t_root *game)
 		i++;
 	}
 	i = -1;
-	while (++i < game->t_count)
+	while (++i < game->t_count && game->over != 21)
 		movement(game, i, e[i]);
 	return (0);
 }

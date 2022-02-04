@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/03 19:55:05 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/04 20:57:02 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,13 @@ typedef struct s_images {
 	t_image		floor_w;
 	t_image		wall;
 	t_image		lady;
+	t_image		lady_w;
 	t_image		max;
 	t_image		max_b;
 	t_image		max_o;
 	t_image		max_r;
 	t_image		max_l;
+	t_image		max_d;
 	t_image		speak;
 	t_image		speak2;
 	t_crowd		c;
@@ -81,16 +83,27 @@ typedef struct s_images {
 	t_image		beer;
 }				t_images;
 
+typedef struct t_menu {
+	int			k;
+	char		level[20];
+	t_image		select;
+	t_image		menu;
+}				t_menu;
+
 typedef struct s_root {
+	void		*mlx_m;
+	void		*mlxw_m;
 	void		*mlx;
 	void		*mlxw;
 	char		*map_path;
 	t_image		*thug;
+	t_menu		m;
 	int			t_count;
 	t_vector	symbolsize;
 	t_vector	pixelsize;
 	t_images	i;
 	char		*map;
+	char		*copy_map;
 	int			*random;
 	int			k;
 	int			over;
@@ -115,7 +128,7 @@ int		action(int keypress, t_root *game);
 void	playerlocation(t_root *game);
 char	*ft_strchr(const char *s, int c);
 int		check_valid_map(t_root *game);
-int	check_item_count(char *map, t_root *game);
+int		check_item_count(char *map, t_root *game);
 int		check_walls(char *map);
 int		preparation(t_root *game, int argc, char **argv);
 void	symbol_to_image(t_root *game, t_vector xy, int i, int k);
@@ -133,5 +146,10 @@ void	game_over(t_root *game);
 void	fade_to_black(t_root *game);
 void	win(t_root *game);
 void	darken(t_root *game);
+void	menu(t_root *game);
+int		select(int keypress, t_root *game);
+int		menu_render(t_root *game);
+int		enter_level(t_root *game);
+char	*ft_strdup(const char *s1);
 
 #endif

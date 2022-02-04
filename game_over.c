@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 17:02:44 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/03 17:57:10 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/04 21:21:40 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 // 		c++;
 // 	}
 // }
+
+void	restart(t_root *game)
+{
+	int	x;
+	int	y;
+
+	x = game->pixelsize.x / 2;
+	y = game->pixelsize.y / 2;
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.select.reference, x, y);
+}
 
 int	max_kicked_out(t_root *game)
 {
@@ -75,6 +85,7 @@ int	max_kicked_out(t_root *game)
 			}
 		}
 	}
+	restart(game);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/03 20:14:33 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/04 16:56:14 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ void	fence(t_root *game, t_image *f)
 
 void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 {
-	int		e;
-	t_image	*max;
 	int		x;
 	int		y;
 	int		l;
@@ -84,8 +82,6 @@ void	print_image(t_root *game, t_image *image, t_vector xy, int j)
 	l = game->i.floor.size.x;
 	x = xy.x;
 	y = xy.y;
-	max = &(game->i.max);
-	e = game->i.max.symbol_index;
 	if (image != &(game->i.c.coke[0]))
 		mlx_put_image_to_window(game->mlx, game->mlxw, image->reference, x, y);
 	if (image == &(game->i.c.coke[0]))
@@ -148,7 +144,12 @@ int	lady(t_root *game, t_vector xy, int i)
 {
 	print_image(game, &(game->i.floor), xy, i);
 	xy.y -= 10;
-	print_image(game, &(game->i.lady), xy, i);
+	if (!game->k)
+		xy.y += 3;
+	if (*game->i.lady.pixels == 'E')
+		print_image(game, &(game->i.lady), xy, i);
+	if (*game->i.lady.pixels == 'L')
+		print_image(game, &(game->i.lady_w), xy, i);
 	return (sprite_float());
 }
 

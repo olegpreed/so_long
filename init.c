@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/02/03 18:49:46 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/04 16:55:29 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	sprites_init(t_root *game)
 	game->i.redbull.reference = image_ref(game, &(game->i.redbull));
 	game->i.lady.path = "./images/lady.xpm";
 	game->i.lady.reference = image_ref(game, &(game->i.lady));
+	game->i.lady_w.path = "./images/lady_w.xpm";
+	game->i.lady_w.reference = image_ref(game, &(game->i.lady_w));
 	game->i.lady.pixels = ft_strchr(game->map, 'E');
 	game->i.max.path = "./images/max.xpm";
 	game->i.max.reference = image_ref(game, &(game->i.max));
@@ -74,6 +76,8 @@ void	sprites_init(t_root *game)
 	game->i.max_r.reference = image_ref(game, &(game->i.max_r));
 	game->i.max_b.path = "./images/max_b.xpm";
 	game->i.max_b.reference = image_ref(game, &(game->i.max_b));
+	game->i.max_d.path = "./images/max_d.xpm";
+	game->i.max_d.reference = image_ref(game, &(game->i.max_d));
 	game->i.speak.path = "./images/speaker.xpm";
 	game->i.speak.reference = image_ref(game, &(game->i.speak));
 	game->i.speak2.path = "./images/speaker2.xpm";

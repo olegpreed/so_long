@@ -6,11 +6,18 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:51:23 by preed             #+#    #+#             */
-/*   Updated: 2022/02/03 14:40:30 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/04 20:13:01 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int printfka(t_root *game)
+{
+	game->random = 0;
+	printf("im here!\n");
+	return 0;
+}
 
 int	main(int argc, char **argv)
 {
@@ -18,12 +25,21 @@ int	main(int argc, char **argv)
 
 	if (preparation(&game, argc, argv))
 		return (1);
+	game.mlx_m = mlx_init();
 	game.mlx = mlx_init();
-	start(&game);
-	patrol_init(&game);
-	mlx_hook(game.mlxw, 2, 0, &action, &game);
-	mlx_hook(game.mlxw, 17, 0, &exit_game, (void *)0);
-	mlx_loop_hook(game.mlx, &map, &game);
+	menu(&game);
+	mlx_hook(game.mlxw_m, 2, 0, &select, &game);
+	mlx_loop_hook(game.mlx_m, &menu_render, &game);
+	// if (game.m.k)
+	// {
+	// 	mlx_destroy_window(game.mlx_m, game.mlxw_m);
+	// 	start(&game);
+	// 	patrol_init(&game);
+	// 	mlx_hook(game.mlxw, 2, 0, &action, &game);
+	// 	mlx_hook(game.mlxw, 17, 0, &exit_game, (void *)0);
+	// 	mlx_loop_hook(game.mlx, &map, &game);
+	// }
+	mlx_loop(game.mlx_m);
 	mlx_loop(game.mlx);
 	return (0);
 }

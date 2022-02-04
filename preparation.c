@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:59:23 by preed             #+#    #+#             */
-/*   Updated: 2022/02/02 17:33:14 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/04 20:57:49 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int	preparation(t_root *game, int argc, char **argv)
 	game->map[game->symbolsize.x / 2 - 1] = 'D';
 	random_table(game);
 	game->over = 0;
+	game->copy_map = ft_strdup(game->map);
 	return (0);
 }

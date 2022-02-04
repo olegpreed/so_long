@@ -6,7 +6,7 @@
 #    By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 14:36:11 by preed             #+#    #+#              #
-#    Updated: 2022/02/03 19:29:51 by oleg             ###   ########.fr        #
+#    Updated: 2022/02/04 20:59:03 by oleg             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ SRC = $(SRC_GNL) $(SRC_LIBFT) $(SRC_GAME)
 
 SRC_GNL = get_next_line.c get_next_line_utils.c
 
-SRC_LIBFT = libft_1.c libft_2.c
+SRC_LIBFT = libft_1.c libft_2.c libft_3.c
 
-SRC_GAME = main.c preparation.c render.c init.c utils.c map_check.c input.c patrol_init.c patrol.c game_over.c win.c
+SRC_GAME = main.c preparation.c render.c init.c utils.c map_check.c input.c patrol_init.c patrol.c game_over.c win.c menu.c
 
 OBJS			= ${SRCS:.c=.o}
 

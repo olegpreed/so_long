@@ -1,38 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft_3.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/04 20:56:45 by oleg              #+#    #+#             */
+/*   Updated: 2022/02/04 20:56:47 by oleg             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-t_list	*ft_lstlast(t_list *lst)
+char	*ft_strdup(const char *s1)
 {
-	if (!lst)
+	char	*a;
+	char	*b;
+
+	a = (char *)malloc(ft_strlen(s1) + 1);
+	b = a;
+	if (a == 0)
 		return (0);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*a;
-
-	if (!*lst)
+	while (*s1)
 	{
-		*lst = new;
-		new->next = 0;
-		return ;
+		*a = *s1;
+		a++;
+		s1++;
 	}
-	if (new == 0 || !lst)
-		return ;
-	a = ft_lstlast(*lst);
-	a->next = new;
-}
-
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*a;
-
-	a = (t_list *)malloc(sizeof(t_list));
-	if (!a)
-		return (0);
-	a->content = content;
-	a->next = 0;
-	return (a);
+	*a = *s1;
+	return (b);
 }
