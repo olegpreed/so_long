@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/04 21:44:06 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/05 22:13:06 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,47 @@ int	exit_game(void)
 	return (1);
 }
 
+int	select_restart(int keypress, t_root *game)
+{
+	static int k;
+	
+	if (keypress == D && !k)
+	{
+			game->m.select.pixel_loc.x = 155;
+			k = 1;
+	}
+	if (keypress == A && k)
+	{
+			game->m.select.pixel_loc.x = 0;
+			k = 0;
+	}
+	if (keypress == 36 && game->restart == 1 && !k)
+	{
+		game->over = 0;
+		free(game->map);
+		//start(game);
+		game->map = ft_strdup(game->copy_map);
+		playerlocation(game);
+		game->i.max_o.symbol_index = 0;
+		patrol_init(game);
+		*game->i.lady.pixels = 'E';
+		return 0;
+	}
+	if (keypress == 36 && game->restart == 1 && k)
+	{
+		free(game->map);
+		game->close_level = 1;
+		game->close_menu = 0;
+		mlx_destroy_window(game->mlx, game->mlxw);
+		game->m.select.pixel_loc.x = 220;
+		game->m.select.pixel_loc.y = 425;
+		game->mlxw_m = mlx_new_window(game->mlx_m, game->m.menu.size.x, game->m.menu.size.y, "menu");
+		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.menu.reference, 0, 0);
+		mlx_hook(game->mlxw_m, 2, 0, &select, game);
+	}
+	return (1);
+}
+
 int	action(int keypress, t_root *game)
 {
 	static int	xx;
@@ -137,17 +178,8 @@ int	action(int keypress, t_root *game)
 		if (ft_strchr(game->map, 'P') == game->i.lady.pixels && !ft_strchr(game->map, 'C'))
 			win(game);
 	}
-	if (keypress == 36)
-		{
-			game->over = 0;
-			free(game->map);
-			//start(game);
-			game->map = ft_strdup(game->copy_map);
-			playerlocation(game);
-			game->i.max_o.symbol_index = 0;
-			patrol_init(game);
-			*game->i.lady.pixels = 'E';
-		}
+	if (game->restart == 1)
+		select_restart(keypress, game);
 	//printf("%s\n", game->map);
 	return (0);
 }

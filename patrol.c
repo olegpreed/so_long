@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 00:13:01 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/04 17:15:45 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/05 17:53:11 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void	fight(t_root *game, int i)
 	{
 		game->map[m] = 'T';
 		game->over = 1;
+		printf("max is here = %d", game->i.max.symbol_index);
 	}
 }
 
@@ -177,16 +178,25 @@ int	patrol_move(t_root *game)
 
 	i = 0;
 	j = game->i.max.symbol_index;
-	while (i < game->t_count)
+	if (!game->over || game->over == 11) 
 	{
-		fight(game, i);
-		k[i] = check_enemy_vision(i, j, game, game->map);
-		if (k[i])
-			e[i] = k[i];
-		i++;
+		while (i < game->t_count)
+		{
+			fight(game, i);
+			k[i] = check_enemy_vision(i, j, game, game->map);
+			if (k[i])
+				e[i] = k[i];
+			i++;
+		}
+		i = -1;
+		while (++i < game->t_count && game->over != 21)
+			movement(game, i, e[i]);
 	}
-	i = -1;
-	while (++i < game->t_count && game->over != 21)
-		movement(game, i, e[i]);
+	if (game->over)
+	{
+		i = 0;
+		while (i < game->t_count)
+			e[i++] = 0;
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 17:02:44 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/04 21:21:40 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/05 19:22:57 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,19 @@
 
 void	restart(t_root *game)
 {
-	int	x;
+	static int	x;
 	int	y;
+	int h;
+	int w;
 
 	x = game->pixelsize.x / 2;
 	y = game->pixelsize.y / 2;
-	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.select.reference, x, y);
+	w = game->i.gameover.size.x;
+	h = game->i.gameover.size.y;
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->i.gameover.reference, x - w / 2, y - h / 2);
+	x += game->m.select.pixel_loc.x;
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.select.reference, x - 130, y + 46);
+	game->restart = 1;
 }
 
 int	max_kicked_out(t_root *game)

@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/02/04 16:55:29 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/05 21:28:20 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	playerlocation(t_root *game)
 	game->i.max.symbol_loc.x = xy % (game->symbolsize.x + 1);
 	game->i.max.pixel_loc.y = game->i.max.symbol_loc.y * h - 10;
 	game->i.max.pixel_loc.x = game->i.max.symbol_loc.x * w;
+	game->i.max.symbol_index = xy;
 }
 // w : sprite width
 // h : sprite height
@@ -122,6 +123,8 @@ void	sprites_init(t_root *game)
 	game->i.fence.reference = image_ref(game, &(game->i.fence));
 	game->i.shadow_b.path = "./images/shadow_b.xpm";
 	game->i.shadow_b.reference = image_ref(game, &(game->i.shadow_b));
+	game->i.gameover.path = "./images/gameover.xpm";
+	game->i.gameover.reference = image_ref(game, &(game->i.gameover));
 	playerlocation(game);
 }
 
@@ -142,4 +145,7 @@ void	start(t_root *game)
 	y = game->pixelsize.y;
 	game->mlxw = mlx_new_window(game->mlx, x, y, "Approach");
 	game->i.max_o.symbol_index = 0;
+	game->m.select.pixel_loc.x = 0;
+	game->close_level = 0;
+	game->restart = 0;
 }

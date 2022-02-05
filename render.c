@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/04 16:56:14 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/05 21:30:22 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,30 +228,33 @@ int	map(t_root *game)
 	t_vector	xy;
 	int			i;
 	t_image		*player;
-
-	patrol_move(game);
-	player = &(game->i.max);
-	xy.x = 0;
-	xy.y = 0;
-	i = -1;
-	while ((game->map)[++i])
+	
+	if (!game->close_level)
 	{
-		if ((game->map)[i] == '\n')
+		patrol_move(game);
+		player = &(game->i.max);
+		xy.x = 0;
+		xy.y = 0;
+		i = -1;
+		while ((game->map)[++i])
 		{
-			xy.x = 0;
-			xy.y += game->i.floor.size.y;
+			if ((game->map)[i] == '\n')
+			{
+				xy.x = 0;
+				xy.y += game->i.floor.size.y;
+			}
+			else
+			{
+				symbol_to_image(game, xy, i, game->k);
+				xy.x += game->i.floor.size.x;
+			}
 		}
-		else
-		{
-			symbol_to_image(game, xy, i, game->k);
-			xy.x += game->i.floor.size.x;
-		}
+		fence(game, &(game->i.fence));
+		patrol(game);
+		darken(game);
+		if (game->over == 1)
+			game_over(game);
+		animation_cykle(game);
 	}
-	fence(game, &(game->i.fence));
-	patrol(game);
-	darken(game);
-	if (game->over == 1)
-		game_over(game);
-	animation_cykle(game);
 	return (1);
 }

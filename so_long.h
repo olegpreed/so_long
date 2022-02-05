@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/04 20:57:02 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/05 21:26:00 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define D 2
 # define ESC 53
 # define CLOSE 17
+// # define OVER 42
+// # define WIN 21
+// # define START 17
 
 typedef struct s_vector
 {
@@ -81,6 +84,7 @@ typedef struct s_images {
 	t_image		door_o;
 	t_image		shadow_b;
 	t_image		beer;
+	t_image		gameover;
 }				t_images;
 
 typedef struct t_menu {
@@ -107,6 +111,9 @@ typedef struct s_root {
 	int			*random;
 	int			k;
 	int			over;
+	int			restart;
+	int			close_menu;
+	int			close_level;
 
 }				t_root;
 
