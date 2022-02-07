@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:59:23 by preed             #+#    #+#             */
-/*   Updated: 2022/02/04 20:57:49 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/07 18:46:58 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,35 @@ int	map_to_string(t_root *game)
 			k = 0;
 		game->symbolsize.y++;
 	}
+	close(fd);
 	return (0);
 }
 
-int	preparation(t_root *game, int argc, char **argv)
+char *int_to_map(t_root *game)
 {
-	if (argc != 2)
-		return (1);
-	game->map_path = argv[1];
+	char *s;
+	char *path;
+	
+	path = ft_strdup("maps/map_xx.ber");
+	s = ft_itoa(game->m.lvl);
+	if(ft_strlen(s) == 1)
+	{
+		path[9] = '0';
+		path[10] = s[0];
+	}
+	else
+	{
+		path[9] = s[0];
+		path[10] = s[1];
+	}
+	return (path);
+}
+
+int	preparation(t_root *game)
+{
+	
+	game->map_path = int_to_map(game);
+	printf("%s\n", game->map_path);
 	if (map_to_string(game))
 	{
 		printf("Error\nCould not read the file\n");

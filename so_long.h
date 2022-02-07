@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/05 21:26:00 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/07 19:21:24 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stddef.h>
+# include <unistd.h>
 
 # define W 13
 # define A 0
@@ -85,13 +86,18 @@ typedef struct s_images {
 	t_image		shadow_b;
 	t_image		beer;
 	t_image		gameover;
+	t_image		snumbers[10];
 }				t_images;
 
 typedef struct t_menu {
 	int			k;
-	char		level[20];
+	//char		lvl[20];
+	char		lvl;
 	t_image		select;
 	t_image		menu;
+	t_image		numbers[10];
+	t_image		level;
+	t_image		score;
 }				t_menu;
 
 typedef struct s_root {
@@ -114,6 +120,10 @@ typedef struct s_root {
 	int			restart;
 	int			close_menu;
 	int			close_level;
+	int			score;
+	int			record;
+	char		*scoreboard;
+	int			fd;
 
 }				t_root;
 
@@ -137,7 +147,7 @@ char	*ft_strchr(const char *s, int c);
 int		check_valid_map(t_root *game);
 int		check_item_count(char *map, t_root *game);
 int		check_walls(char *map);
-int		preparation(t_root *game, int argc, char **argv);
+int		preparation(t_root *game);
 void	symbol_to_image(t_root *game, t_vector xy, int i, int k);
 void	print_image(t_root *game, t_image *image, t_vector xy, int i);
 int		symbol_loc(t_root *game, int line);
@@ -154,9 +164,12 @@ void	fade_to_black(t_root *game);
 void	win(t_root *game);
 void	darken(t_root *game);
 void	menu(t_root *game);
-int		select(int keypress, t_root *game);
+int		ft_select(int keypress, t_root *game);
 int		menu_render(t_root *game);
 int		enter_level(t_root *game);
 char	*ft_strdup(const char *s1);
+char	*ft_itoa(int n);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_atoi(const char *str);
 
 #endif

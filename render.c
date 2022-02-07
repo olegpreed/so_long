@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/05 21:30:22 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/07 16:24:41 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,21 @@ int	patrol(t_root *game)
 	return (0);
 }
 
+void	score(t_root *game)
+{
+	int	x;
+	int	y;
+	int	c;
+
+	x = 4;
+	y = game->pixelsize.y - 20;
+	c = game->score;
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->i.snumbers[c / 1000].reference, x, y);
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->i.snumbers[c % 1000 / 100].reference, x + 15, y);
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->i.snumbers[c % 100 / 10].reference, x + 30, y);
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->i.snumbers[c % 10].reference, x + 45, y);
+}
+
 int	map(t_root *game)
 {	
 	t_vector	xy;
@@ -251,6 +266,7 @@ int	map(t_root *game)
 		}
 		fence(game, &(game->i.fence));
 		patrol(game);
+		score(game);
 		darken(game);
 		if (game->over == 1)
 			game_over(game);

@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:51:23 by preed             #+#    #+#             */
-/*   Updated: 2022/02/05 20:08:52 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/07 18:51:05 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@ int printfka(t_root *game)
 	return 0;
 }
 
-int	main(int argc, char **argv)
+int	main()
 {
 	t_root	game;
 
-	if (preparation(&game, argc, argv))
-		return (1);
 	game.mlx_m = mlx_init();
 	game.mlx = mlx_init();
 	menu(&game);
-	mlx_hook(game.mlxw_m, 2, 0, &select, &game);
+	mlx_hook(game.mlxw_m, 2, 0, &ft_select, &game);
 	mlx_loop_hook(game.mlx_m, &menu_render, &game);
 	// if (game.m.k)
 	// {

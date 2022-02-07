@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/05 22:13:06 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/07 16:36:16 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	drink(char a, int *k)
 	return (0);
 }
 
-void	move_sd(t_root *game, char key, int *count, int j)
+void	move_sd(t_root *game, char key, int j)
 {
 	int	*i;
 	int	line;
@@ -65,11 +65,11 @@ void	move_sd(t_root *game, char key, int *count, int j)
 		game->i.max.symbol_index += 1;
 	}
 	*i = symbol_loc(game, line);
-	(*count)++;
-	printf("Move count: %d\n%d", *count, game->i.max.symbol_index);
+	if (game->score != 9999)
+		game->score++;
 }
 
-void	move_wa(t_root *game, char key, int *count, int j)
+void	move_wa(t_root *game, char key, int j)
 {
 	int	*i;
 	int	line;
@@ -95,8 +95,8 @@ void	move_wa(t_root *game, char key, int *count, int j)
 		game->i.max.symbol_index -= 1;
 	}
 	*i = symbol_loc(game, line);
-	(*count)++;
-	printf("Move count: %d\n", *count);
+	if (game->score != 9999)
+		game->score++;
 }
 
 int	exit_game(void)
@@ -150,7 +150,6 @@ int	action(int keypress, t_root *game)
 {
 	static int	xx;
 	static int	yy;
-	static int	count;
 	int			line;
 	int i;
 
@@ -168,18 +167,17 @@ int	action(int keypress, t_root *game)
 	if (game->over == 0)
 	{
 		if (keypress == W && game->map[xx + (line + 1) * (yy - 1)] != '1' && game->map[xx + (line + 1) * (yy - 1)] != 'D' && game->map[xx + (line + 1) * (yy - 1)] != 'E')
-			move_wa(game, 'w', &count, i);
+			move_wa(game, 'w', i);
 		else if (keypress == A && game->map[(xx - 1) + (line + 1) * yy] != '1' && game->map[(xx - 1) + (line + 1) * yy] != 'E')
-			move_wa(game, 'a', &count, i);
+			move_wa(game, 'a', i);
 		else if (keypress == S && game->map[xx + (line + 1) * (yy + 1)] != '1' && game->map[xx + (line + 1) * (yy + 1)]  != 'E')
-			move_sd(game, 's', &count, i);
+			move_sd(game, 's', i);
 		else if (keypress == D && game->map[(xx + 1) + (line + 1) * yy] != '1' && game->map[(xx + 1) + (line + 1) * yy] != 'E')
-			move_sd(game, 'd', &count, i);
+			move_sd(game, 'd', i);
 		if (ft_strchr(game->map, 'P') == game->i.lady.pixels && !ft_strchr(game->map, 'C'))
 			win(game);
 	}
 	if (game->restart == 1)
 		select_restart(keypress, game);
-	//printf("%s\n", game->map);
 	return (0);
 }
