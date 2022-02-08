@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/07 16:24:41 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/08 17:18:38 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,6 +268,8 @@ int	map(t_root *game)
 		patrol(game);
 		score(game);
 		darken(game);
+		if (game->over == 100)
+			display_score(game);
 		if (game->over == 1)
 			game_over(game);
 		animation_cykle(game);

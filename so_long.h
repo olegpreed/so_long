@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/07 19:21:24 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/08 17:07:24 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct s_images {
 	t_image		shadow_b;
 	t_image		beer;
 	t_image		gameover;
+	t_image		newhigh;
+	t_image		newhigh2;
 	t_image		snumbers[10];
 }				t_images;
 
@@ -98,6 +100,7 @@ typedef struct t_menu {
 	t_image		numbers[10];
 	t_image		level;
 	t_image		score;
+	int			scores[21];
 }				t_menu;
 
 typedef struct s_root {
@@ -161,7 +164,7 @@ void	animation_cykle(t_root *game);
 void	background(t_root *game);
 void	game_over(t_root *game);
 void	fade_to_black(t_root *game);
-void	win(t_root *game);
+int		win(t_root *game);
 void	darken(t_root *game);
 void	menu(t_root *game);
 int		ft_select(int keypress, t_root *game);
@@ -171,5 +174,7 @@ char	*ft_strdup(const char *s1);
 char	*ft_itoa(int n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_atoi(const char *str);
+void	*ft_memset(void *b, int c, size_t len);
+void	display_score(t_root *game);
 
 #endif

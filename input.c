@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/07 16:36:16 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/07 21:50:51 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int	select_restart(int keypress, t_root *game)
 		game->i.max_o.symbol_index = 0;
 		patrol_init(game);
 		*game->i.lady.pixels = 'E';
+		game->score = 0;
 		return 0;
 	}
 	if (keypress == 36 && game->restart == 1 && k)

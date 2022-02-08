@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/02/07 19:27:01 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/08 16:26:20 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,10 @@ void	sprites_init(t_root *game)
 	game->i.shadow_b.reference = image_ref(game, &(game->i.shadow_b));
 	game->i.gameover.path = "./images/gameover.xpm";
 	game->i.gameover.reference = image_ref(game, &(game->i.gameover));
+	game->i.newhigh.path = "./images/newhigh.xpm";
+	game->i.newhigh.reference = image_ref(game, &(game->i.newhigh));
+	game->i.newhigh2.path = "./images/newhigh2.xpm";
+	game->i.newhigh2.reference = image_ref(game, &(game->i.newhigh2));
 	snumbers_init(game);
 	playerlocation(game);
 }
@@ -211,6 +215,7 @@ int	scoreboard(t_root *game)
 			k = 0;
 	}
 	get_high_score(game);
+	close(game->fd);
 	return (0);
 }
 

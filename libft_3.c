@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 20:56:45 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/07 19:23:50 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/08 15:00:15 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (b == 0)
 		return (0);
 	ft_strlcpy(b, &s[start], len + 1);
+	return (b);
+}
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		((unsigned char *)b)[i] = c;
+		i++;
+	}
 	return (b);
 }

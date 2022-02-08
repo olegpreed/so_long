@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:47:04 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/07 18:50:16 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/07 20:18:31 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@
 // 	mlx_loop_hook(game->mlx, &map, game);
 // 	return 0;
 // }
+
+void	score_number(t_root *game)
+{
+	int	i;
+	
+	if (game->close_menu == 2)
+	{
+		i = game->m.scores[game->m.lvl - 1];
+		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.numbers[i / 1000].reference, 230, 360);
+		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.numbers[i % 1000 / 100].reference, 280, 360);
+		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.numbers[i % 100 / 10].reference, 330, 360);
+		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.numbers[i % 10].reference, 380, 360);
+	}
+}
+
 
 void	level_number(t_root *game)
 {
@@ -59,8 +74,11 @@ int menu_render(t_root *game)
 		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.menu.reference, 0, 0);
 		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.select.reference, x, y);
 	}
-	else//if (game->close_menu =)
+	else
+	{
 		level_number(game);
+		score_number(game);
+	}
 	return (0);
 }
 
@@ -100,6 +118,25 @@ int	select_lvl(int keypress, t_root *game)
 	return (0);
 }
 
+int	scores(t_root *game)
+{
+	char	*s;
+	int		i;
+
+	i = 0;
+	game->fd = open("scoreboard", O_RDWR);
+	if (game->fd == -1)
+		return (1);
+	while (i < 21)
+	{
+		s = get_next_line(game->fd);
+		game->m.scores[i++] = ft_atoi(s);
+		free(s);
+	}
+	close(game->fd);
+	return (0);
+}
+
 int	ft_select(int keypress, t_root *game)
 {
 	static int	k;
@@ -118,6 +155,7 @@ int	ft_select(int keypress, t_root *game)
 		exit_game();
 	if (!k && keypress == 36)
 	{
+		scores(game);
 		level_select(game);
 		mlx_hook(game->mlxw_m, 2, 0, &select_lvl, game);
 		k = 0;
