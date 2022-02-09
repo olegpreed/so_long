@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/08 17:07:24 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/09 16:42:36 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct s_images {
 	t_image		newhigh;
 	t_image		newhigh2;
 	t_image		snumbers[10];
+	t_image		heart;
+	t_image		pair;
 }				t_images;
 
 typedef struct t_menu {

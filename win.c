@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 19:24:40 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/08 18:30:50 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/09 16:43:44 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ void	new_scoreboard(t_root *game)
 
 int win(t_root *game)
 {
+	int i;
+	
+	i = game->i.max.symbol_index;
+	game->map[i] = 'L';
+	game->i.lady_w.reference = game->i.pair.reference;
 	game->fd = open("scoreboard", O_RDWR);
 	if (game->fd == -1)
 		return (1);

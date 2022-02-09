@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/08 17:18:38 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/09 16:51:20 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,39 @@ void	score(t_root *game)
 	mlx_put_image_to_window(game->mlx, game->mlxw, game->i.snumbers[c % 10].reference, x + 45, y);
 }
 
+void hearts(t_root *game)
+{
+	static int	x[2];
+	static int	y[2];
+	int			xx[2];
+	int			yy[2];
+	static int k;
+
+	playerlocation(game);
+	xx[0] = x[0] + game->i.max.pixel_loc.x;
+	yy[0] = y[0] + game->i.max.pixel_loc.y;
+	xx[1] = x[1] + game->i.max.pixel_loc.x + 48;
+	yy[1] = y[1] + game->i.max.pixel_loc.y;
+	if (y[0] > -70)
+	{
+		if (y[0] > -60)
+			mlx_put_image_to_window(game->mlx, game->mlxw, game->i.heart.reference, xx[0], yy[0]);
+		y[0]--;
+	}
+	if (y[0] == -30)
+		k = 1;
+	else if (y[0] == -70)
+		y[0] = 0;
+	if (k && y[1] > -69)
+	{
+		if (y[1] > -59)
+			mlx_put_image_to_window(game->mlx, game->mlxw, game->i.heart.reference, xx[1], yy[1]);
+		y[1]--;
+	}
+	else if (k && y[1] == -69)
+		y[1] = 0;
+}
+
 int	map(t_root *game)
 {	
 	t_vector	xy;
@@ -268,6 +301,8 @@ int	map(t_root *game)
 		patrol(game);
 		score(game);
 		darken(game);
+		if (game->over == 21 || game->over == 100)
+			hearts(game);
 		if (game->over == 100)
 			display_score(game);
 		if (game->over == 1)

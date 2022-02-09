@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/07 21:50:51 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/09 17:25:49 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,13 +147,30 @@ int	select_restart(int keypress, t_root *game)
 	return (1);
 }
 
+void return_to_menu(int keypress, t_root *game)
+{
+	if (keypress == 36)
+	{
+		free(game->map);
+		game->close_level = 1;
+		game->close_menu = 0;
+		mlx_destroy_window(game->mlx, game->mlxw);
+		game->m.select.pixel_loc.x = 220;
+		game->m.select.pixel_loc.y = 425;
+		game->mlxw_m = mlx_new_window(game->mlx_m, game->m.menu.size.x, game->m.menu.size.y, "menu");
+		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.menu.reference, 0, 0);
+		mlx_hook(game->mlxw_m, 2, 0, &select, game);
+	}
+}
+
 int	action(int keypress, t_root *game)
 {
 	static int	xx;
 	static int	yy;
 	int			line;
 	int i;
-
+	
+	printf("%d\n", keypress);
 	xx = game->i.max.symbol_loc.x;
 	yy = game->i.max.symbol_loc.y;
 	line = game->symbolsize.x;
@@ -178,7 +195,10 @@ int	action(int keypress, t_root *game)
 		if (ft_strchr(game->map, 'P') == game->i.lady.pixels && !ft_strchr(game->map, 'C'))
 			win(game);
 	}
+	if (game->over == 100 || game->over == 21)
+		return_to_menu(keypress, game);
 	if (game->restart == 1)
 		select_restart(keypress, game);
+	printf("%s\n", game->map);
 	return (0);
 }

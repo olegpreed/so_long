@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/02/08 16:26:20 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/09 17:29:18 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	playerlocation(t_root *game)
 
 	w = game->i.floor.size.x;
 	h = game->i.floor.size.y;
-	xy = ft_strchr(game->map, 'P') - game->map;
+	if (game->over == 21 || game->over == 100)
+		xy = ft_strchr(game->map, 'L') - game->map;
+	else
+		xy = ft_strchr(game->map, 'P') - game->map;
 	game->i.max.symbol_loc.y = xy / (game->symbolsize.x + 1);
 	game->i.max.symbol_loc.x = xy % (game->symbolsize.x + 1);
 	game->i.max.pixel_loc.y = game->i.max.symbol_loc.y * h - 10;
@@ -153,6 +156,10 @@ void	sprites_init(t_root *game)
 	game->i.newhigh.reference = image_ref(game, &(game->i.newhigh));
 	game->i.newhigh2.path = "./images/newhigh2.xpm";
 	game->i.newhigh2.reference = image_ref(game, &(game->i.newhigh2));
+	game->i.pair.path = "./images/pair.xpm";
+	game->i.pair.reference = image_ref(game, &(game->i.pair));
+	game->i.heart.path = "./images/heart.xpm";
+	game->i.heart.reference = image_ref(game, &(game->i.heart));
 	snumbers_init(game);
 	playerlocation(game);
 }
@@ -166,9 +173,9 @@ void	count_map(t_root *game)
 void	level_name(t_root *game, int x, int y)
 {
 	if (game->m.lvl == 1)
-		game->mlxw = mlx_new_window(game->mlx, x, y, "First time in the club");
+		game->mlxw = mlx_new_window(game->mlx, x, y, "01 - First time in the club");
 	else
-		game->mlxw = mlx_new_window(game->mlx, x, y, "Approach");
+		game->mlxw = mlx_new_window(game->mlx, x, y, "02 - Approach");
 }
 
 void	get_high_score(t_root *game)
