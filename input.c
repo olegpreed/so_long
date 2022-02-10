@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/09 17:25:49 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/09 19:18:46 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	move_sd(t_root *game, char key, int j)
 		game->i.max.symbol_loc.y += 1;
 		game->i.max.pixel_loc.y += game->i.floor.size.y;
 		if (!c)
-			game->i.max.reference = image_ref(game, &(game->i.max));
+			game->i.max.ref = image_ref(game, &(game->i.max));
 		else
-			game->i.max.reference = image_ref(game, &(game->i.max_d));
+			game->i.max.ref = image_ref(game, &(game->i.max_d));
 		game->i.max.symbol_index += (game->symbolsize.x + 1);
 	}
 	else if (key == 'd')
@@ -61,7 +61,7 @@ void	move_sd(t_root *game, char key, int j)
 		game->map[j] = '0';
 		game->i.max.pixel_loc.x += game->i.floor.size.x;
 		game->i.max.symbol_loc.x += 1;
-		game->i.max.reference = image_ref(game, &(game->i.max_r));
+		game->i.max.ref = image_ref(game, &(game->i.max_r));
 		game->i.max.symbol_index += 1;
 	}
 	*i = symbol_loc(game, line);
@@ -82,7 +82,7 @@ void	move_wa(t_root *game, char key, int j)
 		game->map[j] = '0';
 		game->i.max.symbol_loc.y -= 1;
 		game->i.max.pixel_loc.y -= game->i.floor.size.y;
-		game->i.max.reference = image_ref(game, &(game->i.max_b));
+		game->i.max.ref = image_ref(game, &(game->i.max_b));
 		game->i.max.symbol_index -= (game->symbolsize.x + 1);
 	}
 	else if (key == 'a')
@@ -91,7 +91,7 @@ void	move_wa(t_root *game, char key, int j)
 		game->map[j] = '0';
 		game->i.max.pixel_loc.x -= game->i.floor.size.x;
 		game->i.max.symbol_loc.x -= 1;
-		game->i.max.reference = image_ref(game, &(game->i.max_l));
+		game->i.max.ref = image_ref(game, &(game->i.max_l));
 		game->i.max.symbol_index -= 1;
 	}
 	*i = symbol_loc(game, line);
@@ -136,12 +136,12 @@ int	select_restart(int keypress, t_root *game)
 	{
 		free(game->map);
 		game->close_level = 1;
-		game->close_menu = 0;
+		game->window = MAIN_MENU;
 		mlx_destroy_window(game->mlx, game->mlxw);
 		game->m.select.pixel_loc.x = 220;
 		game->m.select.pixel_loc.y = 425;
 		game->mlxw_m = mlx_new_window(game->mlx_m, game->m.menu.size.x, game->m.menu.size.y, "menu");
-		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.menu.reference, 0, 0);
+		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.menu.ref, 0, 0);
 		mlx_hook(game->mlxw_m, 2, 0, &select, game);
 	}
 	return (1);
@@ -153,12 +153,12 @@ void return_to_menu(int keypress, t_root *game)
 	{
 		free(game->map);
 		game->close_level = 1;
-		game->close_menu = 0;
+		game->window = MAIN_MENU;
 		mlx_destroy_window(game->mlx, game->mlxw);
 		game->m.select.pixel_loc.x = 220;
 		game->m.select.pixel_loc.y = 425;
 		game->mlxw_m = mlx_new_window(game->mlx_m, game->m.menu.size.x, game->m.menu.size.y, "menu");
-		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.menu.reference, 0, 0);
+		mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.menu.ref, 0, 0);
 		mlx_hook(game->mlxw_m, 2, 0, &select, game);
 	}
 }
@@ -199,6 +199,5 @@ int	action(int keypress, t_root *game)
 		return_to_menu(keypress, game);
 	if (game->restart == 1)
 		select_restart(keypress, game);
-	printf("%s\n", game->map);
 	return (0);
 }

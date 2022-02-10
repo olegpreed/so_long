@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/09 16:42:36 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/10 15:53:22 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define D 2
 # define ESC 53
 # define CLOSE 17
+# define MAIN_MENU 22
+# define LEVEL_SELECT 33
+# define GAME 44
 // # define OVER 42
 // # define WIN 21
 // # define START 17
@@ -38,7 +41,7 @@ typedef struct s_vector
 
 
 typedef struct s_image {
-	void		*reference;
+	void		*ref;
 	char		*pixels;
 	t_vector	size;
 	t_vector	pixel_loc;
@@ -88,18 +91,16 @@ typedef struct s_images {
 	t_image		gameover;
 	t_image		newhigh;
 	t_image		newhigh2;
-	t_image		snumbers[10];
+	t_image		s_num[10];
 	t_image		heart;
 	t_image		pair;
 }				t_images;
 
 typedef struct t_menu {
-	int			k;
-	//char		lvl[20];
 	char		lvl;
 	t_image		select;
 	t_image		menu;
-	t_image		numbers[10];
+	t_image		num[10];
 	t_image		level;
 	t_image		score;
 	int			scores[21];
@@ -123,7 +124,7 @@ typedef struct s_root {
 	int			k;
 	int			over;
 	int			restart;
-	int			close_menu;
+	int			window;
 	int			close_level;
 	int			score;
 	int			record;
@@ -168,8 +169,8 @@ void	game_over(t_root *game);
 void	fade_to_black(t_root *game);
 int		win(t_root *game);
 void	darken(t_root *game);
-void	menu(t_root *game);
-int		ft_select(int keypress, t_root *game);
+void	main_menu(t_root *game);
+int		menu_select(int keypress, t_root *game);
 int		menu_render(t_root *game);
 int		enter_level(t_root *game);
 char	*ft_strdup(const char *s1);
@@ -178,5 +179,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_atoi(const char *str);
 void	*ft_memset(void *b, int c, size_t len);
 void	display_score(t_root *game);
+int		select_lvl(int keypress, t_root *game);
+void	menu_display_level(t_root *game);
+void	menu_display_score(t_root *game);
+void	level_select_init(t_root *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:59:23 by preed             #+#    #+#             */
-/*   Updated: 2022/02/07 18:46:58 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/10 16:23:19 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ void	random_table(t_root *game)
 	int	y;
 	int	i;
 
-	i = 1;
+	i = 0;
 	x = game->symbolsize.x;
 	y = game->symbolsize.y;
 	game->random = ft_calloc((((x + 1) * y) + 1), sizeof(int));
-	game->random[0] = rand() % 6;
 	while (i < (x + 1) * y)
 	{
 		game->random[i] = rand() % 6;
@@ -35,19 +34,18 @@ void	random_table(t_root *game)
 int	map_to_string(t_root *game)
 {
 	int		k;
-	int		fd;
 	char	*string[2];
 
 	k = 1;
 	game->symbolsize.y = 0;
-	fd = open(game->map_path, O_RDONLY);
-	if (fd == -1)
+	game->fd = open(game->map_path, O_RDONLY);
+	if (game->fd == -1)
 		return (1);
-	game->map = get_next_line(fd);
+	game->map = get_next_line(game->fd);
 	while (k)
 	{
 		string[0] = game->map;
-		string[1] = get_next_line(fd);
+		string[1] = get_next_line(game->fd);
 		if (string[1])
 		{
 			game->map = ft_strjoin(game->map, string[1]);
@@ -58,18 +56,18 @@ int	map_to_string(t_root *game)
 			k = 0;
 		game->symbolsize.y++;
 	}
-	close(fd);
+	close(game->fd);
 	return (0);
 }
 
-char *int_to_map(t_root *game)
+char	*int_to_map(t_root *game)
 {
-	char *s;
-	char *path;
-	
+	char	*s;
+	char	*path;
+
 	path = ft_strdup("maps/map_xx.ber");
 	s = ft_itoa(game->m.lvl);
-	if(ft_strlen(s) == 1)
+	if (ft_strlen(s) == 1)
 	{
 		path[9] = '0';
 		path[10] = s[0];
@@ -84,9 +82,8 @@ char *int_to_map(t_root *game)
 
 int	preparation(t_root *game)
 {
-	
 	game->map_path = int_to_map(game);
-	printf("%s\n", game->map_path);
+	printf("%s is loaded\n", game->map_path);
 	if (map_to_string(game))
 	{
 		printf("Error\nCould not read the file\n");

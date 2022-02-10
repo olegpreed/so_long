@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 17:02:44 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/07 21:50:22 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/10 16:01:37 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@
 void	restart(t_root *game)
 {
 	static int	x;
-	int	y;
-	int h;
-	int w;
+	int			y;
+	int			h;
+	int			w;
 
 	x = game->pixelsize.x / 2;
 	y = game->pixelsize.y / 2;
 	w = game->i.gameover.size.x;
 	h = game->i.gameover.size.y;
-	mlx_put_image_to_window(game->mlx, game->mlxw, game->i.gameover.reference, x - w / 2, y - h / 2);
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->i.gameover.ref, x - w / 2, y - h / 2);
 	x += game->m.select.pixel_loc.x;
-	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.select.reference, x - 130, y + 46);
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.select.ref, x - 130, y + 46);
 	game->restart = 1;
 }
 
@@ -105,6 +105,6 @@ void	game_over(t_root *game)
 	y = game->i.max_o.pixel_loc.y;
 	fade_to_black(game);
 	if (max_kicked_out(game))
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.max_o.reference, game->i.max_o.pixel_loc.x, game->i.max_o.pixel_loc.y);
+		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.max_o.ref, game->i.max_o.pixel_loc.x, game->i.max_o.pixel_loc.y);
 	//exit_game();
 }

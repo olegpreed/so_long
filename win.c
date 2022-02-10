@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 19:24:40 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/09 16:43:44 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/09 19:21:44 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	new_score_display(t_root *game, int x, int y)
 	y += 50;
 	x += 80;
 	c = game->score;
-	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.numbers[c / 1000].reference, x, y);
-	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.numbers[c % 1000 / 100].reference, x + 35, y);
-	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.numbers[c % 100 / 10].reference, x + 70, y);
-	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.numbers[c % 10].reference, x + 105, y);
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.num[c / 1000].ref, x, y);
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.num[c % 1000 / 100].ref, x + 35, y);
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.num[c % 100 / 10].ref, x + 70, y);
+	mlx_put_image_to_window(game->mlx, game->mlxw, game->m.num[c % 10].ref, x + 105, y);
 }
 
 
@@ -38,9 +38,9 @@ void	display_score(t_root *game)
 	w = game->i.gameover.size.x;
 	h = game->i.gameover.size.y;
 	if (!game->k)
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.newhigh.reference, x - w / 2 + 10, y - h / 2);
+		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.newhigh.ref, x - w / 2 + 10, y - h / 2);
 	else
-		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.newhigh2.reference, x - w / 2 + 10, y - h / 2);
+		mlx_put_image_to_window(game->mlx, game->mlxw, game->i.newhigh2.ref, x - w / 2 + 10, y - h / 2);
 	new_score_display(game, x - w / 2 + 10, y - h / 2);
 }
 
@@ -80,12 +80,12 @@ int win(t_root *game)
 	
 	i = game->i.max.symbol_index;
 	game->map[i] = 'L';
-	game->i.lady_w.reference = game->i.pair.reference;
+	game->i.lady_w.ref = game->i.pair.ref;
 	game->fd = open("scoreboard", O_RDWR);
 	if (game->fd == -1)
 		return (1);
 	game->over = 21;
-	game->i.floor.reference = image_ref(game, &(game->i.floor_w));
+	game->i.floor.ref = image_ref(game, &(game->i.floor_w));
 	if (game->score < game->record || !game->record)
 	{
 		game->over = 100;

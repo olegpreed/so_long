@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:31:28 by preed             #+#    #+#             */
-/*   Updated: 2022/02/03 20:51:46 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/09 19:19:34 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,20 @@ void	black(t_image *bg, t_root *game)
 // {
 // 	t_image	bg;
 
-// 	bg.reference = mlx_new_image(game->mlx, game->pixelsize.x, game->pixelsize.y - game->i.floor.size.y);
-// 	bg.pixels =mlx_get_data_addr(bg.reference, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
+// 	bg.ref = mlx_new_image(game->mlx, game->pixelsize.x, game->pixelsize.y - game->i.floor.size.y);
+// 	bg.pixels =mlx_get_data_addr(bg.ref, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
 // 	paint_bg(&bg, game);
-// 	mlx_put_image_to_window(game->mlx, game->mlxw, bg.reference, 0, 0);
+// 	mlx_put_image_to_window(game->mlx, game->mlxw, bg.ref, 0, 0);
 // }
 
 void	fade_to_black(t_root *game)
 {
 	t_image	bg;
 
-	bg.reference = mlx_new_image(game->mlx, game->pixelsize.x, game->pixelsize.y - game->i.floor.size.y);
-	bg.pixels =mlx_get_data_addr(bg.reference, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
+	bg.ref = mlx_new_image(game->mlx, game->pixelsize.x, game->pixelsize.y - game->i.floor.size.y);
+	bg.pixels =mlx_get_data_addr(bg.ref, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
 	black(&bg, game);
-	mlx_put_image_to_window(game->mlx, game->mlxw, bg.reference, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->mlxw, bg.ref, 0, 0);
 }
 
 
@@ -113,10 +113,10 @@ void darken(t_root *game)
 {
 	t_image	bg;
 
-	bg.reference = mlx_new_image(game->mlx, game->pixelsize.x, game->i.floor.size.y);
-	bg.pixels = mlx_get_data_addr(bg.reference, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
+	bg.ref = mlx_new_image(game->mlx, game->pixelsize.x, game->i.floor.size.y);
+	bg.pixels = mlx_get_data_addr(bg.ref, &(bg.bits_per_pixel), &(bg.line_length), &(bg.endian));
 	just_black(&bg, game);
-	mlx_put_image_to_window(game->mlx, game->mlxw, bg.reference, 0, game->pixelsize.y - game->i.floor.size.y);
+	mlx_put_image_to_window(game->mlx, game->mlxw, bg.ref, 0, game->pixelsize.y - game->i.floor.size.y);
 }
 
 int	create_trgb(int t, int r, int g, int b)

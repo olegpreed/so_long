@@ -3,49 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:18:22 by preed             #+#    #+#             */
-/*   Updated: 2022/01/17 21:20:01 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/10 16:10:56 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void enemy_init(t_root *game)
+void	enemy_init(t_root *game)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	i = game->t_count;
 	game->thug = (t_image *)malloc(i * sizeof(t_image));
 }
 
 int	check_item_count(char *map, t_root *game)
 {
-	int	p_count;
-	int	e_count;
-	int	c_count;
-	int	other_count;
+	int	count[4];
 
-	p_count = 0;
-	e_count = 0;
-	c_count = 0;
-	other_count = 0;
+	count[0] = 0;
+	count[1] = 0;
+	count[2] = 0;
+	count[3] = 0;
 	while (*map != '\0')
 	{
 		if (*map == 'P')
-			p_count++;
+			count[0]++;
 		else if (*map == 'E')
-			e_count++;
+			count[1]++;
 		else if (*map == 'C')
-			c_count++;
+			count[2]++;
 		else if (*map == 'T')
 			game->t_count++;
 		else if (*map != '1' && *map != '\n' && *map != '0')
-			other_count++;
+			count[3]++;
 		map++;
 	}
-	if (p_count != 1 || e_count == 0 || c_count == 0 || other_count != 0)
+	if (count[0] != 1 || !count[1] || !count[2] || count[3])
 		return (1);
 	return (0);
 }
