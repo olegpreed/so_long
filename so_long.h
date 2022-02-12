@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/11 19:11:47 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 10:13:28 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,5 +196,6 @@ void	return_to_menu(t_root *game);
 void	move_sd(t_root *game, char key, int j);
 void	move_wa(t_root *game, char key, int j);
 void	change_player_sprite(t_root *game, int keypress);
+void	mlx_img(t_root *game, void *img, int x, int y);
 
 #endif

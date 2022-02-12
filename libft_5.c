@@ -6,12 +6,11 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:20:57 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/07 19:21:09 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 10:10:05 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 static int	ft_putnbr(const char *str, int i, int e)
 {
