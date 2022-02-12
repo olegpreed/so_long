@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/10 15:53:22 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/11 19:11:47 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,24 @@
 # define D 2
 # define ESC 53
 # define CLOSE 17
-# define MAIN_MENU 22
-# define LEVEL_SELECT 33
-# define GAME 44
-// # define OVER 42
-// # define WIN 21
-// # define START 17
+
+# define MAIN_MENU 11
+# define LEVEL_SELECT 22
+# define GAME 33
+
+# define OVER 99
+# define WIN 88
+# define RECORD 77
+# define NORMAL 66
+
+# define DRUNK 1
+# define SOBER 0
 
 typedef struct s_vector
 {
 	int		x;
 	int		y;
 }				t_vector;
-
 
 typedef struct s_image {
 	void		*ref;
@@ -122,7 +127,7 @@ typedef struct s_root {
 	char		*copy_map;
 	int			*random;
 	int			k;
-	int			over;
+	int			status;
 	int			restart;
 	int			window;
 	int			close_level;
@@ -130,31 +135,31 @@ typedef struct s_root {
 	int			record;
 	char		*scoreboard;
 	int			fd;
+	int			p_status;
 
 }				t_root;
 
 int		map(t_root *game);
 char	*get_next_line(int fd);
-void	count_map(t_root *game);
+void	*ft_calloc(size_t count, size_t size);
+void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(const char *s);
-void	sprites_init(t_root *game);
-void	start(t_root *game);
-size_t	ft_strlen(const char *s);
+size_t	ft_strlen_n(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-void	*ft_calloc(size_t count, size_t size);
-void	ft_bzero(void *s, size_t n);
-size_t	ft_strlen_n(const char *s);
-int		map_to_string(t_root *game);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s1);
+char	*ft_itoa(int n);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_atoi(const char *str);
+void	*ft_memset(void *b, int c, size_t len);
+void	sprites_init(t_root *game);
+void	start(t_root *game);
 int		action(int keypress, t_root *game);
 void	playerlocation(t_root *game);
-char	*ft_strchr(const char *s, int c);
 int		check_valid_map(t_root *game);
-int		check_item_count(char *map, t_root *game);
-int		check_walls(char *map);
 int		preparation(t_root *game);
-void	symbol_to_image(t_root *game, t_vector xy, int i, int k);
 void	print_image(t_root *game, t_image *image, t_vector xy, int i);
 int		symbol_loc(t_root *game, int line);
 int		exit_game(void);
@@ -164,7 +169,6 @@ int		create_trgb(int t, int r, int g, int b);
 int		patrol_init(t_root *game);
 int		patrol_move(t_root *game);
 void	animation_cykle(t_root *game);
-void	background(t_root *game);
 void	game_over(t_root *game);
 void	fade_to_black(t_root *game);
 int		win(t_root *game);
@@ -172,16 +176,25 @@ void	darken(t_root *game);
 void	main_menu(t_root *game);
 int		menu_select(int keypress, t_root *game);
 int		menu_render(t_root *game);
-int		enter_level(t_root *game);
-char	*ft_strdup(const char *s1);
-char	*ft_itoa(int n);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-int		ft_atoi(const char *str);
-void	*ft_memset(void *b, int c, size_t len);
 void	display_score(t_root *game);
 int		select_lvl(int keypress, t_root *game);
 void	menu_display_level(t_root *game);
 void	menu_display_score(t_root *game);
 void	level_select_init(t_root *game);
+void	*level_name(t_root *game, int x, int y);
+void	movement(t_root *game, int i, int e);
+void	dj(t_root *game, t_vector xy);
+void	walls(t_root *game, t_vector xy, int i, int k);
+void	player(t_root *game, t_vector xy, int i);
+void	collectible(t_root *game, t_vector xy, int i, int j);
+int		lady(t_root *game, t_vector xy, int i);
+void	hearts(t_root *game);
+void	score(t_root *game);
+int		patrol(t_root *game);
+void	fence(t_root *game, t_image *f);
+void	return_to_menu(t_root *game);
+void	move_sd(t_root *game, char key, int j);
+void	move_wa(t_root *game, char key, int j);
+void	change_player_sprite(t_root *game, int keypress);
 
 #endif

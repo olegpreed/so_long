@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:31:28 by preed             #+#    #+#             */
-/*   Updated: 2022/02/09 19:19:34 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/11 17:57:38 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	just_black(t_image *bg, t_root *game)
 		x = 0;
 		y++;
 	}
-	if (game->over == 1 && t < 0xFA)
+	if (game->status == OVER && t < 0xFA)
 		t += 3;
 }
 
@@ -130,4 +130,10 @@ void	my_mlx_pixel_put(t_image *bg, int x, int y, int color)
 
 	dst = bg->pixels + (y * bg->line_length + x * (bg->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
+}
+
+int	exit_game(void)
+{
+	exit(0);
+	return (1);
 }
