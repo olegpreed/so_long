@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 23:19:36 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/11 19:56:59 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 16:31:36 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,14 @@ void	collectible(t_root *game, t_vector xy, int i, int j)
 	xy.y -= 25;
 	print_image(game, &(game->i.shadow_b), xy, i);
 	xy.y -= j;
-	print_image(game, &(game->i.beer), xy, 0);
+	if (!game->cheat)
+		print_image(game, &(game->i.beer), xy, 0);
+	else
+	{
+		xy.x += 26;
+		xy.y += 5;
+		print_image(game, &(game->i.redbull), xy, 0);
+	}
 }
 
 void	player(t_root *game, t_vector xy, int i)

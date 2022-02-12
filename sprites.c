@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:27:15 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/10 17:13:50 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 15:11:25 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ void	sprites_init2(t_root *game)
 	game->i.shadow_b.ref = image_ref(game, &(game->i.shadow_b));
 	game->i.gameover.path = "./images/gameover.xpm";
 	game->i.gameover.ref = image_ref(game, &(game->i.gameover));
+	game->i.continue_s.path = "./images/continue.xpm";
+	game->i.continue_s.ref = image_ref(game, &(game->i.continue_s));
 	game->i.newhigh.path = "./images/newhigh.xpm";
 	game->i.newhigh.ref = image_ref(game, &(game->i.newhigh));
 	game->i.newhigh2.path = "./images/newhigh2.xpm";

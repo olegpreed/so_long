@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/02/11 19:13:13 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 15:32:43 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	get_high_score(t_root *game)
 	s = ft_substr(&(game->scoreboard[j]), 0, 5);
 	game->record = ft_atoi(s);
 	free(s);
-	printf("record is : %d\n", game->record);
 }
 
 int	scoreboard(t_root *game)
@@ -100,7 +99,8 @@ void	start(t_root *game)
 	game->i.max_o.symbol_index = 0;
 	game->m.select.pixel_loc.x = 0;
 	game->close_level = 0;
-	game->restart = 0;
+	if (game->restart != 1)
+		game->restart = 0;
 	game->score = 0;
 	game->p_status = SOBER;
 }

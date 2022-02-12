@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/11 18:32:44 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 15:31:51 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	level_restart(t_root *game)
 	patrol_init(game);
 	*game->i.lady.pixels = 'E';
 	game->score = 0;
+	game->restart = 1;
 }
 
 int	select_restart(int keypress, t_root *game)
@@ -38,9 +39,9 @@ int	select_restart(int keypress, t_root *game)
 		game->m.select.pixel_loc.x = 0;
 		k = 0;
 	}
-	if (keypress == 36 && game->restart == 1 && !k)
+	if (keypress == 36 && game->status == CONTINUE && !k)
 		level_restart(game);
-	if (keypress == 36 && game->restart == 1 && k)
+	if (keypress == 36 && game->status == CONTINUE && k)
 		return_to_menu(game);
 	return (1);
 }
@@ -52,15 +53,16 @@ void	return_to_menu(t_root *game)
 
 	x = game->m.menu.size.x;
 	y = game->m.menu.size.y;
+	game->restart = 1;
 	free(game->map);
 	game->close_level = 1;
 	game->window = MAIN_MENU;
 	mlx_destroy_window(game->mlx, game->mlxw);
+	game->mlxw_m = mlx_new_window(game->mlx_m, x, y, "");
 	game->m.select.pixel_loc.x = 220;
 	game->m.select.pixel_loc.y = 425;
-	game->mlxw_m = mlx_new_window(game->mlx_m, x, y, "");
-	mlx_put_image_to_window(game->mlx_m, game->mlxw_m, game->m.menu.ref, 0, 0);
-	mlx_hook(game->mlxw_m, 2, 0, &select, game);
+	mlx_hook(game->mlxw_m, 2, 0, &menu_select, game);
+	mlx_loop_hook(game->mlx_m, &menu_render, game);
 }
 
 void	game_action(int keypress, t_root *game, int xx, int yy)
@@ -105,7 +107,7 @@ int	action(int keypress, t_root *game)
 		game_action(keypress, game, xx, yy);
 	if ((game->status == WIN || game->status == RECORD) && keypress == 36)
 		return_to_menu(game);
-	if (game->restart == 1)
+	if (game->status == CONTINUE)
 		select_restart(keypress, game);
 	return (0);
 }

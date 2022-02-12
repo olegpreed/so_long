@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:31:28 by preed             #+#    #+#             */
-/*   Updated: 2022/02/12 11:48:10 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 14:42:12 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	just_black(t_image *bg, t_root *game)
 	int			y;
 	static int	t = 0xA0;
 
+	if (game->restart)
+		t = 0xA0;
 	y = 0;
 	x = 0;
 	while (y < game->i.floor.size.y)
@@ -40,6 +42,8 @@ void	black(t_image *bg, t_root *game)
 	int			y;
 	static int	t = 0xFF;
 
+	if (game->restart)
+		t = 0xFF;
 	y = 0;
 	x = 0;
 	while (y < game->pixelsize.y - game->i.floor.size.y)
@@ -67,6 +71,7 @@ void	fade_to_black(t_root *game)
 	bg.ref = mlx_new_image(game->mlx, game->pixelsize.x, y);
 	bg.pixels = mlx_get_data_addr(bg.ref, p, &(bg.line_length), &(bg.endian));
 	black(&bg, game);
+	game->restart = 0;
 	mlx_put_image_to_window(game->mlx, game->mlxw, bg.ref, 0, 0);
 }
 

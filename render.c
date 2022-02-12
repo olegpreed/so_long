@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/11 20:23:33 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 14:34:15 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	status_changed(t_root *game)
 		hearts(game);
 	if (game->status == RECORD)
 		display_score(game);
-	if (game->status == OVER)
+	if (game->status == OVER || game->status == CONTINUE)
 		game_over(game);
 	if (!ft_strchr(game->map, 'C'))
 		*game->i.lady.pixels = 'L';
@@ -60,8 +60,8 @@ void	overlay(t_root *game)
 	darken(game);
 }
 
-int	map(t_root *game)
-{	
+void	display_game(t_root *game)
+{
 	t_vector	xy;
 	int			i;
 
@@ -85,5 +85,11 @@ int	map(t_root *game)
 	overlay(game);
 	status_changed(game);
 	animation_cykle(game);
+}
+
+int	map(t_root *game)
+{	
+	if (!game->close_level)
+		display_game(game);
 	return (1);
 }

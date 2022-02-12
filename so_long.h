@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/12 10:13:28 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 16:04:50 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define WIN 88
 # define RECORD 77
 # define NORMAL 66
+# define CONTINUE 55
 
 # define DRUNK 1
 # define SOBER 0
@@ -94,6 +95,7 @@ typedef struct s_images {
 	t_image		shadow_b;
 	t_image		beer;
 	t_image		gameover;
+	t_image		continue_s;
 	t_image		newhigh;
 	t_image		newhigh2;
 	t_image		s_num[10];
@@ -108,6 +110,7 @@ typedef struct t_menu {
 	t_image		num[10];
 	t_image		level;
 	t_image		score;
+	t_image		bullz;
 	int			scores[21];
 }				t_menu;
 
@@ -136,6 +139,7 @@ typedef struct s_root {
 	char		*scoreboard;
 	int			fd;
 	int			p_status;
+	int			cheat;
 
 }				t_root;
 
