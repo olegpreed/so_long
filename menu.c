@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:47:04 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/12 16:23:31 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 18:30:51 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	menu_render(t_root *game)
 	void	*mlx;
 	void	*mlxw;
 
-	mlx = game->mlx_m;
-	mlxw = game->mlxw_m;
-	x = game->m.select.pixel_loc.x;
-	y = game->m.select.pixel_loc.y;
 	if (game->window == MAIN_MENU)
 	{
+		mlx = game->mlx_m;
+		mlxw = game->mlxw_m;
+		x = game->m.select.pixel_loc.x;
+		y = game->m.select.pixel_loc.y;
 		mlx_put_image_to_window(mlx, mlxw, game->m.menu.ref, 0, 0);
 		mlx_put_image_to_window(mlx, mlxw, game->m.select.ref, x, y);
 		if (game->cheat)

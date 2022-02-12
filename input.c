@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/12 15:31:51 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 19:26:17 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	level_restart(t_root *game)
 	free(game->map);
 	game->map = ft_strdup(game->copy_map);
 	playerlocation(game);
+	game->m.select.pixel_loc.x = 0;
 	game->i.max_o.symbol_index = 0;
 	patrol_init(game);
 	*game->i.lady.pixels = 'E';
@@ -29,12 +30,12 @@ int	select_restart(int keypress, t_root *game)
 {
 	static int	k;
 
-	if (keypress == D && !k)
+	if (keypress == D && !k && game->status == CONTINUE)
 	{
 		game->m.select.pixel_loc.x = 155;
 		k = 1;
 	}
-	if (keypress == A && k)
+	if (keypress == A && k && game->status == CONTINUE)
 	{
 		game->m.select.pixel_loc.x = 0;
 		k = 0;

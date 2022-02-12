@@ -6,7 +6,7 @@
 #    By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 14:36:11 by preed             #+#    #+#              #
-#    Updated: 2022/02/12 11:19:55 by oleg             ###   ########.fr        #
+#    Updated: 2022/02/12 18:38:00 by oleg             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CC = gcc
 %.o: %.c		${HEADER}
 				${CC}  -c $< -o ${<:.c=.o}
 
-FLAGS = -O2 -lmlx -framework OpenGL -Lminilibx -framework AppKit -Wall -Wextra -Werror
+FLAGS = -lmlx -framework OpenGL -Lminilibx -framework AppKit -Wall -Wextra -Werror
 
 all: ${NAME}
 

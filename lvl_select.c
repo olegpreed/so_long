@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:48:58 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/10 18:12:46 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 18:46:12 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	menu_display_level(t_root *game)
 	mlx = game->mlx_m;
 	mlxw = game->mlxw_m;
 	bg = mlx_new_image(mlx, game->m.menu.size.x, game->m.menu.size.y - 64);
-	mlx_put_image_to_window(game->mlx_m, game->mlxw_m, bg, 0, 0);
+	mlx_put_image_to_window(mlx, mlxw, bg, 0, 0);
 	mlx_put_image_to_window(mlx, mlxw, game->m.level.ref, 230, 100);
 	mlx_put_image_to_window(mlx, mlxw, game->m.score.ref, 230, 300);
 	i = game->m.lvl;

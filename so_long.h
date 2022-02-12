@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/12 16:04:50 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/12 17:28:44 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct s_crowd {
 	t_image		naked[2];
 	t_image		tired[2];
 	t_image		hair[2];
-	//t_image		thug[2];
 }				t_crowd;
 
 typedef struct s_images {
