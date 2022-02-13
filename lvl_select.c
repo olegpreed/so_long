@@ -6,34 +6,26 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:48:58 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/12 18:46:12 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 18:10:59 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	num_init(t_root *game)
+void	player_entering(t_root *game)
 {
-	game->m.num[0].path = "./images/0.xpm";
-	game->m.num[0].ref = image_ref(game, &(game->m.num[0]));
-	game->m.num[1].path = "./images/1.xpm";
-	game->m.num[1].ref = image_ref(game, &(game->m.num[1]));
-	game->m.num[2].path = "./images/2.xpm";
-	game->m.num[2].ref = image_ref(game, &(game->m.num[2]));
-	game->m.num[3].path = "./images/3.xpm";
-	game->m.num[3].ref = image_ref(game, &(game->m.num[3]));
-	game->m.num[4].path = "./images/4.xpm";
-	game->m.num[4].ref = image_ref(game, &(game->m.num[4]));
-	game->m.num[5].path = "./images/5.xpm";
-	game->m.num[5].ref = image_ref(game, &(game->m.num[5]));
-	game->m.num[6].path = "./images/6.xpm";
-	game->m.num[6].ref = image_ref(game, &(game->m.num[6]));
-	game->m.num[7].path = "./images/7.xpm";
-	game->m.num[7].ref = image_ref(game, &(game->m.num[7]));
-	game->m.num[8].path = "./images/8.xpm";
-	game->m.num[8].ref = image_ref(game, &(game->m.num[8]));
-	game->m.num[9].path = "./images/9.xpm";
-	game->m.num[9].ref = image_ref(game, &(game->m.num[9]));
+	if (game->i.max.pixel_loc.x > 447)
+	{
+		game->i.max.pixel_loc.x--;
+		game->i.max2.pixel_loc.x--;
+	}
+	else
+	{
+		game->i.max.ref = game->i.max_b.ref;
+		game->i.max2.ref = game->i.max_b.ref;
+		game->i.max.pixel_loc.y--;
+		game->i.max2.pixel_loc.y--;
+	}
 }
 
 void	level_select_init(t_root *game)
@@ -60,10 +52,10 @@ void	menu_display_score(t_root *game)
 	j[1] = i % 1000 / 100;
 	j[2] = i % 100 / 10;
 	j[3] = i % 10;
-	mlx_put_image_to_window(mlx, mlxw, game->m.num[j[0]].ref, 230, 360);
-	mlx_put_image_to_window(mlx, mlxw, game->m.num[j[1]].ref, 280, 360);
-	mlx_put_image_to_window(mlx, mlxw, game->m.num[j[2]].ref, 330, 360);
-	mlx_put_image_to_window(mlx, mlxw, game->m.num[j[3]].ref, 380, 360);
+	mlx_put_image_to_window(mlx, mlxw, game->m.num[j[0]].ref, 230, 410);
+	mlx_put_image_to_window(mlx, mlxw, game->m.num[j[1]].ref, 280, 410);
+	mlx_put_image_to_window(mlx, mlxw, game->m.num[j[2]].ref, 330, 410);
+	mlx_put_image_to_window(mlx, mlxw, game->m.num[j[3]].ref, 380, 410);
 }
 
 void	menu_display_level(t_root *game)
@@ -75,13 +67,15 @@ void	menu_display_level(t_root *game)
 
 	mlx = game->mlx_m;
 	mlxw = game->mlxw_m;
+	mlx_put_image_to_window(mlx, mlxw, game->m.menu.ref, 0, 0);
+	menu_overlay(game, mlx, mlxw);
 	bg = mlx_new_image(mlx, game->m.menu.size.x, game->m.menu.size.y - 64);
 	mlx_put_image_to_window(mlx, mlxw, bg, 0, 0);
-	mlx_put_image_to_window(mlx, mlxw, game->m.level.ref, 230, 100);
-	mlx_put_image_to_window(mlx, mlxw, game->m.score.ref, 230, 300);
+	mlx_put_image_to_window(mlx, mlxw, game->m.level.ref, 230, 150);
+	mlx_put_image_to_window(mlx, mlxw, game->m.score.ref, 230, 350);
 	i = game->m.lvl;
-	mlx_put_image_to_window(mlx, mlxw, game->m.num[i / 10].ref, 275, 170);
-	mlx_put_image_to_window(mlx, mlxw, game->m.num[i % 10].ref, 315, 170);
+	mlx_put_image_to_window(mlx, mlxw, game->m.num[i / 10].ref, 275, 220);
+	mlx_put_image_to_window(mlx, mlxw, game->m.num[i % 10].ref, 315, 220);
 }
 
 int	select_lvl(int keypress, t_root *game)

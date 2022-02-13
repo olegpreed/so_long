@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/12 17:28:44 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 19:19:59 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,15 @@ typedef struct s_images {
 	t_image		lady;
 	t_image		lady_w;
 	t_image		max;
+	t_image		max2;
 	t_image		max_b;
 	t_image		max_o;
 	t_image		max_r;
 	t_image		max_l;
 	t_image		max_d;
 	t_image		speak;
+	t_image		sec;
+	t_image		sec2;
 	t_image		speak2;
 	t_crowd		c;
 	t_image		redbull;
@@ -110,6 +113,9 @@ typedef struct t_menu {
 	t_image		level;
 	t_image		score;
 	t_image		bullz;
+	t_image		roof;
+	t_image		crazy[2];
+	t_image		rap[2];
 	int			scores[21];
 }				t_menu;
 
@@ -171,7 +177,7 @@ void	*image_ref(t_root *game, t_image *image);
 int		create_trgb(int t, int r, int g, int b);
 int		patrol_init(t_root *game);
 int		patrol_move(t_root *game);
-void	animation_cykle(t_root *game);
+void	animation_cykle(t_root *game, int speed);
 void	game_over(t_root *game);
 void	fade_to_black(t_root *game);
 int		win(t_root *game);
@@ -200,5 +206,12 @@ void	move_sd(t_root *game, char key, int j);
 void	move_wa(t_root *game, char key, int j);
 void	change_player_sprite(t_root *game, int keypress);
 void	mlx_img(t_root *game, void *img, int x, int y);
+void	cheat(int keypress, t_root *game);
+int		scores(t_root *game);
+void	menu_overlay(t_root *game, void *mlx, void *mlxw);
+void	num_init(t_root *game);
+void	player_entering(t_root *game);
+void	fading(void *img);
+void	menu_sprites_init(t_root *game);
 
 #endif

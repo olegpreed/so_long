@@ -1,5 +1,5 @@
 /* XPM */
-static char *_ea65c3a7e6344cdf4c91defda74526eRzuUwBXOi8Etf3Kg[] = {
+static char *_fdd7c187fa34b04ee4efdb7d8d42f05uRGHSg82lO5K86AK[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 14 1 ",
 "  c None",
@@ -19,6 +19,7 @@ static char *_ea65c3a7e6344cdf4c91defda74526eRzuUwBXOi8Etf3Kg[] = {
 /* pixels */
 "                                                                ",
 "                                                                ",
+"                                                                ",
 "                oooooooooooooooooooooooooooooooo                ",
 "                oooooooooooooooooooooooooooooooo                ",
 "              oooooooooooooooooooooooooooooooooooo              ",
@@ -49,8 +50,8 @@ static char *_ea65c3a7e6344cdf4c91defda74526eRzuUwBXOi8Etf3Kg[] = {
 "    XXXXOOOOOO####%%%%%%%%%%OOOOOOOO%%%%%%%%%%####OOOOOOXXXX    ",
 "    XXXXXXXXOO############%%OO&&&&OO%%############OOXXXXXXXX    ",
 "    XXXXXXXXOO############%%OO&&&&OO%%############OOXXXXXXXX    ",
-"    XXXXXXXXOO####**@@**%%%%OO&&&&OO%%%%**@@**####OOXXXXXXXX    ",
-"    XXXXXXXXOO####**@@**%%%%OO&&&&OO%%%%**@@**####OOXXXXXXXX    ",
+"    XXXXXXXXOO####@@****%%%%OO&&&&OO%%%%@@****####OOXXXXXXXX    ",
+"    XXXXXXXXOO####@@****%%%%OO&&&&OO%%%%@@****####OOXXXXXXXX    ",
 "    XXXXXXXXOO####******%%%%OO&&&&OO%%%%******####OOXXXXXXXX    ",
 "    XXXXXXXXOO####******%%%%OO&&&&OO%%%%******####OOXXXXXXXX    ",
 "    XXXXXXXXOO####%%%%%%%%%%OO&&&&OO%%%%%%%%%%####OOXXXXXXXX    ",
@@ -62,8 +63,7 @@ static char *_ea65c3a7e6344cdf4c91defda74526eRzuUwBXOi8Etf3Kg[] = {
 "          XXXXXXXX&&&&&&&&&&--------&&&&&&&&&&XXXXXXXX          ",
 "          XXXXXXXX&&&&&&&&&&--------&&&&&&&&&&XXXXXXXX          ",
 "            XXXXXX&&&&&&&&&&--------&&&&&&&&&&XXXXXX            ",
-"            XXXXXX&&&&&&&&&&--------&&&&&&&&&&XXXXXX            ",
-"                ==========&&&&&&&&&&&&==========                ",
+"            XXXX==========&&&&&&&&&&&&==========XXXX            ",
 "                ==========&&&&&&&&&&&&==========                ",
 "            &&--============&&&&&&&&============--&&            ",
 "            &&--============&&&&&&&&============--&&            ",

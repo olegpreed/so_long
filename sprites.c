@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:27:15 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/12 15:11:25 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 17:05:35 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	s_num_init(t_root *game)
 
 void	sprites_init4(t_root *game)
 {
-	game->i.max.path = "./images/max.xpm";
-	game->i.max.ref = image_ref(game, &(game->i.max));
 	game->i.max_o.path = "./images/max_over.xpm";
 	game->i.max_o.ref = image_ref(game, &(game->i.max_o));
 	game->i.max_o.pixel_loc.x = 0;
@@ -48,8 +46,6 @@ void	sprites_init4(t_root *game)
 	game->i.max_l.ref = image_ref(game, &(game->i.max_l));
 	game->i.max_r.path = "./images/max_r.xpm";
 	game->i.max_r.ref = image_ref(game, &(game->i.max_r));
-	game->i.max_b.path = "./images/max_b.xpm";
-	game->i.max_b.ref = image_ref(game, &(game->i.max_b));
 	game->i.max_d.path = "./images/max_d.xpm";
 	game->i.max_d.ref = image_ref(game, &(game->i.max_d));
 	game->i.speak.path = "./images/speaker.xpm";

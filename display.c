@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 23:31:07 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/11 20:03:35 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 15:02:27 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	fence(t_root *game, t_image *f)
 	t_vector	xy;
 
 	xy.x = game->pixelsize.x - game->i.wall.size.x * 2;
-	xy.y = game->pixelsize.y - game->i.wall.size.y + 10;
+	xy.y = game->pixelsize.y - game->i.wall.size.y;
 	while (xy.x <= game->pixelsize.x)
 	{
 		mlx_put_image_to_window(game->mlx, game->mlxw, f->ref, xy.x, xy.y);

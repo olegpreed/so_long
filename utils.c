@@ -6,11 +6,38 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:31:28 by preed             #+#    #+#             */
-/*   Updated: 2022/02/12 14:42:12 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 17:48:40 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	fading(void *img)
+{
+	int			x;
+	int			y;
+	int			*p;
+	t_image		bg;
+	static int	t = 0xFF;
+
+	p = &(bg.bits_per_pixel);
+	bg.ref = img;
+	bg.pixels = mlx_get_data_addr(bg.ref, p, &(bg.line_length), &(bg.endian));
+	y = 0;
+	x = 0;
+	while (y < 64)
+	{
+		while (x < 64)
+		{	
+			my_mlx_pixel_put(&(bg), x, y, create_trgb(t, 0x00, 0x00, 0x00));
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	if (t > 0)
+		t -= 5;
+}
 
 void	just_black(t_image *bg, t_root *game)
 {

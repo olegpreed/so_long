@@ -6,11 +6,59 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:47:04 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/12 18:30:51 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 20:09:01 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	face_control(t_root *game, int x, int y)
+{
+	void	*mlx;
+	void	*mlxw;
+
+	mlx = game->mlx_m;
+	mlxw = game->mlxw_m;
+	if (!(game->k))
+	{
+		mlx_put_image_to_window(mlx, mlxw, game->i.sec.ref, 385, 575);
+		mlx_put_image_to_window(mlx, mlxw, game->i.max.ref, x, y);
+		mlx_put_image_to_window(mlx, mlxw, game->m.rap[1].ref, x + 64, 577);
+		mlx_put_image_to_window(mlx, mlxw, game->m.crazy[0].ref, x + 128, 577);
+	}
+	if (game->k)
+	{
+		mlx_put_image_to_window(mlx, mlxw, game->i.max2.ref, x, y);
+		mlx_put_image_to_window(mlx, mlxw, game->i.sec2.ref, 385, 575);
+		mlx_put_image_to_window(mlx, mlxw, game->m.rap[0].ref, x + 64, 577);
+		mlx_put_image_to_window(mlx, mlxw, game->m.crazy[1].ref, x + 128, 577);
+	}
+}
+
+void	menu_overlay(t_root *game, void *mlx, void *mlxw)
+{
+	int		x;
+	int		y;
+	void	*door;
+
+	door = mlx_new_image(mlx, 64, 64);
+	x = game->i.max.pixel_loc.x;
+	x = game->i.max2.pixel_loc.x;
+	y = game->i.max.pixel_loc.y;
+	y = game->i.max2.pixel_loc.y;
+	animation_cykle(game, 30);
+	if (game->window == LEVEL_SELECT)
+		mlx_put_image_to_window(mlx, mlxw, door, 447, 575);
+	face_control(game, x, y);
+	if (x == 447)
+	{
+		fading(door);
+		mlx_put_image_to_window(mlx, mlxw, door, 447, 575);
+	}
+	mlx_put_image_to_window(mlx, mlxw, game->i.fence.ref, 512, 575);
+	mlx_put_image_to_window(mlx, mlxw, game->i.fence.ref, 576, 575);
+	mlx_put_image_to_window(mlx, mlxw, game->m.roof.ref, 447, 575);
+}
 
 int	menu_render(t_root *game)
 {
@@ -19,13 +67,14 @@ int	menu_render(t_root *game)
 	void	*mlx;
 	void	*mlxw;
 
+	mlx = game->mlx_m;
+	mlxw = game->mlxw_m;
 	if (game->window == MAIN_MENU)
 	{
-		mlx = game->mlx_m;
-		mlxw = game->mlxw_m;
 		x = game->m.select.pixel_loc.x;
 		y = game->m.select.pixel_loc.y;
 		mlx_put_image_to_window(mlx, mlxw, game->m.menu.ref, 0, 0);
+		menu_overlay(game, mlx, mlxw);
 		mlx_put_image_to_window(mlx, mlxw, game->m.select.ref, x, y);
 		if (game->cheat)
 			mlx_put_image_to_window(mlx, mlxw, game->m.bullz.ref, 150, 10);
@@ -34,47 +83,9 @@ int	menu_render(t_root *game)
 	{
 		menu_display_level(game);
 		menu_display_score(game);
+		player_entering(game);
 	}
 	return (0);
-}
-
-int	scores(t_root *game)
-{
-	char	*s;
-	int		i;
-
-	i = 0;
-	game->fd = open("scoreboard", O_RDWR);
-	if (game->fd == -1)
-		return (1);
-	while (i < 21)
-	{
-		s = get_next_line(game->fd);
-		game->m.scores[i++] = ft_atoi(s);
-		free(s);
-	}
-	close(game->fd);
-	return (0);
-}
-
-void	cheat(int keypress, t_root *game)
-{
-	static int	c;
-
-	if (keypress == 11)
-		c++;
-	else if (keypress == 32 && c == 1)
-		c++;
-	else if (keypress == 37 && c == 2)
-		c++;
-	else if (keypress == 37 && c == 3)
-		c++;
-	else if (keypress == 6 && c == 4)
-		c++;
-	else
-		c = 0;
-	if (c == 5)
-		game->cheat = 1;
 }
 
 int	menu_select(int keypress, t_root *game)
@@ -111,14 +122,14 @@ void	main_menu(t_root *game)
 
 	game->window = MAIN_MENU;
 	game->cheat = 0;
-	game->m.menu.path = "./images/menu.xpm";
-	game->m.menu.ref = image_ref(game, &(game->m.menu));
-	game->m.select.path = "./images/select.xpm";
-	game->m.select.ref = image_ref(game, &(game->m.select));
-	game->m.bullz.path = "./images/bullz.xpm";
-	game->m.bullz.ref = image_ref(game, &(game->m.bullz));
+	menu_sprites_init(game);
 	game->m.select.pixel_loc.x = 220;
 	game->m.select.pixel_loc.y = 425;
+	game->i.max.pixel_loc.x = 512;
+	game->i.max2.pixel_loc.x = 512;
+	game->i.max.pixel_loc.y = 575;
+	game->i.max2.pixel_loc.y = 575;
+	x = game->i.max2.pixel_loc.x;
 	x = game->m.menu.size.x;
 	y = game->m.menu.size.y;
 	game->mlxw_m = mlx_new_window(game->mlx_m, x, y, "");

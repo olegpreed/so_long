@@ -6,18 +6,18 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:15:02 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/12 11:19:11 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 14:18:03 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	animation_cykle(t_root *game)
+void	animation_cykle(t_root *game, int speed)
 {
 	static int	count;
 	static int	k;
 
-	if (count == 10)
+	if (count == speed)
 		k = 1;
 	if (count == 0)
 		k = 0;

@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/12 14:34:15 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 14:18:42 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	display_game(t_root *game)
 	patrol(game);
 	overlay(game);
 	status_changed(game);
-	animation_cykle(game);
+	animation_cykle(game, 10);
 }
 
 int	map(t_root *game)

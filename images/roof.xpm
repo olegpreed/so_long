@@ -1,0 +1,35 @@
+/* XPM */
+static char *result[] = {
+/* columns rows colors chars-per-pixel */
+"64 22 7 1 ",
+"  c #260004",
+". c #320006",
+"X c #3D0007",
+"o c #460008",
+"O c #4B0008",
+"+ c #702830",
+"@ c None",
+/* pixels */
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..  ..XXOO++OOOOoo    ooOOOO++OOXX..  ..XXOO++OOOOOO",
+"OOOOOO++OOXX..@@..XXOO++OOOOoo@@@@ooOOOO++OOXX..@@..XXOO++OOOOOO",
+"OOOOOO++OOXX..@@..XXOO++OOOOoo@@@@ooOOOO++OOXX..@@..XXOO++OOOOOO",
+"OOOOOO++OOXX..@@..XXOO++OOOOoo@@@@ooOOOO++OOXX..@@..XXOO++OOOOOO",
+"OOOOOO++OOXX..@@..XXOO++OOOOoo@@@@ooOOOO++OOXX..@@..XXOO++OOOOOO",
+"@@OOOO++OOXX@@@@@@XXOO++OOOO@@@@@@@@OOOO++OOXX@@@@@@XXOO++OOOO@@",
+"@@OOOO++OOXX@@@@@@XXOO++OOOO@@@@@@@@OOOO++OOXX@@@@@@XXOO++OOOO@@",
+"@@@@OO++OO@@@@@@@@@@OO++OO@@@@@@@@@@@@OO++OO@@@@@@@@@@OO++OO@@@@",
+"@@@@OO++OO@@@@@@@@@@OO++OO@@@@@@@@@@@@OO++OO@@@@@@@@@@OO++OO@@@@"
+};

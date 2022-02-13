@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:18:22 by preed             #+#    #+#             */
-/*   Updated: 2022/02/10 16:10:56 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 15:01:38 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	enemy_init(t_root *game)
 {
 	int	i;
 
-	i = 0;
 	i = game->t_count;
 	game->thug = (t_image *)malloc(i * sizeof(t_image));
+	if (game->thug == 0)
+		printf("t_count = %d\n ,malloc !\n", game->t_count);
 }
 
 int	check_item_count(char *map, t_root *game)
@@ -29,6 +30,7 @@ int	check_item_count(char *map, t_root *game)
 	count[1] = 0;
 	count[2] = 0;
 	count[3] = 0;
+	game->t_count = 0;
 	while (*map != '\0')
 	{
 		if (*map == 'P')
