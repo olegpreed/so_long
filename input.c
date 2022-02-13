@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/12 19:26:17 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 22:55:53 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	action(int keypress, t_root *game)
 	if (game->status == NORMAL)
 		game_action(keypress, game, xx, yy);
 	if ((game->status == WIN || game->status == RECORD) && keypress == 36)
-		return_to_menu(game);
+		next_level(game);
 	if (game->status == CONTINUE)
 		select_restart(keypress, game);
 	return (0);

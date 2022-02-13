@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 17:02:44 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/12 15:20:03 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 20:58:04 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ void	restart(t_root *game, int a)
 	int	y;
 	int	h;
 	int	w;
+	int	ws;
 
 	x = game->pixelsize.x / 2;
 	y = game->pixelsize.y / 2;
+	ws = game->i.gameover_s.size.x;
 	w = game->i.gameover.size.x;
 	h = game->i.gameover.size.y;
-	if (!a)
+	if (!a && game->symbolsize.x <= 4)
+		mlx_img(game, game->i.gameover_s.ref, x - ws / 2, y - h / 2 - 50);
+	else if (!a)
 		mlx_img(game, game->i.gameover.ref, x - w / 2, y - h / 2 - 50);
 	else
 	{
@@ -81,10 +85,10 @@ int	max_kicked_out(t_root *game, int *c)
 		if (game->i.max_o.symbol_index == 0)
 		{
 			y = game->pixelsize.y - game->i.wall.size.y + 10;
-			x = game->pixelsize.x - 4 * game->i.wall.size.x + 10;
+			x = game->pixelsize.x - 4 * game->i.wall.size.x + 6;
 		}
 		game->i.max_o.symbol_index = 42;
-		while (x > game->pixelsize.x - 4 * game->i.wall.size.x - 60)
+		while (x > game->pixelsize.x - 4 * game->i.wall.size.x - 64)
 			return (max_kicked_out_cyckle(game, &(x), &(y), &(s)));
 	}
 	restart(game, 1);

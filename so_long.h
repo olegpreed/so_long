@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/13 19:19:59 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 23:02:54 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_images {
 	t_image		shadow_b;
 	t_image		beer;
 	t_image		gameover;
+	t_image		gameover_s;
 	t_image		continue_s;
 	t_image		newhigh;
 	t_image		newhigh2;
@@ -164,7 +165,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_atoi(const char *str);
 void	*ft_memset(void *b, int c, size_t len);
 void	sprites_init(t_root *game);
-void	start(t_root *game);
+void	start(t_root *game, int a);
 int		action(int keypress, t_root *game);
 void	playerlocation(t_root *game);
 int		check_valid_map(t_root *game);
@@ -213,5 +214,6 @@ void	num_init(t_root *game);
 void	player_entering(t_root *game);
 void	fading(void *img);
 void	menu_sprites_init(t_root *game);
+void	next_level(t_root *game);
 
 #endif

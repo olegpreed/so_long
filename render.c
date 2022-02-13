@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/13 14:18:42 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 22:25:56 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	display_game(t_root *game)
 	xy.x = 0;
 	xy.y = 0;
 	i = -1;
+	animation_cykle(game, 8);
 	while ((game->map)[++i])
 	{
 		if ((game->map)[i] == '\n')
@@ -84,7 +85,6 @@ void	display_game(t_root *game)
 	patrol(game);
 	overlay(game);
 	status_changed(game);
-	animation_cykle(game, 10);
 }
 
 int	map(t_root *game)

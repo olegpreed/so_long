@@ -6,11 +6,38 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:59:23 by preed             #+#    #+#             */
-/*   Updated: 2022/02/13 14:59:31 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 23:24:14 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	next_level(t_root *game)
+{
+	int	i;
+
+	i = 0;
+	game->m.lvl++;
+	free(game->map);
+	free(game->copy_map);
+	preparation(game);
+	while (i < game->t_count)
+	{
+		game->thug[i].path = "./images/thug.xpm";
+		game->thug[i].ref = image_ref(game, &(game->thug[i]));
+		i++;
+	}
+
+	game->window = GAME;
+	game->close_level = 0;
+	game->i.floor.ref = image_ref(game, &(game->i.floor));
+	game->i.lady_w.ref = image_ref(game, &(game->i.lady_w));
+	start(game, 1);
+	patrol_init(game);
+	mlx_hook(game->mlxw, 2, 0, &action, game);
+	mlx_hook(game->mlxw, 17, 0, &exit_game, (void *)0);
+	mlx_loop_hook(game->mlx, &map, game);
+}
 
 void	random_table(t_root *game)
 {

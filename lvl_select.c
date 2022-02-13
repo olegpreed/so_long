@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:48:58 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/13 18:10:59 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 23:03:10 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	select_lvl(int keypress, t_root *game)
 		game->window = GAME;
 		game->close_level = 0;
 		mlx_destroy_window(game->mlx_m, game->mlxw_m);
-		start(game);
+		start(game, 0);
 		patrol_init(game);
 		mlx_hook(game->mlxw, 2, 0, &action, game);
 		mlx_hook(game->mlxw, 17, 0, &exit_game, (void *)0);

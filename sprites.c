@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:27:15 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/13 17:05:35 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/13 20:50:38 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ void	sprites_init4(t_root *game)
 	game->i.speak.ref = image_ref(game, &(game->i.speak));
 	game->i.speak2.path = "./images/speaker2.xpm";
 	game->i.speak2.ref = image_ref(game, &(game->i.speak2));
+	game->i.gameover_s.path = "./images/over_s.xpm";
+	game->i.gameover_s.ref = image_ref(game, &(game->i.gameover_s));
 	game->i.lady.path = "./images/lady.xpm";
 	game->i.lady.ref = image_ref(game, &(game->i.lady));
 	game->i.lady_w.path = "./images/lady_w.xpm";
 	game->i.lady_w.ref = image_ref(game, &(game->i.lady_w));
-	game->i.lady.pixels = ft_strchr(game->map, 'E');
 	s_num_init(game);
 	playerlocation(game);
 }
