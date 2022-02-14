@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:59:23 by preed             #+#    #+#             */
-/*   Updated: 2022/02/13 23:24:14 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 15:38:08 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	next_level(t_root *game)
 
 	i = 0;
 	game->m.lvl++;
+	mlx_destroy_window(game->mlx, game->mlxw);
 	free(game->map);
 	free(game->copy_map);
 	preparation(game);
@@ -27,7 +28,6 @@ void	next_level(t_root *game)
 		game->thug[i].ref = image_ref(game, &(game->thug[i]));
 		i++;
 	}
-
 	game->window = GAME;
 	game->close_level = 0;
 	game->i.floor.ref = image_ref(game, &(game->i.floor));

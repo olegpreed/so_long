@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 23:31:07 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/13 22:33:52 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 15:04:11 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,26 @@
 
 void	change_player_sprite(t_root *game, int keypress)
 {
-	if (keypress == W)
-		game->i.max.ref = image_ref(game, &(game->i.max_b));
-	if (keypress == A)
-		game->i.max.ref = image_ref(game, &(game->i.max_l));
-	if (keypress == S)
-		game->i.max.ref = image_ref(game, &(game->i.max));
-	if (keypress == D)
-		game->i.max.ref = image_ref(game, &(game->i.max_r));
-	if (keypress == W)
+	if (keypress == W || keypress == U)
+	{
 		game->i.max_d.ref = image_ref(game, &(game->i.max_b));
-	if (keypress == A)
+		game->i.max.ref = image_ref(game, &(game->i.max_b));
+	}
+	if (keypress == A || keypress == L)
+	{
 		game->i.max_d.ref = image_ref(game, &(game->i.max_l));
-	if (keypress == S)
+		game->i.max.ref = image_ref(game, &(game->i.max_l));
+	}
+	if (keypress == S || keypress == DN)
+	{
 		game->i.max_d.ref = image_ref(game, &(game->i.max_d));
-	if (keypress == D)
+		game->i.max.ref = image_ref(game, &(game->i.max));
+	}
+	if (keypress == D || keypress == R)
+	{
 		game->i.max_d.ref = image_ref(game, &(game->i.max_r));
+		game->i.max.ref = image_ref(game, &(game->i.max_r));
+	}
 }
 
 void	fence(t_root *game, t_image *f)

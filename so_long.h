@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/13 23:02:54 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 15:42:44 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # define A 0
 # define S 1
 # define D 2
+# define U 126
+# define L 123
+# define DN 125
+# define R 124
 # define ESC 53
 # define CLOSE 17
 
@@ -36,6 +40,7 @@
 # define RECORD 77
 # define NORMAL 66
 # define CONTINUE 55
+# define MENU 44
 
 # define DRUNK 1
 # define SOBER 0

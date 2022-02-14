@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:48:58 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/13 23:03:10 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 15:45:54 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ void	menu_display_level(t_root *game)
 
 int	select_lvl(int keypress, t_root *game)
 {
-	if (keypress == D && game->m.lvl != 21)
+	if ((keypress == D || keypress == R) && game->m.lvl != 21)
 		game->m.lvl++;
-	else if (keypress == A && game->m.lvl != 1)
+	else if ((keypress == A || keypress == L) && game->m.lvl != 1)
 		game->m.lvl--;
-	else if (keypress == D && game->m.lvl == 21)
+	else if ((keypress == D || keypress == R) && game->m.lvl == 21)
 		game->m.lvl = 1;
-	else if (keypress == A && game->m.lvl == 1)
+	else if ((keypress == A || keypress == L) && game->m.lvl == 1)
 		game->m.lvl = 21;
 	if (keypress == 36)
 	{

@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:47:04 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/13 20:09:01 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 15:46:06 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ void	face_control(t_root *game, int x, int y)
 	if (!(game->k))
 	{
 		mlx_put_image_to_window(mlx, mlxw, game->i.sec.ref, 385, 575);
-		mlx_put_image_to_window(mlx, mlxw, game->i.max.ref, x, y);
+		if (game->status == MENU)
+			mlx_put_image_to_window(mlx, mlxw, game->i.max.ref, x, y);
 		mlx_put_image_to_window(mlx, mlxw, game->m.rap[1].ref, x + 64, 577);
 		mlx_put_image_to_window(mlx, mlxw, game->m.crazy[0].ref, x + 128, 577);
 	}
 	if (game->k)
 	{
-		mlx_put_image_to_window(mlx, mlxw, game->i.max2.ref, x, y);
+		if (game->status == MENU)
+			mlx_put_image_to_window(mlx, mlxw, game->i.max2.ref, x, y);
 		mlx_put_image_to_window(mlx, mlxw, game->i.sec2.ref, 385, 575);
 		mlx_put_image_to_window(mlx, mlxw, game->m.rap[0].ref, x + 64, 577);
 		mlx_put_image_to_window(mlx, mlxw, game->m.crazy[1].ref, x + 128, 577);
@@ -83,7 +85,8 @@ int	menu_render(t_root *game)
 	{
 		menu_display_level(game);
 		menu_display_score(game);
-		player_entering(game);
+		if (game->status == MENU)
+			player_entering(game);
 	}
 	return (0);
 }
@@ -92,12 +95,12 @@ int	menu_select(int keypress, t_root *game)
 {
 	static int	k;
 
-	if (keypress == S && !k)
+	if ((keypress == S || keypress == DN) && !k)
 	{
 		game->m.select.pixel_loc.y += 58;
 		k = 1;
 	}
-	if (keypress == W && k)
+	if ((keypress == W || keypress == U) && k)
 	{
 		game->m.select.pixel_loc.y -= 58;
 		k = 0;
@@ -121,6 +124,7 @@ void	main_menu(t_root *game)
 	int	y;
 
 	game->window = MAIN_MENU;
+	game->status = MENU;
 	game->cheat = 0;
 	menu_sprites_init(game);
 	game->m.select.pixel_loc.x = 220;
@@ -129,7 +133,6 @@ void	main_menu(t_root *game)
 	game->i.max2.pixel_loc.x = 512;
 	game->i.max.pixel_loc.y = 575;
 	game->i.max2.pixel_loc.y = 575;
-	x = game->i.max2.pixel_loc.x;
 	x = game->m.menu.size.x;
 	y = game->m.menu.size.y;
 	game->mlxw_m = mlx_new_window(game->mlx_m, x, y, "");

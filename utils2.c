@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 11:15:02 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/13 14:18:03 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 14:37:56 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,14 @@ void	animation_cykle(t_root *game, int speed)
 {
 	static int	count;
 	static int	k;
+	static int	c;
 
+	if (speed != 30 && !c)
+	{
+		k = 0;
+		c = 1;
+		count = 0;
+	}
 	if (count == speed)
 		k = 1;
 	if (count == 0)

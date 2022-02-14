@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/13 22:55:53 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 15:37:14 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	level_restart(t_root *game)
 	game->m.select.pixel_loc.x = 0;
 	game->i.max_o.symbol_index = 0;
 	patrol_init(game);
-	*game->i.lady.pixels = 'E';
+	game->i.lady.pixels = ft_strchr(game->map, 'E');
 	game->score = 0;
 	game->restart = 1;
 }
@@ -73,20 +73,23 @@ void	game_action(int keypress, t_root *game, int xx, int yy)
 
 	i = ft_strchr(game->map, 'P') - game->map;
 	line = game->symbolsize.x;
-	change_player_sprite(game, keypress);
-	if (keypress == W && game->map[xx + (line + 1) * (yy - 1)] != '1')
-		if (game->map[xx + (line + 1) * (yy - 1)] != 'D')
-			if (game->map[xx + (line + 1) * (yy - 1)] != 'E')
-				move_wa(game, 'w', i);
-	if (keypress == A && game->map[(xx - 1) + (line + 1) * yy] != '1')
-		if (game->map[(xx - 1) + (line + 1) * yy] != 'E')
-			move_wa(game, 'a', i);
-	if (keypress == S && game->map[xx + (line + 1) * (yy + 1)] != '1')
-		if (game->map[xx + (line + 1) * (yy + 1)] != 'E')
-			move_sd(game, 's', i);
-	if (keypress == D && game->map[(xx + 1) + (line + 1) * yy] != '1')
-		if (game->map[(xx + 1) + (line + 1) * yy] != 'E')
-			move_sd(game, 'd', i);
+	if (keypress == W || keypress == U)
+		if (game->map[xx + (line + 1) * (yy - 1)] != '1')
+			if (game->map[xx + (line + 1) * (yy - 1)] != 'D')
+				if (game->map[xx + (line + 1) * (yy - 1)] != 'E')
+					move_wa(game, 'w', i);
+	if (keypress == A || keypress == L)
+		if (game->map[(xx - 1) + (line + 1) * yy] != '1')
+			if (game->map[(xx - 1) + (line + 1) * yy] != 'E')
+				move_wa(game, 'a', i);
+	if (keypress == S || keypress == DN)
+		if (game->map[xx + (line + 1) * (yy + 1)] != '1')
+			if (game->map[xx + (line + 1) * (yy + 1)] != 'E')
+				move_sd(game, 's', i);
+	if (keypress == D || keypress == R)
+		if (game->map[(xx + 1) + (line + 1) * yy] != '1')
+			if (game->map[(xx + 1) + (line + 1) * yy] != 'E')
+				move_sd(game, 'd', i);
 	if (ft_strchr(game->map, 'P') == game->i.lady.pixels)
 		if (!ft_strchr(game->map, 'C'))
 			win(game);
@@ -100,12 +103,12 @@ int	action(int keypress, t_root *game)
 	xx = game->i.max.symbol_loc.x;
 	yy = game->i.max.symbol_loc.y;
 	if (keypress == ESC)
-	{
-		mlx_destroy_window(game->mlx, game->mlxw);
-		exit(0);
-	}
+		return_to_menu(game);
 	if (game->status == NORMAL)
+	{
+		change_player_sprite(game, keypress);
 		game_action(keypress, game, xx, yy);
+	}
 	if ((game->status == WIN || game->status == RECORD) && keypress == 36)
 		next_level(game);
 	if (game->status == CONTINUE)
