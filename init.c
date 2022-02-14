@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/02/13 23:02:20 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 19:31:05 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	start(t_root *game, int a)
 	scoreboard(game);
 	x = game->pixelsize.x;
 	y = game->pixelsize.y;
-	game->mlxw = level_name(game, x, y);
+	game->mlxw = mlx_new_window(game->mlx, x, y, level_name(game->m.lvl));
 	game->i.max_o.symbol_index = 0;
 	game->m.select.pixel_loc.x = 0;
 	game->close_level = 0;

@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/14 18:35:42 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 19:32:02 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ int		select_lvl(int keypress, t_root *game);
 void	menu_display_level(t_root *game);
 void	menu_display_score(t_root *game);
 void	level_select_init(t_root *game);
-void	*level_name(t_root *game, int x, int y);
+char	*level_name(int lvl);
 void	movement(t_root *game, int i, int e);
 void	dj(t_root *game, t_vector xy);
 void	walls(t_root *game, t_vector xy, int i, int k);
