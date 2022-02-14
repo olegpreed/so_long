@@ -6,7 +6,7 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/14 15:42:44 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 18:35:42 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,5 +220,6 @@ void	player_entering(t_root *game);
 void	fading(void *img);
 void	menu_sprites_init(t_root *game);
 void	next_level(t_root *game);
+void	enemy_init(t_root *game);
 
 #endif

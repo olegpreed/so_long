@@ -6,20 +6,35 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:18:22 by preed             #+#    #+#             */
-/*   Updated: 2022/02/13 15:01:38 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 18:44:21 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	enemy_init(t_root *game)
+int	print_error(int p, int e, int c, int o)
 {
-	int	i;
-
-	i = game->t_count;
-	game->thug = (t_image *)malloc(i * sizeof(t_image));
-	if (game->thug == 0)
-		printf("t_count = %d\n ,malloc !\n", game->t_count);
+	if (p != 1)
+	{
+		printf("player is not alone\n");
+		return (1);
+	}
+	if (!e)
+	{
+		printf("there is no lady\n");
+		return (1);
+	}
+	if (!c)
+	{
+		printf("there is no beer\n");
+		return (1);
+	}
+	if (o)
+	{
+		printf("there are some other symbols\n");
+		return (1);
+	}
+	return (0);
 }
 
 int	check_item_count(char *map, t_root *game)
@@ -45,7 +60,7 @@ int	check_item_count(char *map, t_root *game)
 			count[3]++;
 		map++;
 	}
-	if (count[0] != 1 || !count[1] || !count[2] || count[3])
+	if (print_error(count[0], count[1], count[2], count[3]))
 		return (1);
 	return (0);
 }
@@ -92,11 +107,22 @@ int	check_walls(char *map)
 int	check_valid_map(t_root *game)
 {
 	if (game->symbolsize.y <= 2)
+	{
+		printf("map too small\n");
 		return (1);
-	if (check_item_count(game->map, game) || check_map_square(game))
+	}
+	if (check_item_count(game->map, game))
 		return (1);
+	if (check_map_square(game))
+	{
+		printf("map is weird shape\n");
+		return (1);
+	}
 	if (check_walls(game->map))
+	{
+		printf("there is a hole in the wall!\n");
 		return (1);
+	}
 	enemy_init(game);
 	return (0);
 }

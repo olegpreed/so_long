@@ -6,11 +6,21 @@
 /*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 00:13:14 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/10 18:05:45 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/14 18:35:18 by oleg             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	enemy_init(t_root *game)
+{
+	int	i;
+
+	i = game->t_count;
+	game->thug = (t_image *)malloc(i * sizeof(t_image));
+	if (game->thug == 0)
+		printf("t_count = %d\n ,malloc !\n", game->t_count);
+}
 
 void	index_to_loc(int i, int j, t_root *game)
 {
