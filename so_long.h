@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/14 19:32:02 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 17:41:07 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "minilibx/mlx.h"
+// # include "minilibx/mlx.h"
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -126,9 +127,8 @@ typedef struct t_menu {
 }				t_menu;
 
 typedef struct s_root {
-	void		*mlx_m;
-	void		*mlxw_m;
 	void		*mlx;
+	void		*mlxw_m;
 	void		*mlxw;
 	char		*map_path;
 	t_image		*thug;

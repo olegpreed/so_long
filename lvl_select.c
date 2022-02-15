@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lvl_select.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:48:58 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/14 15:45:54 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 17:16:34 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	menu_display_score(t_root *game)
 	void	*mlx;
 	void	*mlxw;
 
-	mlx = game->mlx_m;
+	mlx = game->mlx;
 	mlxw = game->mlxw_m;
 	i = game->m.scores[game->m.lvl - 1];
 	j[0] = i / 1000;
@@ -65,7 +65,7 @@ void	menu_display_level(t_root *game)
 	void	*mlx;
 	void	*mlxw;
 
-	mlx = game->mlx_m;
+	mlx = game->mlx;
 	mlxw = game->mlxw_m;
 	mlx_put_image_to_window(mlx, mlxw, game->m.menu.ref, 0, 0);
 	menu_overlay(game, mlx, mlxw);
@@ -93,7 +93,7 @@ int	select_lvl(int keypress, t_root *game)
 		preparation(game);
 		game->window = GAME;
 		game->close_level = 0;
-		mlx_destroy_window(game->mlx_m, game->mlxw_m);
+		mlx_destroy_window(game->mlx, game->mlxw_m);
 		start(game, 0);
 		patrol_init(game);
 		mlx_hook(game->mlxw, 2, 0, &action, game);

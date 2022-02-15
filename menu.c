@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:47:04 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/14 15:46:06 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 17:16:20 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	face_control(t_root *game, int x, int y)
 	void	*mlx;
 	void	*mlxw;
 
-	mlx = game->mlx_m;
+	mlx = game->mlx;
 	mlxw = game->mlxw_m;
 	if (!(game->k))
 	{
@@ -69,7 +69,7 @@ int	menu_render(t_root *game)
 	void	*mlx;
 	void	*mlxw;
 
-	mlx = game->mlx_m;
+	mlx = game->mlx;
 	mlxw = game->mlxw_m;
 	if (game->window == MAIN_MENU)
 	{
@@ -135,5 +135,5 @@ void	main_menu(t_root *game)
 	game->i.max2.pixel_loc.y = 575;
 	x = game->m.menu.size.x;
 	y = game->m.menu.size.y;
-	game->mlxw_m = mlx_new_window(game->mlx_m, x, y, "");
+	game->mlxw_m = mlx_new_window(game->mlx, x, y, "");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/14 15:37:14 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 17:16:51 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void	return_to_menu(t_root *game)
 	game->close_level = 1;
 	game->window = MAIN_MENU;
 	mlx_destroy_window(game->mlx, game->mlxw);
-	game->mlxw_m = mlx_new_window(game->mlx_m, x, y, "");
+	game->mlxw_m = mlx_new_window(game->mlx, x, y, "");
 	game->m.select.pixel_loc.x = 220;
 	game->m.select.pixel_loc.y = 425;
 	mlx_hook(game->mlxw_m, 2, 0, &menu_select, game);
-	mlx_loop_hook(game->mlx_m, &menu_render, game);
+	mlx_loop_hook(game->mlx, &menu_render, game);
 }
 
 void	game_action(int keypress, t_root *game, int xx, int yy)

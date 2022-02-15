@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+         #
+#    By: preed <preed@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 14:36:11 by preed             #+#    #+#              #
-#    Updated: 2022/02/13 14:04:42 by oleg             ###   ########.fr        #
+#    Updated: 2022/02/15 17:42:11 by preed            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ CC = gcc
 %.o: %.c		${HEADER}
 				${CC}  -c $< -o ${<:.c=.o}
 
-FLAGS = -lmlx -framework OpenGL -Lminilibx -framework AppKit -Wall -Wextra -Werror
+FLAGS = -lmlx -framework OpenGL -framework AppKit -Wall -Wextra -Werror
+#FLAGS = -lmlx -framework OpenGL -Lminilibx -framework AppKit -Wall -Wextra -Werror
 
 all: ${NAME}
 
@@ -36,5 +37,4 @@ ${NAME}: $(SRC) $(OBJS) ./maps/* so_long.h
 
 clean: 
 	rm $(NAME)
-
-## gcc  -g -lmlx -framework OpenGL -framework AppKit *.c -o so_long
+	
