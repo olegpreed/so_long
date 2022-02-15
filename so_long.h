@@ -6,7 +6,7 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:25:38 by preed             #+#    #+#             */
-/*   Updated: 2022/02/15 17:41:07 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/15 18:25:13 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,6 @@ typedef struct s_root {
 	int			fd;
 	int			p_status;
 	int			cheat;
-
 }				t_root;
 
 int		map(t_root *game);

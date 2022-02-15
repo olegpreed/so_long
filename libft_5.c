@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_5.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:20:57 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/12 10:10:05 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 18:39:45 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_putnbr(const char *str, int i, int e)
 	long long int	num;
 
 	num = 0;
-	while (str[i] > 47 && str[i] < 58 )
+	while (str[i] > 47 && str[i] < 58)
 	{
 		if (num > (9223372036854775807 - (long long)((str[i]) - 48)) / 10)
 			return (-2);

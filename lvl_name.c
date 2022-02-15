@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lvl_name.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:55:32 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/14 21:33:44 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 18:21:49 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*level_name2(int lvl)
 		return ("12 - Gladiator");
 	if (lvl == 13)
 		return ("13 - Hard level");
+	if (lvl == 14)
+		return ("14 - Twins");
 	else
 		return ("dwdw");
 }
