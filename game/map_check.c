@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:18:22 by preed             #+#    #+#             */
-/*   Updated: 2022/02/14 18:44:21 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 19:09:58 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	print_error(int p, int e, int c, int o)
 {

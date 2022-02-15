@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   patrol_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 00:13:14 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/14 18:35:18 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 19:10:03 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	enemy_init(t_root *game)
 {

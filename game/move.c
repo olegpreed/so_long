@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:52:33 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/11 19:16:30 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 19:10:01 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	drink(int j, int i, t_root *game)
 {

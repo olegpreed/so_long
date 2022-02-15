@@ -6,11 +6,11 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 17:55:32 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/15 18:21:49 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/15 19:09:57 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 char	*level_name2(int lvl)
 {

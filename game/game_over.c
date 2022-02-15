@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game_over.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 17:02:44 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/13 20:58:04 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 19:09:40 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	restart(t_root *game, int a)
 {

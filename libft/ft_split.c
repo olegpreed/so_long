@@ -6,11 +6,11 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:31:09 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 14:31:11 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/15 18:52:23 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 static int	count(char const *s, char c)
 {

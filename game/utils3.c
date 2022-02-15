@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 13:58:29 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/13 19:19:47 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 19:16:39 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	cheat(int keypress, t_root *game)
 {
@@ -38,7 +38,7 @@ int	scores(t_root *game)
 	int		i;
 
 	i = 0;
-	game->fd = open("scoreboard", O_RDWR);
+	game->fd = open("scores/scoreboard", O_RDWR);
 	if (game->fd == -1)
 		return (1);
 	while (i < 21)

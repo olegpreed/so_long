@@ -6,11 +6,11 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 21:40:46 by preed             #+#    #+#             */
-/*   Updated: 2022/02/15 15:58:26 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/15 19:31:00 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	*image_ref(t_root *game, t_image *image)
 {
@@ -61,7 +61,7 @@ int	scoreboard(t_root *game)
 	char	*string[2];
 
 	k = 1;
-	game->fd = open("scoreboard", O_RDWR);
+	game->fd = open("scores/scoreboard", O_RDWR);
 	if (game->fd == -1)
 		return (1);
 	game->scoreboard = get_next_line(game->fd);

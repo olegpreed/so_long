@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   libft_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 20:56:45 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/12 10:10:16 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 18:52:19 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 char	*ft_strdup(const char *s1)
 {

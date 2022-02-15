@@ -6,11 +6,11 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:47:04 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/15 18:22:10 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/15 19:10:48 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	face_control(t_root *game, int x, int y)
 {

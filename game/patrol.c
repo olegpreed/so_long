@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   patrol.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 00:13:01 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/10 22:26:20 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 19:10:07 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	check_2(int i, int j, t_root *game, int ty)
 {

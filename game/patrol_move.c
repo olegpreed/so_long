@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   patrol_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 21:32:56 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/10 21:37:06 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 19:10:05 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	final_move_ws(t_root *game, int e, char a, int i)
 {

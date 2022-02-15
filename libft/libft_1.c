@@ -6,11 +6,11 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:32:40 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 14:32:52 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/15 18:52:18 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {

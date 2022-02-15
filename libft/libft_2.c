@@ -6,11 +6,11 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:33:09 by preed             #+#    #+#             */
-/*   Updated: 2022/01/18 14:33:12 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/15 18:52:18 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 char	*ft_strchr(const char *s, int c)
 {

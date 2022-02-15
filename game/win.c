@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   win.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 19:24:40 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/13 23:23:14 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 19:26:12 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	mlx_img(t_root *game, void *img, int x, int y)
 {
@@ -86,7 +86,7 @@ int	win(t_root *game)
 	i = game->i.max.symbol_index;
 	game->map[i] = 'L';
 	game->i.lady_w.ref = image_ref(game, &(game->i.pair));
-	game->fd = open("scoreboard", O_RDWR);
+	game->fd = open("scores/scoreboard", O_RDWR);
 	if (game->fd == -1)
 		return (1);
 	game->status = WIN;

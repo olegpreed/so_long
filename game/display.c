@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oleg <oleg@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 23:31:07 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/14 19:19:27 by oleg             ###   ########.fr       */
+/*   Updated: 2022/02/15 19:09:32 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	change_player_sprite(t_root *game, int keypress)
 {

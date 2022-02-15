@@ -6,11 +6,11 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:03:56 by preed             #+#    #+#             */
-/*   Updated: 2022/02/15 16:14:59 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/15 19:10:12 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	symbol_to_image(t_root *game, t_vector xy, int i, int k)
 {

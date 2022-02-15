@@ -6,11 +6,11 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 22:45:30 by preed             #+#    #+#             */
-/*   Updated: 2022/02/15 17:16:51 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/15 19:09:54 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	level_restart(t_root *game)
 {

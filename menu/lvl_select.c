@@ -6,11 +6,11 @@
 /*   By: preed <preed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 19:48:58 by oleg              #+#    #+#             */
-/*   Updated: 2022/02/15 17:16:34 by preed            ###   ########.fr       */
+/*   Updated: 2022/02/15 19:10:46 by preed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	player_entering(t_root *game)
 {
