@@ -8,4 +8,11 @@ https://user-images.githubusercontent.com/86532263/191557463-8ac6ad98-c551-45da-
 (I recommend to turn on music for this video!)
 
 ## Requirements:
-- Macbook
+- Mac
+
+## How to run
+1. Download the repo
+2. Run ./so_long file
+
+## Cheatcodes
+- Bullz (turns all beers into redbull cans)
