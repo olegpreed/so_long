@@ -10,9 +10,9 @@ https://user-images.githubusercontent.com/86532263/191557463-8ac6ad98-c551-45da-
 ## Requirements:
 - Mac
 
-## How to run
+## How to run:
 1. Download the repo
 2. Run ./so_long file
 
-## Cheatcodes
-- Bullz (turns all beers into redbull cans)
+### Cheatcodes
+- Type **Bullz** in the main menu *(turns beer into redbull cans)*
