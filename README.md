@@ -14,5 +14,5 @@ https://user-images.githubusercontent.com/86532263/191557463-8ac6ad98-c551-45da-
 1. Download the repo
 2. Run ./so_long file
 
-### Cheatcodes
-- Type **Bullz** in the main menu *(turns beer into redbull cans)*
+## Cheatcodes
+Type **Bullz** in the main menu *(turns beer into redbull cans)*
